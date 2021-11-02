@@ -1,0 +1,19 @@
+{
+    "name": "losyuntas/pasys-api",
+    "description": "panol system",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ElWazy",
+            "email": "ElCazero.Fer@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "LosYuntas\\Application\\": "./app",
+            "LosYuntas\\": "./src"
+        }
+    }
+}
