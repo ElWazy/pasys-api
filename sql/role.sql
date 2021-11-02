@@ -1,7 +1,11 @@
-create table role (
-	id INT,
-	name VARCHAR(50)
+DROP TABLE IF EXISTS role;
+CREATE TABLE role (
+	id INT AUTO_INCREMENT NOT NULL,
+	name VARCHAR(50) NOT NULL,
+
+    PRIMARY KEY (id)
 );
+
 insert into role (id, name) values (1, 'Supervisor');
 insert into role (id, name) values (2, 'Surveyor');
 insert into role (id, name) values (3, 'Supervisor');
