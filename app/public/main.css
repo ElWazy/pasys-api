@@ -1,0 +1,122 @@
+/* Init */
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/* Pure Tags Definitions */
+body {
+    background-color: #ebf7ff;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 16px;
+}
+
+a {
+    color: #f3de8a;
+    text-decoration: none;
+}
+
+/* Util Class*/
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.flex-column {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    flex: 1;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap: 2em;    
+}
+
+.primary {
+    box-shadow: 10px 10px #1b2a41;
+    color: #1b2a41;
+}
+
+.danger {
+    box-shadow: 10px 10px #9e7682;
+    color: #9e7682;
+}
+
+/* Navbar*/
+nav {
+    background-color: #0C1821;
+    color: #ebf7ff;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style: none;
+}
+
+/* Main Content*/
+section {
+    margin: 1em auto;
+    width: 90%;
+}
+
+.search {
+    text-align: center;
+    margin: 1em;
+}
+
+/* Form */
+input {
+    margin: 0.5em;
+    padding: 0.5em;
+    font-size: 1.1em;
+}
+
+input[type="search"] {
+    width: 50%;
+}
+
+input[type="submit"] {
+    background-color: #f3de8a;
+
+}
+
+/* Card */
+.card {
+    align-items: center;
+}
+
+.card-name {
+    color: #1b2a41;
+    padding: 0.5em; 
+    font-size: 1.5rem;
+}
+
+.card-body {
+    color: #1b2a41;
+    padding: 1em; 
+    border: 1px solid #1b2a41;
+    border-radius: 25px;
+}
+
+.card-category {
+    font-size: 1.2em;
+}
+
+/*Footer*/
+footer {
+    background-color: #0C1821;
+    color: #ccc9dc;
+    padding: 1rem;
+}
+
+footer ul {
+    list-style: none;
+    justify-content: space-between;
+}
