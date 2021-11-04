@@ -26,17 +26,17 @@
                 </form>
             </article>
             <article class="grid">
-                <?php foreach($products as $product): ?>
+                <?php foreach($tools as $tool): ?>
                     <div class="card flex-column">
                         <div class="card-body primary">
-                            <img src="https://picsum.photos/seed/<?= $product['id']; ?>/200"
+                            <img src="<?= $tool['image']; ?>"
                             loading="lazy" 
                             alt="imagen herramienta"/>
 
-                            <p class="card-name "><?= $product['name']; ?></p>
-                            <p class="card-category"><?= $product['category']; ?></p>
-                            <p>stock total: <?= $product['stock_total']; ?></p>
-                            <p>stock real: <?= $product['stock_actual']; ?></p>
+                            <p class="card-name "><?= $tool['name']; ?></p>
+                            <p class="card-category"><?= $tool['category']; ?></p>
+                            <p>stock total: <?= $tool['stock_total']; ?></p>
+                            <p>stock real: <?= $tool['stock_actual']; ?></p>
                         </div>
                     </div>          
                 <?php endforeach; ?>

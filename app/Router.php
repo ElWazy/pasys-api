@@ -3,8 +3,8 @@ namespace LosYuntas\Application;
 
 class Router
 {
-    public array $getRoutes = [];
-    public array $postRoutes = [];
+    private array $getRoutes = [];
+    private array $postRoutes = [];
 
     public function get($url, $fn)
     {

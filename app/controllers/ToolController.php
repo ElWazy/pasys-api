@@ -3,57 +3,28 @@
 namespace LosYuntas\Application\controllers;
 
 use LosYuntas\Application\Router;
+use LosYuntas\tool\domain\ToolRepository;
+use LosYuntas\tool\infrastructure\MariaDBToolRepository;
 
-class ToolController
+final class ToolController
 {
+    private ToolRepository $repository;
+
+    public function __construct()
+    {
+        $this->repository = new MariaDBToolRepository(
+            'localhost',
+            'panol_system',
+            'master',
+            'master'
+        );
+    } 
+
     public function index(Router $router)
     {
-        $products = [
-            [
-                'id'           => 1,
-                'name'         => 'Martillo',
-                'category'     => 'Contucion',
-                'stock_total'  => 42,
-                'stock_actual' => 32
-            ],
-            [
-                'id'           => 2,
-                'name'         => 'Tester',
-                'category'     => 'Electronica',
-                'stock_total'  => 10,
-                'stock_actual' => 3
-            ],
-            [
-                'id'           => 3,
-                'name'         => 'Nunchacos',
-                'category'     => 'Karate',
-                'stock_total'  => 1,
-                'stock_actual' => 1
-            ],
-            [
-                'id'           => 4,
-                'name'         => 'Camioneta',
-                'category'     => 'Vehiculo',
-                'stock_total'  => 40,
-                'stock_actual' => 33
-            ],
-            [
-                'id'           => 5,
-                'name'         => 'Rascacielo',
-                'category'     => 'Edificio',
-                'stock_total'  => 2,
-                'stock_actual' => 1
-            ],
-            [
-                'id'           => 3,
-                'name'         => 'Escoba',
-                'category'     => 'Aseo',
-                'stock_total'  => 3,
-                'stock_actual' => 3
-            ]
-        ];
+        $tools = $this->repository->getAll();
         $router->renderView('tool/index', [
-            'products' => $products
+            'tools' => $tools
         ]);
     }
 
