@@ -5,3 +5,10 @@ CREATE TABLE role (
 
     PRIMARY KEY (id)
 );
+
+INSERT INTO role (name) VALUES
+('trabajador'),
+('panolero'),
+('electricista'),
+('ingeniero'),
+('gafer');

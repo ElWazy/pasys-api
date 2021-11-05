@@ -22,24 +22,22 @@ final class ToolController
 
     public function index(Router $router)
     {
-        $tools = $this->repository->getAll();
-        $router->renderView('tool/index', [
-            'tools' => $tools
-        ]);
+        
+        echo 'Tool Index Page';
     }
 
     public function add(Router $router)
     {
-        echo "Add Page";
+        echo 'Tool Add Page';
     }
 
     public function update(Router $router)
     {
-        echo "Update Page";
+        echo 'Tool Update Page';
     }
 
     public function remove(Router $router)
     {
-        echo "Delete Page";
+        echo 'Delete Tool Page';
     }
 }
