@@ -1,0 +1,69 @@
+/* Init */
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/* Pure Tags Definitions */
+body {
+    background-color: #ebf7ff;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 16px;
+}
+
+a {
+    color: #f3de8a;
+    text-decoration: none;
+}
+
+/* Util Class*/
+.grid {
+    display: grid; 
+}
+
+/* Navbar*/
+nav {
+    background-color: #0C1821;
+    color: #ebf7ff;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style: none;
+}
+
+/* Main Content*/
+article {
+    justify-content: center;
+    margin: 2em;
+}
+
+/* Form */
+h2 {
+    background-color: #0C1821;
+    color: #ebf7ff;
+    padding: 1em;
+    border-radius: 25px 25px 0 0;
+}
+
+form {
+    background-color: #fff;
+    padding: 1em;
+    display: grid;
+    gap: 1em; 
+    border-radius: 0 0 25px 25px;
+}
+
+input {
+    padding: 0.5em;
+    font-size: 1.1em;
+    border: 1px solid #ebf7ff
+}
+
+input[type="submit"] {
+    background-color: #f3de8a;
+
+}

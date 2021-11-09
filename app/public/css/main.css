@@ -9,7 +9,7 @@
 
 /* Pure Tags Definitions */
 body {
-    background-color: #ebf7ff;
+    background-color: white;
     font-family: 'Sarabun', sans-serif;
     font-size: 16px;
 }
@@ -36,7 +36,8 @@ a {
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
-    gap: 2em;    
+    gap: 2em; 
+    
 }
 
 .primary {
@@ -48,6 +49,7 @@ a {
     box-shadow: 10px 10px #9e7682;
     color: #9e7682;
 }
+
 
 /* Navbar*/
 nav {
@@ -72,7 +74,7 @@ section {
 }
 
 /* Form */
-input {
+input, label {
     margin: 0.5em;
     padding: 0.5em;
     font-size: 1.1em;
@@ -80,11 +82,22 @@ input {
 
 input[type="search"] {
     width: 50%;
+    background-color: #ebf7ff;
 }
 
-input[type="submit"] {
+input[type="submit"], label {
     background-color: #f3de8a;
 
+}
+
+#a-button{
+    margin: 0.5em;
+    padding: 0.5em;
+    font-size: 1em;
+    font-weight: bold;
+    width: 50%;
+    color: black;
+    background-color: #f3de8a;
 }
 
 /* Card */
@@ -102,7 +115,7 @@ input[type="submit"] {
     color: #1b2a41;
     padding: 1em; 
     border: 1px solid #1b2a41;
-    border-radius: 25px;
+  
 }
 
 .card-category {

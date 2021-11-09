@@ -2,8 +2,9 @@
 
 namespace LosYuntas\Application\controllers;
 
+session_start();
+
 use LosYuntas\Application\Router;
-use LosYuntas\tool\application\ToolSearcher;
 use LosYuntas\tool\domain\ToolRepository;
 use LosYuntas\tool\infrastructure\ToolRepositoryMariaDB;
 
@@ -24,21 +25,18 @@ final class ToolController
     public function index(Router $router)
     {
         $criteria = $_GET['search'] ?? '';
-        $searcher = new ToolSearcher($this->repository);
-        $tools = [];
-        
-        if ($criteria) {
-            $tools = $searcher->getByCriteria($criteria);
+        $isAdmin = isset($_SESSION['isActive']);
+
+        if (!$criteria) {
+            $tools = $this->repository->getAll();
         } else {
-            $tools = $searcher->getAll();
+            $tools = $this->repository->getByCriteria($criteria);
         }
 
-        echo '<pre>';
-        var_dump($criteria);
-        foreach($tools as $tool) {
-            echo $tool->name();
-        }
-        echo '</pre>';
+        $router->renderView('tool/index', [
+            'tools' => $tools,
+            'isAdmin' => $isAdmin
+        ]);
     }
 
     public function add(Router $router)

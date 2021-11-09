@@ -3,13 +3,7 @@
 namespace LosYuntas\tool\infrastructure;
 
 use LosYuntas\tool\domain\Tool;
-use LosYuntas\tool\domain\ToolCategory;
-use LosYuntas\tool\domain\ToolId;
-use LosYuntas\tool\domain\ToolImage;
-use LosYuntas\tool\domain\ToolIsActive;
-use LosYuntas\tool\domain\ToolName;
 use LosYuntas\tool\domain\ToolRepository;
-use LosYuntas\tool\domain\ToolStock;
 use PDO;
 
 final class ToolRepositoryMariaDB implements ToolRepository
@@ -28,7 +22,7 @@ final class ToolRepositoryMariaDB implements ToolRepository
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    public function getAll(): array
+    public function getAll(): ?array
     {
         $sql = 'SELECT 
             tool.id, 
@@ -42,27 +36,31 @@ final class ToolRepositoryMariaDB implements ToolRepository
         ORDER BY tool.id ASC';
 
         $statement = $this->connection->query($sql);
+ 
 
-        $tools = [];
-        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-        foreach($result as $row) {
-            $id = new ToolId((int) $row['id']);
-            $name = new ToolName($row['name']);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-            $tools[] = new Tool(
-                $id,
-                $name,
-                new ToolCategory($row['category']),
-                new ToolImage($row['image']),
-                new ToolStock($row['stock_total'], $row['stock_actual']),
-                new ToolIsActive($row['is_active'] == 1)
-            );
-        }
-        echo '<pre>';
-        var_dump($tools);
-        echo '</pre>';
+    public function getByCriteria(string $criteria): ?array
+    {
+        $sql = 'SELECT 
+            tool.id, 
+            tool.name, 
+            category.name AS category, 
+            tool.image, tool.stock_total, 
+            tool.stock_actual, 
+            tool.is_active 
+        FROM tool 
+        INNER JOIN category ON tool.category_id = category.id 
+        WHERE tool.name LIKE :criteria OR category.name LIKE :criteria
+        ORDER BY tool.id ASC';
 
-        return $tools;
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([
+            'criteria' => "%$criteria%"
+        ]);
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function add(Tool $tool): void
@@ -73,7 +71,7 @@ final class ToolRepositoryMariaDB implements ToolRepository
     {
     }
 
-    public function remove(ToolId $id): void
+    public function remove(int $id): void
     {
     }
 

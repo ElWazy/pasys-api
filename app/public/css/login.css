@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+/* Pure Tags Definitions */
+body {
+    background-image: url(blob-scene-haikei.svg) ;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Sarabun', sans-serif;
+    font-size: 16px;
+}
+
+a {
+    text-decoration: none;
+    text-align: center;
+    background-color: #F3DE8A;
+    color: #fff;
+    display: inline;
+    width: 10em;
+    padding: 1em;
+    margin: 0 auto;
+    border-radius: 25px;
+}
+
+/* Navbar*/
+nav {
+    background-color: #0C1821;
+    color: #ebf7ff;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style: none;
+}
+
+main {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+h2 {
+    font-size: 2.6rem;
+    margin: 1em;
+}
+
+form {
+    background-color: #1b2a41;
+    color: #fff;
+    padding: 1.5em;
+    display: grid;
+    gap: 1em;
+    padding-bottom: 3em;
+    border-radius: 10px;
+    
+}
+
+input {
+    width: 70%;
+    margin: 0 auto;
+    padding: 0.5em;
+    font-size: 0.9rem;
+    border: 0;
+    border-bottom: 5px solid #F3DE8A;
+}
+.curved svg {
+    display: block;
+    position: absolute;
+    bottom: 0;
+}
+
+.curvedtop  {
+    background: ebf7ff;
+    
+}
