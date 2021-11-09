@@ -4,9 +4,7 @@ namespace LosYuntas\tool\domain;
 
 interface ToolRepository
 {
-    public function getAll(): ?array;
-
-    public function getByName(string $name): ?array;
+    public function getAll(): array;
 
     public function add(Tool $tool): void;
 

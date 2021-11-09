@@ -3,8 +3,9 @@
 namespace LosYuntas\Application\controllers;
 
 use LosYuntas\Application\Router;
+use LosYuntas\tool\application\ToolSearcher;
 use LosYuntas\tool\domain\ToolRepository;
-use LosYuntas\tool\infrastructure\MariaDBToolRepository;
+use LosYuntas\tool\infrastructure\ToolRepositoryMariaDB;
 
 final class ToolController
 {
@@ -12,7 +13,7 @@ final class ToolController
 
     public function __construct()
     {
-        $this->repository = new MariaDBToolRepository(
+        $this->repository = new ToolRepositoryMariaDB(
             'localhost',
             'panol_system',
             'master',
@@ -22,8 +23,22 @@ final class ToolController
 
     public function index(Router $router)
     {
+        $criteria = $_GET['search'] ?? '';
+        $searcher = new ToolSearcher($this->repository);
+        $tools = [];
         
-        echo 'Tool Index Page';
+        if ($criteria) {
+            $tools = $searcher->getByCriteria($criteria);
+        } else {
+            $tools = $searcher->getAll();
+        }
+
+        echo '<pre>';
+        var_dump($criteria);
+        foreach($tools as $tool) {
+            echo $tool->name();
+        }
+        echo '</pre>';
     }
 
     public function add(Router $router)
