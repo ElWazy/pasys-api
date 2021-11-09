@@ -50,6 +50,12 @@ a {
     color: #9e7682;
 }
 
+.btn-remove {
+    padding: 0.5em;
+    font-size: 1.1em;
+    background-color: #f3de8a;
+}
+
 
 /* Navbar*/
 nav {
