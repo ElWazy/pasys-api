@@ -4,7 +4,8 @@ CREATE TABLE category (
 	name VARCHAR(50) UNIQUE NOT NULL,
 
     PRIMARY KEY(id)
-);
+)
+CHARACTER SET utf8 COLLATE utf8_general_ci;
 
 INSERT INTO category (name) VALUES
 ('Martillos'),
