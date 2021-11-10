@@ -50,13 +50,29 @@ a {
 
 /* Navbar*/
 nav {
+    list-style: none;
+    padding: 0;
     background-color: #0C1821;
-    color: #ebf7ff;
-    padding: 1rem;
+    
+    
 }
 
-nav ul {
+nav li {
     list-style: none;
+    display: inline-block;
+    text-align: center;
+    padding: 0.875em;
+}
+nav li a{
+  font-size: 1.50em;
+    color: white;  
+}
+nav ul h1{
+    font-size: 1.50em;
+    color: white;
+}
+nav li:hover{
+    background: chocolate;
 }
 
 /* Main Content*/
