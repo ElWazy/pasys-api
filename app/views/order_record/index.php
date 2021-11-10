@@ -57,7 +57,37 @@
 
 
     <div class="main-container">
-        <iframe src="order-manager-list.html" frameborder="0"></iframe> <!--iframe donde se carga la tabla desde otra pagina para facilitar la visualizacion-->
+
+        <table class="elements">
+
+            <thead>
+                <tr>
+                    <th> RUT  </th>
+                    <th> NOMBRE </th>  
+                    <th> HERRAMIENTA </th>
+                    <th> CANTIDAD </th>  
+                    <th> FECHA </th> 
+                    <th> ESTADO </th>
+                </tr>
+            </thead>
+        
+            <tr>
+                <td></td> <td></td> <td></td> <td></td><td></td> <td></td>  
+            </tr>
+            <tr>
+                <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+            </tr>
+            <tr>
+                <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+            </tr>
+            <tr>
+                <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
+            </tr>
+        
+    
+        
+        </table>
+
     </div>
 
     <script src="js/popup.js"></script>

@@ -20,42 +20,63 @@
 
     <main >
         <section>
-            
             <article class="search" >
                 <form action="#" method="get">
                     <input type="search" 
                             name="search" 
                             id="search" 
-                            placeholder="Buscar Categoria" />
+                            placeholder="Buscar Rol" />
                     <input type="submit" value="Buscar">
-                    <input type="button" value="Crear Categoría" onclick="mostrar()"> 
+                    <input type="button" value="Crear Rol" onclick="mostrar()"> 
+                    <!--boton que abre el pop ad para crear usuarios-->
                 </form>
             </article>
-
         </section>
+
     </main>
 
-    <div class="pup" id="pup-1">
 
+    <div class="pup" id="pup-1">
         <div class="popup-create">
             <div class="modal-create" id="modalcontainer">
-                <h2>Crear Categoría</h1>
+                <h2>Crear Rol</h1>
                     <form action="#" method="post" class="form-modal">
-                        <input type="text" name="name" id="name" placeholder="Nombre de la Categoría"  />
+                        <input type="text" name="name" id="name" placeholder="Nombre Rol">
                         <input type="submit" value="Crear">
-                        <input type="button" value="Cerrar" onclick="ocultar();">
+                        <input type="button" value="Cerrar" onclick="ocultar()">
                 </form>
             </div>
         </div>
-
     </div>
     
     <div class="main-container">
-        <iframe src="category-table.html" frameborder="0"></iframe> <!--iframe donde se carga la tabla desde otra pagina para facilitar la visualizacion-->
-    </div>
+    <table class="elements">
+
+        <thead>
+            <tr>
+                <th> ID </th><th> Rol </th>   <th> </th>
+            </tr>
+        </thead>
+
+        <tr>
+            <td></td> <td></td> <td></td> 
+        </tr>
+        <tr>
+            <td></td> <td></td> <td></td> 
+        </tr>
+        <tr>
+            <td></td> <td></td> <td></td> 
+        </tr>
+        <tr>
+            <td></td> <td></td> <td></td> 
+        </tr>
+
+        </table>
+        
+</div>
+
 
     <script src="js/popup.js"></script>
-
 
 </body>
 </html>
