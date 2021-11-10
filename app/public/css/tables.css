@@ -1,23 +1,23 @@
-
-body {
-    background-image: url(blob-scene-haikei2.svg) ;
-    background-size: cover;
-    background-attachment: fixed;
+*{
     font-family: 'Sarabun', sans-serif;
     font-size: 16px;
 }
 
 .main-container{
 
+    width: 80%;
     margin: 150px auto;
-    width: 1000px;
+    height: 0;
+    padding-bottom: 56.25%;
+    position: relative;
+    
 
 }
 
 iframe {
-    text-align: center;
+    position: absolute;
     width: 100%;
-    height: 400px;
+    height: 450px;
 }
 
 table{
@@ -44,6 +44,7 @@ th, td{
     border: 0.5px solid black;
     padding: 20px;
 }
+
 
 
 

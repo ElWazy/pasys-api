@@ -79,3 +79,22 @@ input {
     background: ebf7ff;
     
 }
+
+@media (max-width: 1200px){
+    body{
+        font-size: 14px;
+    }
+    h2{
+        font-size: 1.875em;
+    }
+
+    
+}
+@media (max-width:768px ){
+    body{
+        font-size: 11px;
+    }
+    h2{
+        font-size: 1.850em;
+    }
+}

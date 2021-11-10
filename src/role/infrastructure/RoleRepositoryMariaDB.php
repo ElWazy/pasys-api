@@ -52,7 +52,7 @@ final class RoleRepositoryMariaDB implements RoleRepository
 
         $statement = $this->connection->prepare($sql);
         $statement->execute([
-            'name' => $role->name
+            'name' => $role->name()
         ]);
     }
 

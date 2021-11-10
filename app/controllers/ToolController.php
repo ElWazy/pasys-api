@@ -2,9 +2,8 @@
 
 namespace LosYuntas\Application\controllers;
 
-session_start();
-
 use LosYuntas\Application\Router;
+use LosYuntas\Application\middlewares\Auth;
 use LosYuntas\tool\domain\ToolRepository;
 use LosYuntas\tool\infrastructure\ToolRepositoryMariaDB;
 
@@ -24,8 +23,9 @@ final class ToolController
 
     public function index(Router $router)
     {
+        $isAdmin = Auth::isAdmin();
+
         $criteria = $_GET['search'] ?? '';
-        $isAdmin = isset($_SESSION['isActive']);
 
         if (!$criteria) {
             $tools = $this->repository->getAll();

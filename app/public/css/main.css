@@ -1,18 +1,15 @@
 /* Init */
 @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300&display=swap');
 
+
 * {
     margin: 0;
     padding: 0;
     border: 0;
-}
-
-/* Pure Tags Definitions */
-body {
-    background-color: white;
     font-family: 'Sarabun', sans-serif;
     font-size: 16px;
 }
+
 
 a {
     color: #f3de8a;
@@ -50,12 +47,6 @@ a {
     color: #9e7682;
 }
 
-.btn-remove {
-    padding: 0.5em;
-    font-size: 1.1em;
-    background-color: #f3de8a;
-}
-
 
 /* Navbar*/
 nav {
@@ -80,7 +71,7 @@ section {
 }
 
 /* Form */
-input, label {
+input {
     margin: 0.5em;
     padding: 0.5em;
     font-size: 1.1em;
@@ -91,9 +82,8 @@ input[type="search"] {
     background-color: #ebf7ff;
 }
 
-input[type="submit"], label {
+input[type="submit"] {
     background-color: #f3de8a;
-
 }
 
 #a-button{
@@ -139,3 +129,4 @@ footer ul {
     list-style: none;
     justify-content: space-between;
 }
+
