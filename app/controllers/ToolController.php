@@ -56,13 +56,14 @@ final class ToolController
 
     public function add(Router $router)
     {
-        $isAdmin = Auth::isAdmin();
+        Auth::canEdit();
 
         $errors = [];
         if ($isAdmin && $_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 $this->repository->add(
                     new Tool(
+                        null,
                         $_POST['name'], 
                         $_POST['category_id'], 
                         $_FILES['image'] ?? null, 
@@ -80,7 +81,38 @@ final class ToolController
 
     public function update(Router $router)
     {
-        echo 'Tool Update Page';
+        Auth::canEdit();
+
+        $id = (int) $_GET['id'] ?? '';
+        $tool = $this->repository->getById($id);
+
+        $errors = [];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            try {
+                $this->repository->update(
+                    new Tool(
+                        $_POST['id'],
+                        $_POST['name'], 
+                        $_POST['category_id'], 
+                        $_FILES['image'] ?? null, 
+                        $_POST['stock_total'] 
+                    )
+                );
+            } catch (Exception $e) {
+                $errors[] = $e->getMessage();
+            }
+
+            header('Location: /tool');
+            exit;
+        }
+
+        $categories = $this->categoryRepository->getAll();
+
+        $router->renderView('tool/update', [
+            'tool' => $tool,
+            'categories' => $categories,
+            'errors' => $errors
+        ]);
     }
 
     public function remove(Router $router)
