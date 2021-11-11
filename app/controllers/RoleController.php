@@ -2,6 +2,7 @@
 
 namespace LosYuntas\Application\controllers;
 
+use Exception;
 use LosYuntas\Application\Router;
 use LosYuntas\Application\middlewares\Auth;
 use LosYuntas\role\domain\Role;
@@ -44,14 +45,13 @@ final class RoleController
 
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-            if (!$_POST['name']) {
-                $errors[] = 'Campo del nombre vacio';
+            try {
+                $this->repository->add(
+                    new Role($_POST['name'])
+                );
+            } catch(Exception $e) {
+                $errors[] = $e->getMessage();
             }
-
-            $this->repository->add(
-                new Role($_POST['name'])
-            );
         }
 
         $roles = $this->repository->getAll();
@@ -64,6 +64,14 @@ final class RoleController
 
     public function remove(Router $router)
     {
-        echo 'Remove Role Page';
+        Auth::canEdit();
+
+        try {
+            $this->repository->remove($_GET['id']);
+            header('Location: /role');
+            exit;
+        } catch (Exception $e) {
+            echo "Todavia existen usuarios con este rol";
+        }
     }
 }

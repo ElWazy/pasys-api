@@ -54,12 +54,7 @@ final class CategoryController
             }
         }
 
-        $name = $_GET['search'] ?? '';
-        if (!$name) {
-            $categories = $this->repository->getAll();
-        } else {
-            $categories = $this->repository->getByName($name);
-        }
+        $categories = $this->repository->getAll();
 
         $router->renderView('category/index', [
             'errors' => $errors,
