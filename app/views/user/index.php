@@ -17,16 +17,16 @@
 
     <nav>
         <ul class="menu_nav">
-            <li><a href="order-manager.html">Inicio</a></li>
-            <li><a href="worker-list.html">Trabajadores</a></li>
-            <li><a href="tool-list.html">Inventario</a></li>
+            <li><a href="/order">Inicio</a></li>
+            <li><a href="/">Inventario</a></li>
+            <li><a href="/role">Roles</a></li>
         </ul>
     </nav>
 
     <main >
         <section>
             <article class="search" >
-                <form action="#" method="get">
+                <form action="/user" method="get">
                     <input type="search" 
                             name="search" 
                             id="search" 

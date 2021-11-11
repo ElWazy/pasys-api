@@ -24,7 +24,15 @@ final class UserRepositoryMariaDB implements UserRepository
 
     public function getAll(): ?array
     {
-        $sql = 'SELECT user.id, user.name , user.rut, user.is_active, role.name AS role FROM user INNER JOIN role ON user.role_id = role.id ORDER BY name ASC';
+        $sql = 'SELECT 
+            user.id, 
+            user.name, 
+            user.rut, 
+            user.is_active, 
+            role.name AS role 
+        FROM user 
+        INNER JOIN role ON user.role_id = role.id 
+        ORDER BY name ASC';
 
         $statement = $this->connection->query($sql);
  
@@ -33,15 +41,24 @@ final class UserRepositoryMariaDB implements UserRepository
     }
 
     
-    public function getByName(string $name): ?array
+    public function getByCriteria(string $criteria): ?array
     {
-        $sql = 'SELECT id, name , rut, is_active, role_id FROM user 
-        WHERE name LIKE :name
+        $sql = 'SELECT 
+            user.id, 
+            user.name, 
+            user.rut, 
+            user.is_active, 
+            role.name AS role
+        FROM user 
+        INNER JOIN role ON user.role_id = role.id 
+        WHERE user.name LIKE :name OR 
+            role.name LIKE :name AND
+            user.is_active = 1
         ORDER BY name ASC';
 
         $statement = $this->connection->prepare($sql);
         $statement->execute([
-            'name' => "%$name%"
+            'name' => "%$criteria%"
         ]);
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -50,12 +67,12 @@ final class UserRepositoryMariaDB implements UserRepository
     public function getById(int $id): ?array
     {
         $sql = 'SELECT 
-                id,
-                name, 
-                rut,
-                password,
-                role_id,
-                is_active
+            id,
+            name, 
+            rut,
+            password,
+            role_id,
+            is_active
         FROM user 
         WHERE id = :id';
 
@@ -67,10 +84,10 @@ final class UserRepositoryMariaDB implements UserRepository
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }    
 
-
     public function add(User $user): void
     {
-        $sql = 'INSERT INTO user (name, password, rut, role_id ) VALUES (:name, :password, :rut, :role_id)';
+        $sql = 'INSERT INTO user (name, password, rut, role_id ) VALUES 
+            (:name, :password, :rut, :role_id)';
 
         $statement = $this->connection->prepare($sql);
         $statement->execute([
@@ -106,30 +123,13 @@ final class UserRepositoryMariaDB implements UserRepository
         $statement = $this->connection->prepare($sql);
         $statement->execute([
 
-        'name' => $user->name(),
-        'rut' => $user->rut(),
-        'password' => $user->password(),
-        'role_id' => $user->role_id(),
-        'is_active' => $user->is_active(),
-        'id' => $user->id()
+            'name' => $user->name(),
+            'rut' => $user->rut(),
+            'password' => $user->password(),
+            'role_id' => $user->role_id(),
+            'is_active' => $user->is_active(),
+            'id' => $user->id()
 
-    ]);
-    }
-
-    public function getByCriteria(string $criteria):  ?array
-    {
-        $sql = 'SELECT id, name FROM category 
-        WHERE name LIKE :name
-        ORDER BY name ASC';
-
-        $statement = $this->connection->prepare($sql);
-        $statement->execute([
-            'name' => "%$name%"
         ]);
-
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
-
-
-
 }

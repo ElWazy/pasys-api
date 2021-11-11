@@ -72,7 +72,7 @@ final class ToolRepositoryMariaDB implements ToolRepository
         FROM tool 
         INNER JOIN category ON tool.category_id = category.id 
         WHERE tool.name LIKE :criteria OR 
-            category.name LIKE :criteria OR
+            category.name LIKE :criteria AND
             tool.is_active = 1
         ORDER BY tool.id ASC';
 

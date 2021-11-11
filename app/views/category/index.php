@@ -15,6 +15,7 @@
     <nav>
         <ul>
             <li><h1>Sistema Pañol </h1></li>
+            <li><a href="/tool">Catalogo</a></li>
         </ul>
     </nav>
 
