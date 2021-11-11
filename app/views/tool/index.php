@@ -50,7 +50,7 @@
                 <div class="popup-create">
                     <div class="modal-create" id="modalcontainer">
                         <h2>Crear Herramienta</h1>
-                        <form action="/tool/add" method="post" class="form-modal">
+                        <form action="/tool/add" method="post" class="form-modal" enctype="multipart/form-data">
                             <input class="form-input" type="text" name="name" id="name" placeholder="Nombre Herramienta"  />
                             <input type="text" name="category" id="category" placeholder="Nombre Categoría"  />
                             <input type="file" name="image" id="image" />

@@ -65,6 +65,14 @@ final class ToolRepositoryMariaDB implements ToolRepository
 
     public function add(Tool $tool): void
     {
+        $sql = '';
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([
+            'criteria' => "%$criteria%"
+        ]);
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function update(Tool $tool): void
