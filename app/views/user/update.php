@@ -72,12 +72,8 @@
     <footer>
         <ul class="flex">
             <li>Sistema Pañol, Derechos Reservados</li>
-            <li>
-                <a href="login.html">Administrar</a>
-            </li>
         </ul>
     </footer>
-
  
 </body>
 </html>
