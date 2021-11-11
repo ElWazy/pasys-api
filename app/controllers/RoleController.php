@@ -26,6 +26,7 @@ final class RoleController
     public function index(Router $router)
     {
         Auth::canEdit(); 
+        $errors = [];
 
         $name = $_GET['search'] ?? '';
         if (!$name) {
@@ -35,6 +36,7 @@ final class RoleController
         }
 
         $router->renderView('role/index', [
+            'errors' => $errors,
             'roles' => $roles
         ]);
     }

@@ -26,6 +26,7 @@ final class CategoryController
     public function index(Router $router)
     {
         Auth::canEdit();
+        $errors = [];
 
         $name = $_GET['search'] ?? '';
         if (!$name) {
@@ -35,7 +36,8 @@ final class CategoryController
         }
 
         $router->renderView('category/index', [
-            'categories' => $categories,
+            'errors' => $errors,
+            'categories' => $categories
         ]);
     }
 
