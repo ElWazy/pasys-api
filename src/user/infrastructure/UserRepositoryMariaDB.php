@@ -47,6 +47,26 @@ final class UserRepositoryMariaDB implements UserRepository
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getById(int $id): ?array
+    {
+        $sql = 'SELECT 
+                id,
+                name, 
+                rut,
+                password,
+                role_id,
+                is_active
+        FROM user 
+        WHERE id = :id';
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([
+            'id' => $id
+        ]);
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }    
+
 
     public function add(User $user): void
     {
@@ -75,13 +95,25 @@ final class UserRepositoryMariaDB implements UserRepository
 
     public function update(User $user): void
     {
-        // $sql = 'UPDATE user SET role_id = (role_id)  WHERE id = :id';
+        $sql = 'UPDATE user SET 
+        name = :name, 
+        rut = :rut,
+        password = :password,
+        role_id = :role_id,
+        is_active = :is_active
+        WHERE id = :id';
 
-        // $statement = $this->connection->prepare($sql);
-        // $statement->execute([
-        //     'id' => $user -> id(),
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([
 
-        // ]);
+        'name' => $user->name(),
+        'rut' => $user->rut(),
+        'password' => $user->password(),
+        'role_id' => $user->role_id(),
+        'is_active' => $user->is_active(),
+        'id' => $user->id()
+
+    ]);
     }
 
     public function getByCriteria(string $criteria):  ?array
