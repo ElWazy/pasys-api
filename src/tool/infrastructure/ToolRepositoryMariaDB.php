@@ -65,14 +65,16 @@ final class ToolRepositoryMariaDB implements ToolRepository
 
     public function add(Tool $tool): void
     {
-        $sql = '';
+        $sql = 'INSERT INTO tool (name, category_id, image, stock_total, stock_actual) 
+            VALUES (:name, :category, :image, :stock_total, :stock_total)';
 
         $statement = $this->connection->prepare($sql);
         $statement->execute([
-            'criteria' => "%$criteria%"
+            'name' => $tool->name(),
+            'category' => $tool->categoryId(),
+            'image' => $tool->image(),
+            'stock_total' => $tool->stockTotal()
         ]);
-
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function update(Tool $tool): void

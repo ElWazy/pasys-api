@@ -7,13 +7,13 @@ use Exception;
 final class Tool 
 {
     private string $name;
-    private int $category;
+    private int $categoryId;
     private string $image;
     private int $stock_total;
 
     public function __construct(
         string $name,
-        int $category,
+        int $categoryId,
         string $image,
         int $stock_total
     )
@@ -31,8 +31,28 @@ final class Tool
         }
 
         $this->name = $name;
-        $this->category = $category;
+        $this->categoryId = $categoryId;
         $this->image = $image;
         $this->stock_total = $stock_total;
+    }
+
+    public function name(): string
+    {
+        return $this->name;
+    }
+
+    public function categoryId(): int
+    {
+        return $this->categoryId;
+    }
+
+    public function image(): string
+    {
+        return $this->image;
+    }
+
+    public function stockTotal(): int
+    {
+        return $this->stock_total;
     }
 }
