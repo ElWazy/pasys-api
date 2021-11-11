@@ -7,6 +7,7 @@ use LosYuntas\shared\infrastructure\RandomString;
 
 final class Tool 
 {
+    private ?int $id;
     private string $name;
     private int $categoryId;
     private array $image;
@@ -14,6 +15,7 @@ final class Tool
     private int $stock_total;
 
     public function __construct(
+        int $id = 0,
         string $name,
         int $categoryId,
         array $image,
@@ -24,11 +26,11 @@ final class Tool
             throw new Exception('Nombre de la herramienta vacio');
         }
 
-        if (strlen() > 50) {
+        if (strlen($name) > 50) {
             throw new Exception('Nombre de la herramienta demasiado largo');
         }
 
-        if ($category < 0) {
+        if ($categoryId < 0) {
             throw new Exception('El id de la categoria no puede ser negativo');
         }
 
@@ -49,9 +51,15 @@ final class Tool
             move_uploaded_file($this->image['tmp_name'], __DIR__ . '/../../../app/public/' . $this->imagePath);
         }
 
+        $this->id = $id;
         $this->name = $name;
         $this->categoryId = $categoryId;
         $this->stock_total = $stock_total;
+    }
+
+    public function id(): int
+    {
+        return $this->id;
     }
 
     public function name(): string

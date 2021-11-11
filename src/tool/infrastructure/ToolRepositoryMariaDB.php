@@ -63,6 +63,24 @@ final class ToolRepositoryMariaDB implements ToolRepository
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getById(int $id): ?array
+    {
+        $sql = 'SELECT 
+            id, 
+            name, 
+            category_id,
+            stock_total
+        FROM tool 
+        WHERE id = :id';
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([
+            'id' => $id
+        ]);
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function add(Tool $tool): void
     {
         $sql = 'INSERT INTO tool (name, category_id, image, stock_total, stock_actual) 
@@ -79,10 +97,24 @@ final class ToolRepositoryMariaDB implements ToolRepository
 
     public function update(Tool $tool): void
     {
+        $sql = 'UPDATE tool SET 
+            name = :name, 
+            category_id = :category
+            image = :image,
+            stock_total = :stock_total
+        WHERE id = :id';
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([
+            'name' => $tool->name(),
+            'category' => $tool->categoryId(),
+            'image' => $tool->image(),
+            'stock_total' => $tool->stockTotal(),
+            'id' => $tool->id()
+        ]);
     }
 
     public function remove(int $id): void
     {
     }
-
 }

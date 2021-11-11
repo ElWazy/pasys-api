@@ -30,7 +30,6 @@
                     <input type="submit" value="Buscar">
                     <?php if($isAdmin): ?>
                         <input type="button" value="Crear Herramienta" onclick="mostrar()">
-                        <input type="button" value="Editar Herramienta" onclick="mostrar2()">
                     <?php endif; ?>
                 </form>
             </article>
@@ -71,22 +70,6 @@
                     </div>
                 </div>
             </div>
-
-            <div class="pup" id="pup-2">
-                <div class="popup-create">
-                    <div class="modal-create-2" id="modalcontainer2">
-                        <h2>Actualizar Herramienta</h1>
-                        <form action="/tool/update" method="post" class="form-modal">
-                            <input class="form-input" type="text" name="name" id="name" placeholder="Nombre Herramienta"  />
-                            <input type="text" name="category" id="category" placeholder="Nombre Categoría"  />
-                            <input type="file" name="image" id="image" />
-                            <input type="number" name="stock_total" id="stock_total" placeholder="Stock Total" min="0" />
-                            <input type="submit" value="Actualizar">
-                            <input type="button" value="Cerrar" onclick="ocultar2()">
-                        </form>
-                    </div>
-                </div>
-            </div> 
         <?php endif; ?>
         
         <section>
@@ -102,7 +85,7 @@
                                 <p class="card-category"><?= $tool['category']; ?></p>
                                 <p>stock total: <?= $tool['stock_total']; ?></p>
                                 <p>stock real: <?= $tool['stock_actual']; ?></p>
-                                <form action="/tool/update" method="POST">
+                                <form action="/tool/update" method="GET">
                                     <input type="hidden" name="id" value="<?= $tool['id']; ?>">
                                     <input type="submit" value="Editar">
                                 </form>

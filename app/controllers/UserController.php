@@ -12,7 +12,6 @@ use LosYuntas\role\infrastructure\RoleRepositoryMariaDB;
 use Exception;
 use PDOException;
 
-
 final class UserController
 {
 
