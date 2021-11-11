@@ -102,6 +102,10 @@
                                 <p class="card-category"><?= $tool['category']; ?></p>
                                 <p>stock total: <?= $tool['stock_total']; ?></p>
                                 <p>stock real: <?= $tool['stock_actual']; ?></p>
+                                <form action="/tool/update" method="POST">
+                                    <input type="hidden" name="id" value="<?= $tool['id']; ?>">
+                                    <input type="submit" value="Editar">
+                                </form>
                             </div>
                         </div>
                     <?php endforeach; ?>
