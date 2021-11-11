@@ -14,9 +14,10 @@
 
     <nav>
         <ul class="menu_nav">
-            <li><a href="order-manager.html">Inicio</a></li>
-            <li><a href="worker-list.html">Trabajadores</a></li>
-            <li><a href="tool-list.html">Inventario</a></li>
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/user">Usuarios</a></li>
+            <li><a href="/category">Categorias</a></li>
+            <li><a href="/role">Roles</a></li>  
         </ul>
     </nav>
 
