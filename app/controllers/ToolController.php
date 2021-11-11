@@ -5,6 +5,8 @@ namespace LosYuntas\Application\controllers;
 use Exception;
 use LosYuntas\Application\Router;
 use LosYuntas\Application\middlewares\Auth;
+use LosYuntas\category\domain\CategoryRepository;
+use LosYuntas\category\infrastructure\CategoryRepositoryMariaDB;
 use LosYuntas\tool\domain\Tool;
 use LosYuntas\tool\domain\ToolRepository;
 use LosYuntas\tool\infrastructure\ToolRepositoryMariaDB;
@@ -12,10 +14,18 @@ use LosYuntas\tool\infrastructure\ToolRepositoryMariaDB;
 final class ToolController
 {
     private ToolRepository $repository;
+    private CategoryRepository $categoryRepository;
 
     public function __construct()
     {
         $this->repository = new ToolRepositoryMariaDB(
+            'localhost',
+            'panol_system',
+            'master',
+            'master'
+        );
+
+        $this->categoryRepository = new CategoryRepositoryMariaDB(
             'localhost',
             'panol_system',
             'master',
@@ -35,8 +45,11 @@ final class ToolController
             $tools = $this->repository->getByCriteria($criteria);
         }
 
+        $categories = $this->categoryRepository->getAll();
+
         $router->renderView('tool/index', [
             'tools' => $tools,
+            'categories' => $categories,
             'isAdmin' => $isAdmin
         ]);
     }
@@ -61,12 +74,8 @@ final class ToolController
             }
         }
 
-        $tools = $this->repository->getAll();
-
-        $router->renderView('tool/index', [
-            'tools' => $tools,
-            'isAdmin' => $isAdmin
-        ]);
+        header('Location: /tool');
+        exit;
     }
 
     public function update(Router $router)

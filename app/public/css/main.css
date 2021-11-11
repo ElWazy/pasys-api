@@ -130,6 +130,11 @@ input[type="submit"] {
   
 }
 
+.card-body img {
+    width: 200px;
+    height: 200px;
+}
+
 .card-category {
     font-size: 1.2em;
 }

@@ -5,10 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Pañol</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/background.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/background.css">
     <?php if($isAdmin): ?>
-        <link rel="stylesheet" href="css/modal-create-tool.css">
+        <link rel="stylesheet" href="/css/modal-create-tool.css">
     <?php endif; ?>
 
 </head>
@@ -25,7 +25,7 @@
     <main>
         <section>
             <article class="search"  >
-                <form action="" method="get">
+                <form action="/tool" method="get">
                     <input type="search" 
                             name="search" 
                             id="search" 
@@ -55,7 +55,17 @@
                         <h2>Crear Herramienta</h1>
                         <form action="/tool/add" method="post" class="form-modal" enctype="multipart/form-data">
                             <input class="form-input" type="text" name="name" id="name" placeholder="Nombre Herramienta"  />
-                            <input type="text" name="category" id="category" placeholder="Nombre Categoría"  />
+                            <?php if($categories): ?>
+                                <select name="category_id"> 
+                                    <?php foreach($categories as $category): ?>
+                                        <option value="<?= $category['id']; ?> "> 
+                                            <?= $category['name']; ?> 
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            <?php else: ?>
+                                <h1>No hay Categorias disponibles</h1> 
+                            <?php endif; ?>
                             <input type="file" name="image" id="image" />
                             <input type="number" name="stock_total" id="stock_total" placeholder="Stock Total" min="0" />
                             <input type="submit" value="Crear">
@@ -69,7 +79,7 @@
                 <div class="popup-create">
                     <div class="modal-create-2" id="modalcontainer2">
                         <h2>Actualizar Herramienta</h1>
-                        <form action="#" method="post" class="form-modal">
+                        <form action="/tool/update" method="post" class="form-modal">
                             <input class="form-input" type="text" name="name" id="name" placeholder="Nombre Herramienta"  />
                             <input type="text" name="category" id="category" placeholder="Nombre Categoría"  />
                             <input type="file" name="image" id="image" />
@@ -88,7 +98,7 @@
                     <?php foreach($tools as $tool): ?>
                         <div class="card flex-column">
                             <div class="card-body primary">
-                                <img src="<?= $tool['image']; ?>"
+                                <img src="/<?= $tool['image']; ?>"
                                     loading="lazy" 
                                     alt="imagen herramienta"/>
                                 <p class="card-name "><?= $tool['name']; ?></p>
@@ -99,7 +109,7 @@
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <h1>No hay herramientas Disponble</h1>
+                    <h1>No hay herramientas Disponbles</h1>
                 <?php endif; ?>
             </article>
         </section>
@@ -107,7 +117,7 @@
 
     <?php if($isAdmin): ?>
         <!-- JS -->
-        <script src="js/popup.js"></script>
+        <script src="/js/popup.js"></script>
     <?php endif; ?>
 
     <footer>

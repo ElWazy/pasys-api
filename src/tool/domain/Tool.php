@@ -3,18 +3,20 @@
 namespace LosYuntas\tool\domain;
 
 use Exception;
+use LosYuntas\shared\infrastructure\RandomString;
 
 final class Tool 
 {
     private string $name;
     private int $categoryId;
-    private string $image;
+    private array $image;
+    private ?string $imagePath;
     private int $stock_total;
 
     public function __construct(
         string $name,
         int $categoryId,
-        string $image,
+        array $image,
         int $stock_total
     )
     {
@@ -30,9 +32,25 @@ final class Tool
             throw new Exception('El id de la categoria no puede ser negativo');
         }
 
+        if ( !is_dir(__DIR__ . '/../../../app/public/images') ) {
+            mkdir(__DIR__ . '/../../../app/public/images');
+        }
+
+        $this->image = $image;
+        $this->imagePath = '';
+
+        if ($this->image && $this->image['tmp_name']) {
+            if ($this->imagePath) {
+                unlink(__DIR__ . '/../../../app/public/' . $this->imagePath);
+            }
+            
+            $this->imagePath = 'images/' . RandomString::randomize(8) . '/' . $this->image['name'];
+            mkdir(dirname(__DIR__ . '/../../../app/public/' . $this->imagePath));
+            move_uploaded_file($this->image['tmp_name'], __DIR__ . '/../../../app/public/' . $this->imagePath);
+        }
+
         $this->name = $name;
         $this->categoryId = $categoryId;
-        $this->image = $image;
         $this->stock_total = $stock_total;
     }
 
@@ -48,7 +66,7 @@ final class Tool
 
     public function image(): string
     {
-        return $this->image;
+        return $this->imagePath;
     }
 
     public function stockTotal(): int
