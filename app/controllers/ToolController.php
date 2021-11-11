@@ -56,13 +56,14 @@ final class ToolController
 
     public function add(Router $router)
     {
-        $isAdmin = Auth::isAdmin();
+        Auth::canEdit();
 
         $errors = [];
         if ($isAdmin && $_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 $this->repository->add(
                     new Tool(
+                        null,
                         $_POST['name'], 
                         $_POST['category_id'], 
                         $_FILES['image'] ?? null, 
@@ -82,7 +83,7 @@ final class ToolController
     {
         Auth::canEdit();
 
-        $id = $_GET['id'] ?? '';
+        $id = (int) $_GET['id'] ?? '';
         $tool = $this->repository->getById($id);
 
         $errors = [];
@@ -100,6 +101,9 @@ final class ToolController
             } catch (Exception $e) {
                 $errors[] = $e->getMessage();
             }
+
+            header('Location: /tool');
+            exit;
         }
 
         $categories = $this->categoryRepository->getAll();

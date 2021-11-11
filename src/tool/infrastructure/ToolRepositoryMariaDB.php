@@ -99,7 +99,7 @@ final class ToolRepositoryMariaDB implements ToolRepository
     {
         $sql = 'UPDATE tool SET 
             name = :name, 
-            category_id = :category
+            category_id = :category,
             image = :image,
             stock_total = :stock_total
         WHERE id = :id';

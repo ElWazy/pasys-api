@@ -15,7 +15,7 @@ final class Tool
     private int $stock_total;
 
     public function __construct(
-        int $id = 0,
+        int $id = null,
         string $name,
         int $categoryId,
         array $image,
@@ -51,13 +51,13 @@ final class Tool
             move_uploaded_file($this->image['tmp_name'], __DIR__ . '/../../../app/public/' . $this->imagePath);
         }
 
-        $this->id = $id;
+        $this->id = $id ?? null;
         $this->name = $name;
         $this->categoryId = $categoryId;
         $this->stock_total = $stock_total;
     }
 
-    public function id(): int
+    public function id(): ?int
     {
         return $this->id;
     }

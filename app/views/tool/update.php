@@ -29,7 +29,7 @@
 
         <h2>Actualizar Herramienta</h1>
         <form action="/tool/update" method="post" class="form-modal" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="<?= $tool['id']; ?>">
+            <input type="hidden" name="id" value="<?= $tool[0]['id']; ?>">
             <input class="form-input" type="text" name="name" id="name" value="<?= $tool[0]['name']; ?>" placeholder="Nombre Herramienta"  />
             <?php if($categories): ?>
                 <select name="category_id"> 
