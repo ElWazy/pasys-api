@@ -37,11 +37,20 @@
         </section>
         
         <?php if($isAdmin): ?>
+            <?php if($errors): ?>
+                <section>
+                    <ul>
+                        <?php foreach($errors as $error): ?>
+                            <li><?= $error; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </section>
+            <?php endif; ?>
             <div class="pup" id="pup-1">
                 <div class="popup-create">
                     <div class="modal-create" id="modalcontainer">
                         <h2>Crear Herramienta</h1>
-                        <form action="" method="post" class="form-modal">
+                        <form action="/tool/add" method="post" class="form-modal">
                             <input class="form-input" type="text" name="name" id="name" placeholder="Nombre Herramienta"  />
                             <input type="text" name="category" id="category" placeholder="Nombre Categoría"  />
                             <input type="file" name="image" id="image" />
@@ -70,26 +79,27 @@
             </div> 
         <?php endif; ?>
         
-        <!-- article de json -->
-        <article class="grid">
-            <?php if($tools): ?>
-                <?php foreach($tools as $tool): ?>
-                    <div class="card flex-column">
-                        <div class="card-body primary">
-                            <img src="<?= $tool['image']; ?>"
-                                loading="lazy" 
-                                alt="imagen herramienta"/>
-                            <p class="card-name "><?= $tool['name']; ?></p>
-                            <p class="card-category"><?= $tool['category']; ?></p>
-                            <p>stock total: <?= $tool['stock_total']; ?></p>
-                            <p>stock real: <?= $tool['stock_actual']; ?></p>
+        <section>
+            <article class="grid">
+                <?php if($tools): ?>
+                    <?php foreach($tools as $tool): ?>
+                        <div class="card flex-column">
+                            <div class="card-body primary">
+                                <img src="<?= $tool['image']; ?>"
+                                    loading="lazy" 
+                                    alt="imagen herramienta"/>
+                                <p class="card-name "><?= $tool['name']; ?></p>
+                                <p class="card-category"><?= $tool['category']; ?></p>
+                                <p>stock total: <?= $tool['stock_total']; ?></p>
+                                <p>stock real: <?= $tool['stock_actual']; ?></p>
+                            </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <h1>No hay herramientas Disponble</h1>
-            <?php endif; ?>
-        </article>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <h1>No hay herramientas Disponble</h1>
+                <?php endif; ?>
+            </article>
+        </section>
     </main>
 
     <?php if($isAdmin): ?>

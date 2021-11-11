@@ -45,18 +45,25 @@ final class CategoryController
 
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-            if (!$_POST['name']) {
-                $errors[] = 'Campo del nombre vacio';
+            try {
+                $this->repository->add(
+                    new Category($_POST['name'])
+                );
+            } catch (Exception $e) {
+                $errors[] = $e->getMessage();
             }
-
-            $this->repository->add(
-                new Category($_POST['name'])
-            );
         }
 
-        $router->renderView('category/add', [
-            'errors' => $errors
+        $name = $_GET['search'] ?? '';
+        if (!$name) {
+            $categories = $this->repository->getAll();
+        } else {
+            $categories = $this->repository->getByName($name);
+        }
+
+        $router->renderView('category/index', [
+            'errors' => $errors,
+            'categories' => $categories
         ]);
     }
 
