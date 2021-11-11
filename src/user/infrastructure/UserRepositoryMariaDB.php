@@ -75,12 +75,13 @@ final class UserRepositoryMariaDB implements UserRepository
 
     public function update(User $user): void
     {
-        $sql = 'DELETE FROM user WHERE id = :id';
+        // $sql = 'UPDATE user SET role_id = (role_id)  WHERE id = :id';
 
-        $statement = $this->connection->prepare($sql);
-        $statement->execute([
-            'id' => $id
-        ]);
+        // $statement = $this->connection->prepare($sql);
+        // $statement->execute([
+        //     'id' => $user -> id(),
+
+        // ]);
     }
 
     public function getByCriteria(string $criteria):  ?array

@@ -84,7 +84,27 @@ final class UserController
 
     public function update(Router $router)
     {
-        echo 'User Update Page';
+        
+        // Auth::canEdit();
+      
+        // $errors = [];
+        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            
+        //     try {
+        //         $this->repository->update(
+        //             new User($_POST['role_id'])
+        //         );
+        //     } catch (Exception | PDOException $e) {
+        //         $errors[] = $e->getMessage();
+        //     }
+        // }
+
+        // $user = $this->repository->getAll();
+
+        // $router->renderView('user/index', [
+        //     'user' => $user,
+        // ]);
+
     }
 
     public function remove(Router $router)
