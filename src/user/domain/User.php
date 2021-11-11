@@ -11,10 +11,9 @@ final class User
     private string $name;
     private string $password;
     private string $rut;
-    private int $is_active;
     private int $role_id;    
 
-    public function __construct($name) 
+    public function __construct(string $name, string $password, string $rut, int $role_id) 
     {
         if (strlen($name) > 50)  {
             throw new Exception('El nombre de la categoria es demasiado largo');
@@ -27,7 +26,6 @@ final class User
         $this->name = $name;
         $this->password = $password;
         $this->rut = $rut;
-        $this->is_active = $is_active;
         $this->role_id = $role_id;
 
     } 
@@ -35,28 +33,25 @@ final class User
 
     public function name(): string
     {
-        return $this -> $name;
+        return $this->name;
     }
 
     public function password(): string
     {
-        return $this -> password;
+        return $this->password;
     }
 
     public function rut(): string
     {
-        return $this -> rut;
+        return $this->rut;
     }
 
     
-    public function is_active(): int
-    {
-        return $this -> is_active;
-    }
+
     
     public function role_id(): int
     {
-        return $this -> role_id;
+        return $this->role_id;
     }
 
 }
