@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/background.css">
-    <link rel="stylesheet" href="css/modal-create-tool.css">
-    <link rel="stylesheet" href="css/tables.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/background.css">
+    <link rel="stylesheet" href="/css/modal-create-tool.css">
+    <link rel="stylesheet" href="/css/tables.css">
     <title>Empleados</title>
 </head>
 <body>
@@ -21,7 +21,7 @@
     <main >
         <section>
             <article class="search" >
-                <form action="#" method="get">
+                <form action="/role" method="get">
                     <input type="search" 
                             name="search" 
                             id="search" 
@@ -33,50 +33,63 @@
             </article>
         </section>
 
-    </main>
+        <?php if($errors): ?>
+            <section>
+                <ul>
+                    <?php foreach($errors as $error): ?>
+                        <li><?= $error; ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </section>
+        <?php endif; ?>
 
-
-    <div class="pup" id="pup-1">
-        <div class="popup-create">
-            <div class="modal-create" id="modalcontainer">
-                <h2>Crear Rol</h1>
-                    <form action="/category/add" method="post" class="form-modal">
+   
+        <div class="pup" id="pup-1">
+            <div class="popup-create">
+                <div class="modal-create" id="modalcontainer">
+                    <h2>Crear Rol</h1>
+                    <form action="/role/add" method="post" class="form-modal">
                         <input type="text" name="name" id="name" placeholder="Nombre Rol">
                         <input type="submit" value="Crear">
                         <input type="button" value="Cerrar" onclick="ocultar()">
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <div class="main-container">
-    <table class="elements">
-
-        <thead>
-            <tr>
-                <th> ID </th><th> Rol </th>   <th> </th>
-            </tr>
-        </thead>
-
-        <tr>
-            <td></td> <td></td> <td></td> 
-        </tr>
-        <tr>
-            <td></td> <td></td> <td></td> 
-        </tr>
-        <tr>
-            <td></td> <td></td> <td></td> 
-        </tr>
-        <tr>
-            <td></td> <td></td> <td></td> 
-        </tr>
-
-        </table>
         
-</div>
+        <div class="main-container">
+            <table class="elements">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Rol</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
 
+                <?php if($roles): ?>
+                    <?php foreach($roles as $key => $role): ?>
+                        <tr>
+                            <td><?= $key += 1; ?></td>
+                            <td><?= $role['name']; ?></td>
+                            <td>
+                                <form action="/role/remove" method="get">
+                                    <input type="hidden" name="id" value="<?= $role['id']; ?>">
+                                    <input type="submit" value="Eliminar">
+                                </form>
+                            </td> 
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="3"><h1>No hay Roles Disponibles</h1></td>
+                    </tr>
+                <?php endif; ?>
+            </table>
+        </div>
+    </main>
 
-    <script src="js/popup.js"></script>
+    <script src="/js/popup.js"></script>
 
 </body>
 </html>
