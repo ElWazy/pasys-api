@@ -33,11 +33,30 @@ final class ToolRepositoryMariaDB implements ToolRepository
             tool.is_active 
         FROM tool 
         INNER JOIN category ON tool.category_id = category.id 
+        WHERE tool.is_active = 1
         ORDER BY tool.id ASC';
 
         $statement = $this->connection->query($sql);
  
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
 
+    public function getAllDeactivated(): ?array
+    {
+        $sql = 'SELECT 
+            tool.id, 
+            tool.name, 
+            category.name AS category, 
+            tool.image, tool.stock_total, 
+            tool.stock_actual, 
+            tool.is_active 
+        FROM tool 
+        INNER JOIN category ON tool.category_id = category.id 
+        WHERE tool.is_active = 0
+        ORDER BY tool.id ASC';
+
+        $statement = $this->connection->query($sql);
+ 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -52,7 +71,9 @@ final class ToolRepositoryMariaDB implements ToolRepository
             tool.is_active 
         FROM tool 
         INNER JOIN category ON tool.category_id = category.id 
-        WHERE tool.name LIKE :criteria OR category.name LIKE :criteria
+        WHERE tool.name LIKE :criteria OR 
+            category.name LIKE :criteria OR
+            tool.is_active = 1
         ORDER BY tool.id ASC';
 
         $statement = $this->connection->prepare($sql);
@@ -116,5 +137,25 @@ final class ToolRepositoryMariaDB implements ToolRepository
 
     public function remove(int $id): void
     {
+        $sql = 'UPDATE tool SET 
+            is_active = 0
+        WHERE id = :id';
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([
+            'id' => $id
+        ]);
+    }
+
+    public function activate(int $id): void
+    {
+        $sql = 'UPDATE tool SET 
+            is_active = 1
+        WHERE id = :id';
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([
+            'id' => $id
+        ]);
     }
 }

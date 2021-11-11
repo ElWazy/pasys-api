@@ -64,7 +64,7 @@ final class UserController
             
             try {
                 $this->repository->add(
-                    new User($_POST['name'],$_POST['password'],$_POST['rut'],$_POST['role_id'])
+                    new User(null, $_POST['name'],$_POST['password'],$_POST['rut'],$_POST['role_id'],$_POST['role_id'])
                 );
             } catch (Exception | PDOException $e) {
                 $errors[] = $e->getMessage();
@@ -83,26 +83,42 @@ final class UserController
 
     public function update(Router $router)
     {
-        
-        // Auth::canEdit();
-      
-        // $errors = [];
-        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
-        //     try {
-        //         $this->repository->update(
-        //             new User($_POST['role_id'])
-        //         );
-        //     } catch (Exception | PDOException $e) {
-        //         $errors[] = $e->getMessage();
-        //     }
-        // }
+        Auth::canEdit();
 
-        // $user = $this->repository->getAll();
+        $id = (int) $_GET['id'] ?? ''; // no existe 
+        $user = $this->repository->getById($id);
 
-        // $router->renderView('user/index', [
-        //     'user' => $user,
-        // ]);
+        $errors = [];
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            try {
+                $this->repository->update(
+                    new User(
+
+                        $_POST['id'], 
+                        $_POST['name'], 
+                        $_POST['rut'] ,
+                        $_POST['password'], 
+                        $_POST['role_id'], 
+                        $_POST['is_active']
+
+                    )
+                );
+            } catch (Exception $e) {
+                $errors[] = $e->getMessage();
+            }
+
+            header('Location: /user');
+            exit;
+        }
+
+        $roles = $this-> rolerepository -> getAll();
+
+        $router->renderView('user/update', [
+            'user' => $user,
+            'errors' => $errors,
+            'roles' => $roles
+        ]);
 
     }
 

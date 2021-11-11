@@ -10,6 +10,7 @@ use LosYuntas\category\infrastructure\CategoryRepositoryMariaDB;
 use LosYuntas\tool\domain\Tool;
 use LosYuntas\tool\domain\ToolRepository;
 use LosYuntas\tool\infrastructure\ToolRepositoryMariaDB;
+use PDOException;
 
 final class ToolController
 {
@@ -59,7 +60,7 @@ final class ToolController
         Auth::canEdit();
 
         $errors = [];
-        if ($isAdmin && $_SERVER['REQUEST_METHOD'] === 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 $this->repository->add(
                     new Tool(
@@ -117,6 +118,36 @@ final class ToolController
 
     public function remove(Router $router)
     {
-        echo 'Delete Tool Page';
+        Auth::canEdit();
+
+        try {
+            $this->repository->remove($_GET['id']);
+            header('Location: /tool');
+            exit;
+        } catch (Exception | PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function deactive(Router $router)
+    {
+
+        Auth::canEdit();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            try {
+                $this->repository->activate($_POST['id']);
+            } catch (Exception | PDOException $e) {
+                echo $e->getMessage();
+            }
+
+            header('Location: /tool');
+            exit;
+        }
+        $tools = $this->repository->getAllDeactivated();
+
+        $router->renderView('tool/deactive', [
+            'tools' => $tools
+        ]);
     }
 }

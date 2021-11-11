@@ -6,6 +6,8 @@ interface ToolRepository
 {
     public function getAll(): ?array;
 
+    public function getAllDeactivated(): ?array;
+
     public function getByCriteria(string $criteria): ?array;
 
     public function getById(int $id): ?array;
@@ -14,5 +16,7 @@ interface ToolRepository
 
     public function update(Tool $tool): void;
 
-    public function remove(int $tool): void;
+    public function remove(int $id): void;
+
+    public function activate(int $id): void;
 }
