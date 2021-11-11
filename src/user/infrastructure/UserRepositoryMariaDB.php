@@ -24,7 +24,7 @@ final class UserRepositoryMariaDB implements UserRepository
 
     public function getAll(): ?array
     {
-        $sql = 'SELECT id, name , rut, is_active, role_id FROM user ORDER BY name ASC';
+        $sql = 'SELECT user.id, user.name , user.rut, user.is_active, role.name AS role FROM user INNER JOIN role ON user.role_id = role.id ORDER BY name ASC';
 
         $statement = $this->connection->query($sql);
  
@@ -50,15 +50,15 @@ final class UserRepositoryMariaDB implements UserRepository
 
     public function add(User $user): void
     {
-        $sql = 'INSERT INTO user (name), (password), (rut), (role_id) VALUES (:name), (:password), (:rut), (:role_id)';
+        $sql = 'INSERT INTO user (name, password, rut, role_id ) VALUES (:name, :password, :rut, :role_id)';
 
         $statement = $this->connection->prepare($sql);
         $statement->execute([
 
-            'name' => $category->name(),
-            'password' => $category->password(),
-            'rut' => $category->rut(),
-            'role_id' => $category->role_id()
+            'name' => $user->name(),
+            'password' => $user->password(),
+            'rut' => $user->rut(),
+            'role_id' => $user->role_id()
 
         ]);
     }

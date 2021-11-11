@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/background.css">
-    <link rel="stylesheet" href="css/modal-create-tool.css">
-    <link rel="stylesheet" href="css/tables.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/background.css">
+    <link rel="stylesheet" href="/css/modal-create-tool.css">
+    <link rel="stylesheet" href="/css/tables.css">
     <title>Empleados</title>
 </head>
 <body>
@@ -36,18 +36,42 @@
         </section>
 
     </main>
+
+    <?php if($errors): ?>
+        <section>
+            <ul>
+                <?php foreach($errors as $error): ?>
+                    <li><?= $error; ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </section>
+    <?php endif; ?>
     
     
-    <div class="pup" id="pup-1">
+    <div class="pup" id="pup-1"> 
 
         <div class="popup-create">
                 <div class="modal-create" id="modalcontainer">
-                    <h2>Crear Herramienta</h1>
-                        <form action="#" method="post" class="form-modal">
-                            <input class="form-input" type="text" name="name" id="name" placeholder="Rut Trabajador"  />
-                            <input type="text" name="category" id="category" placeholder="Nombre"  />
-                            <input type="number" name="stock_total" id="stock_total" placeholder="Rol" min="0" />
-                            <input type="number" name="stock_total" id="stock_total" placeholder="Estado" min="0" />
+                    <h2>Crear Trabajador</h1>
+                        <form action="/user/add" method="post" class="form-modal">
+                            <input class="form-input" type="text" name="rut" id="rut" placeholder="Rut Trabajador"  />
+                            <input type="text" name="name" id="name" placeholder="Nombre"  />
+                            <input type="text" name="password" id="password" placeholder="Contrasena"  />
+                            
+                                <?php if($roles): ?>
+                       <select name="role_id"> 
+                                <?php foreach($roles as $key => $role): ?>
+                                <option value="<?= $role['id']; ?> "> 
+                                    <?= $role['name']; ?> 
+                                </option>
+                        <?php endforeach; ?>
+                        </select>
+                        <?php else: ?>
+                        <tr>
+                            <td colspan="3"><h1>No hay Categorias disponibles</h1></td> 
+                        </tr>
+                        <?php endif; ?>
+
                             <input type="submit" value="Crear">
                             <input type="button" value="Cerrar" onclick="ocultar()">
                     </form>
@@ -56,74 +80,45 @@
 
     </div>
     
-    <script src="js/popup.js"></script>
+    <script src="/js/popup.js"></script>
 
     <div class="main-container">
+
         <table class="elements">
             <thead>
                 <tr>
                     <th> ID </th><th> RUT </th> <th> NOMBRE </th> <th> ROL </th> <th> ESTADO </th> <th></th> <th></th>
                 </tr>
-            </thead>
-        
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
-            </tr>
-        
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
-            </tr>
-        
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
-            </tr>
-        
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
-            </tr>
-    
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
-            </tr>
-        
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
-            </tr>
-    
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
-            </tr>
-        
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
-            </tr>
-    
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
-            </tr>
-        
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
-            </tr>
-    
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
-            </tr>
-        
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
-            </tr>
-    
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
-            </tr>
-        
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
-            </tr>
-           
-     </div>
+                <?php if($user): ?>
+                <?php foreach($user as $key => $users): ?>
+                    <tr>
+                        <td><?= $key += 1; ?></td> 
+                        <td><?= $users['rut']; ?></td> 
+                        <td><?= $users['name']; ?></td> 
+                        <td><?= $users['role']; ?></td> 
+                        <td><?= $users['is_active']; ?></td> 
 
+                        <td>
+                            <!-- <form action="/category/remove" method="get">
+                                <input type="hidden" name="id" value="<?= $category['id']; ?>">
+                                <input type="submit" value="Eliminar">
+                            </form> -->
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+
+                <?php else: ?>
+                    <tr>
+                        <td colspan="3"><h1>No hay Usuarios disponibles</h1></td> 
+                    </tr>
+                <?php endif; ?>
+
+
+            </thead>
+        </table>
+
+
+     </div>
 
 
 
