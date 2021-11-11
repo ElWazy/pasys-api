@@ -59,8 +59,70 @@
     <script src="js/popup.js"></script>
 
     <div class="main-container">
-        <iframe src="worker-table.html" frameborder="0"></iframe> <!--iframe donde se carga la tabla desde otra pagina para facilitar la visualizacion-->
-    </div>
+        <table class="elements">
+            <thead>
+                <tr>
+                    <th> ID </th><th> RUT </th> <th> NOMBRE </th> <th> ROL </th> <th> ESTADO </th> <th></th> <th></th>
+                </tr>
+            </thead>
+        
+            <tr>
+                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
+            </tr>
+        
+            <tr>
+                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
+            </tr>
+        
+            <tr>
+                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
+            </tr>
+        
+            <tr>
+                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
+            </tr>
+    
+            <tr>
+                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
+            </tr>
+        
+            <tr>
+                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
+            </tr>
+    
+            <tr>
+                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
+            </tr>
+        
+            <tr>
+                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
+            </tr>
+    
+            <tr>
+                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
+            </tr>
+        
+            <tr>
+                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
+            </tr>
+    
+            <tr>
+                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
+            </tr>
+        
+            <tr>
+                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
+            </tr>
+    
+            <tr>
+                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
+            </tr>
+        
+            <tr>
+                <td></td> <td></td> <td></td> <td></td> <td></td> <th></th> <th></th>
+            </tr>
+           
+     </div>
 
 
 

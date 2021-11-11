@@ -40,7 +40,7 @@
         <div class="popup-create">
             <div class="modal-create" id="modalcontainer">
                 <h2>Crear Rol</h1>
-                    <form action="#" method="post" class="form-modal">
+                    <form action="/category/add" method="post" class="form-modal">
                         <input type="text" name="name" id="name" placeholder="Nombre Rol">
                         <input type="submit" value="Crear">
                         <input type="button" value="Cerrar" onclick="ocultar()">
