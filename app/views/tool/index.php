@@ -85,10 +85,16 @@
                                 <p class="card-category"><?= $tool['category']; ?></p>
                                 <p>stock total: <?= $tool['stock_total']; ?></p>
                                 <p>stock real: <?= $tool['stock_actual']; ?></p>
-                                <form action="/tool/update" method="GET">
-                                    <input type="hidden" name="id" value="<?= $tool['id']; ?>">
-                                    <input type="submit" value="Editar">
-                                </form>
+                                <div class="flex">
+                                    <form action="/tool/update" method="GET">
+                                        <input type="hidden" name="id" value="<?= $tool['id']; ?>">
+                                        <input type="submit" value="Editar">
+                                    </form>
+                                    <form action="/tool/remove" method="GET">
+                                        <input type="hidden" name="id" value="<?= $tool['id']; ?>">
+                                        <input type="submit" value="Eliminar">
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -110,6 +116,7 @@
             <li>
                 <a href="login.html">Administrar</a>
             </li>
+            <li><a href="/tool/deactive">Herramientas Desactivadas</a></li>
         </ul>
     </footer>
 

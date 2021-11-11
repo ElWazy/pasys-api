@@ -23,9 +23,11 @@ $router->get('/tool', [new ToolController(), 'index']);
 $router->get('/tool/add', [new ToolController(), 'add']);
 $router->get('/tool/update', [new ToolController(), 'update']);
 $router->get('/tool/remove', [new ToolController(), 'remove']);
+$router->get('/tool/deactive', [new ToolController(), 'deactive']);
 
 $router->post('/tool/add', [new ToolController(), 'add']);
 $router->post('/tool/update', [new ToolController(), 'update']);
+$router->post('/tool/deactive', [new ToolController(), 'deactive']);
 
 // Role
 $router->get('/role', [new RoleController(), 'index']);
