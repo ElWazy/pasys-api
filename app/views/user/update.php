@@ -11,15 +11,17 @@
 </head>
 <body>
     <nav>
-        <ul>
-            <li><h1>Sistema Pañol</h1></li>
+        <ul class="menu_nav">
+            <li><a href="/">Inicio</a></li>
             <li><a href="/user">Usuarios</a></li>
+            <li><a href="/category">Categorias</a></li>
+            <li><a href="/role">Roles</a></li>  
         </ul>
     </nav>
 
     <main >
         <?php if($errors): ?>
-            <section>
+            <section class = "errors">
                 <ul>
                     <?php foreach($errors as $error): ?>
                         <li><?= $error; ?></li>

@@ -10,16 +10,19 @@
     <?php if($isAdmin): ?>
         <link rel="stylesheet" href="/css/modal-create-tool.css">
     <?php endif; ?>
-
 </head>
 <body>
     <nav>
-        <ul class="menu_nav">
-            <li><a href="/">Inicio</a></li>
-            <li><a href="/user">Usuarios</a></li>
-            <li><a href="/category">Categorias</a></li>
-            <li><a href="/role">Roles</a></li>  
-        </ul>
+        <?php if($isAdmin): ?>
+            <ul class="menu_nav">
+                <li><h1>Sistema Pañol</h1></li>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/user">Usuarios</a></li>
+                <li><a href="/category">Categorias</a></li>
+                <li><a href="/role">Roles</a></li>  
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        <?php endif; ?>
     </nav>
 
     <main>
@@ -40,7 +43,7 @@
         
         <?php if($isAdmin): ?>
             <?php if($errors): ?>
-                <section>
+                <section class = "errors">
                     <ul>
                         <?php foreach($errors as $error): ?>
                             <li><?= $error; ?></li>
@@ -88,16 +91,18 @@
                                 <p class="card-category"><?= $tool['category']; ?></p>
                                 <p>stock total: <?= $tool['stock_total']; ?></p>
                                 <p>stock real: <?= $tool['stock_actual']; ?></p>
-                                <div class="flex">
-                                    <form action="/tool/update" method="GET">
-                                        <input type="hidden" name="id" value="<?= $tool['id']; ?>">
-                                        <input type="submit" value="Editar">
-                                    </form>
-                                    <form action="/tool/remove" method="GET">
-                                        <input type="hidden" name="id" value="<?= $tool['id']; ?>">
-                                        <input type="submit" value="Eliminar">
-                                    </form>
-                                </div>
+                                <?php if($isAdmin): ?>
+                                    <div class="flex">
+                                        <form action="/tool/update" method="GET">
+                                            <input type="hidden" name="id" value="<?= $tool['id']; ?>">
+                                            <input type="submit" value="Editar">
+                                        </form>
+                                        <form action="/tool/remove" method="GET">
+                                            <input type="hidden" name="id" value="<?= $tool['id']; ?>">
+                                            <input type="submit" value="Eliminar">
+                                        </form>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                     <?php endforeach; ?>
