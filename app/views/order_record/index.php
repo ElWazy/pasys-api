@@ -52,7 +52,7 @@
                         <?php if($tools): ?>
                             <select name="tool"> 
                                 <?php foreach($tools as $tool): ?>
-                                    <option value="<?= $tool['id']; ?> "> 
+                                    <option value="<?= $tool['id']; ?>"> 
                                         <?= $tool['name']; ?> 
                                     </option>
                                 <?php endforeach; ?>

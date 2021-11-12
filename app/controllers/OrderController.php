@@ -68,57 +68,28 @@ final class OrderController
     {
         Auth::canEdit();
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            try {
-                session_start();
+        $worker = $this->userRepository->getByRut($_POST['worker']);
+        $tool = $this->toolRepository->getById($_POST['tool']);
 
-                // $worker = $this->userRepository->getByCriteria($_POST['worker']);
-                $tool = $this->toolRepository->getById((int) $_POST['tool']);
+        session_start();
 
+        try {
+            $order = new OrderRecord(
+                null,
+                (int) $worker[0]['id'],
+                (int) $tool[0]['id'],
+                (int) $tool[0]['stock_actual'],
+                (int) $_POST['amount'],
+                (int) $_SESSION['userId']
+            );
 
-                $order = new OrderRecord(
-                    null,
-                    $worker[0]['id'],
-                    $tool[0]['id'],
-                    $tool[0]['stock_actual'],
-                    $_POST['amount'],
-                    $_SESSION['userId']
-                );
-                echo '<pre>';
-                var_dump($order->tool());
-                var_dump($order->worker());
-                var_dump($order->amount());
-                var_dump($order->panolero());
-                var_dump($order->order_date());
-                var_dump($order->delivery_date());
-                echo '</pre>';
-                /*
-                $this->repository->add(
-                    new OrderRecord(
-                        null,
-                        $worker[0]['id'],
-                        $tool[0]['id'],
-                        $tool[0]['stock_actual'],
-                        $_POST['amount'],
-                        $_SESSION['userId']
-                    )
-                );
-                 */
-            } catch (Exception $e) {
-                $router->renderView('exception',[
-                    'errors' => $e->getMessage()
-                ]);
-                exit;
-            } catch (PDOException $e) {
-                $router->renderView('exception',[
-                    'errors' => $e->getMessage()
-                ]);
-                exit;
-            }
+            // $this->repository->add($order);
+
+        } catch(Exception | PDOException $e) {
+            $router->renderView('exception', [
+                'errors' => $e->getMessage()
+            ]);
         }
-
-        // header('Location: /order_record');
-        // exit;
     }
 
     public function delivery(Router $router)
