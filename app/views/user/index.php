@@ -11,7 +11,7 @@
     <title>Empleados</title>
 </head>
 <body>
-    <nav>
+<nav>
         <ul class="menu_nav">
             <li><a href="/order_record">Inicio</a></li>
             <li><a href="/">Inventario</a></li>
@@ -21,6 +21,7 @@
             <li><a href="/logout">Logout</a></li>
         </ul>
     </nav>
+
 
     <main >
         <section>
