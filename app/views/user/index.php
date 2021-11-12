@@ -27,7 +27,7 @@
     <main >
         <section>
             <article class="search" >
-                <form action="#" method="get">
+                <form action="/user" method="get">
                     <input type="search" 
                             name="search" 
                             id="search" 
@@ -121,11 +121,6 @@
 
             </thead>
         </table>
-
-
      </div>
-
-
-
 </body>
 </html>

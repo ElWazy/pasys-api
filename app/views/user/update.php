@@ -13,6 +13,7 @@
     <nav>
         <ul>
             <li><h1>Sistema Pañol</h1></li>
+            <li><a href="/user">Usuarios</a></li>
         </ul>
     </nav>
 
@@ -37,7 +38,7 @@
             <h6>Contraseña</h6>
             <input class="form-input" type="text" name="password" id="password" value="<?= $user[0]['password']; ?>" placeholder="Nombre Herramienta"  />
             <h6>Rut</h6>
-            <input class="form-input" type="text" name="rut" id="rut" value="<?= $user[0]['rut']; ?>" placeholder="Nombre Herramienta"  />
+            <input class="form-input" type="text" name="rut" id="rut" value="<?= $user[0]['rut']; ?>" placeholder="Nombre Herramienta"  disabled/>
             <h6>Role</h6>
                 <?php if($roles): ?>
                     <select name="role_id" class="form-input"> 
@@ -71,12 +72,8 @@
     <footer>
         <ul class="flex">
             <li>Sistema Pañol, Derechos Reservados</li>
-            <li>
-                <a href="login.html">Administrar</a>
-            </li>
         </ul>
     </footer>
-
  
 </body>
 </html>

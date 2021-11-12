@@ -117,7 +117,7 @@
         <ul class="flex">
             <li>Sistema Pañol, Derechos Reservados</li>
             <li>
-                <a href="login.html">Administrar</a>
+                <a href="/login">Administrar</a>
             </li>
             <li><a href="/tool/deactive">Herramientas Desactivadas</a></li>
         </ul>

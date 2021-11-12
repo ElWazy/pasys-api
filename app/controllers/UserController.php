@@ -43,7 +43,7 @@ final class UserController
         if (!$name) {
             $user = $this->repository->getAll();
         } else {
-            $user = $this->repository->getByName($name);
+            $user = $this->repository->getByCriteria($name);
         }
 
         $roles = $this-> rolerepository -> getAll();
@@ -64,7 +64,14 @@ final class UserController
             
             try {
                 $this->repository->add(
-                    new User(null, $_POST['name'],$_POST['password'],$_POST['rut'],$_POST['role_id'],$_POST['role_id'])
+                    new User(
+                        null, 
+                        $_POST['name'],
+                        $_POST['password'],
+                        $_POST['rut'],
+                        $_POST['role_id'],
+                        $_POST['role_id']
+                    )
                 );
             } catch (Exception | PDOException $e) {
                 $errors[] = $e->getMessage();
@@ -94,14 +101,12 @@ final class UserController
             try {
                 $this->repository->update(
                     new User(
-
                         $_POST['id'], 
                         $_POST['name'], 
                         $_POST['rut'] ,
                         $_POST['password'], 
                         $_POST['role_id'], 
                         $_POST['is_active']
-
                     )
                 );
             } catch (Exception $e) {
