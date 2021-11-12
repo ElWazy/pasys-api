@@ -11,12 +11,13 @@
     <title>Empleados</title>
 </head>
 <body>
-<nav>
 
+    <?php 
+        $errors = "";
+    ?>
     <nav>
         <ul class="menu_nav">
-    <nav>
-                <ul class="menu_nav">
+            <ul class="menu_nav">
             <li><a href="/order_record">Inicio</a></li>
             <li><a href="/">Inventario</a></li>
             <li><a href="/user">Usuarios</a></li>
@@ -25,7 +26,6 @@
             <li><a href="/logout">Logout</a></li>
         </ul>
     </nav>
-
 
     <main >
         <section>
@@ -39,7 +39,6 @@
                     <input type="button" value="Ingresar Trabajador" onclick="mostrar()">
                 </form>
             </article>
-
         </section>
 
     </main>

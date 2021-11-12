@@ -159,6 +159,9 @@ footer {
     background-color: #0C1821;
     color: #ccc9dc;
     padding: 1rem;
+    bottom: 0;
+    width: 98%;
+    position: absolute;
 }
 
 footer ul {
