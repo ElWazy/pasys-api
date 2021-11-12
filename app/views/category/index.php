@@ -37,7 +37,7 @@
     </main>
 
     <?php if($errors): ?>
-        <section>
+        <section class="errors">
             <ul>
                 <?php foreach($errors as $error): ?>
                     <li><?= $error; ?></li>

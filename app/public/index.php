@@ -45,6 +45,12 @@ $router->get('/user/remove', [new UserController(), 'remove']);
 $router->post('/user/add', [new UserController(), 'add']);
 $router->post('/user/update', [new UserController(), 'update']);
 
+// Login
+$router->get('/login', [new UserController(), 'login']);
+$router->post('/login', [new UserController(), 'login']);
+
+$router->get('/logout', [new UserController(), 'logout']);
+
 // Order
 
 $router->resolve();

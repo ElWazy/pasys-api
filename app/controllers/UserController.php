@@ -14,7 +14,6 @@ use PDOException;
 
 final class UserController
 {
-
     private UserRepository $repository;
     private RoleRepository $rolerepository;
 
@@ -130,5 +129,46 @@ final class UserController
     public function remove(Router $router)
     {
         echo 'Remove User Page';
+    }
+
+    public function login(Router $router)
+    {
+        $errors = [];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            try {
+                $userId = $this->repository->login(
+                    $_POST['rut'],
+                    $_POST['password']
+                );
+
+                if (!$userId) {
+                    throw new Exception('No se encuentra el usuario en nuestra base de datos');
+                }
+
+                session_start();
+
+                $_SESSION['userId'] = $userId;
+                $_SESSION['isActive'] = true;
+
+                header('Location: /');
+                exit;
+            } catch (Exception $e) {
+                $errors[] = $e->getMessage();
+            }
+        }
+
+        $router->renderView('user/login', [
+            'errors' => $errors
+        ]);
+    }
+
+    public function logout(Router $router)
+    {
+        session_start();
+        session_unset();
+        session_destroy();
+
+        header('Location: /');
+        exit;
     }
 }
