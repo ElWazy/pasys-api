@@ -72,7 +72,15 @@ final class ToolController
                     )
                 );
             } catch (Exception $e) {
-                $errors[] = $e->getMessage();
+                $router->renderView('exception',[
+                    'errors' => $e->getMessage()
+                ]);
+                exit;
+            } catch (PDOException $e) {
+                $router->renderView('exception',[
+                    'errors' => $e->getMessage()
+                ]);
+                exit;
             }
         }
 
@@ -100,7 +108,15 @@ final class ToolController
                     )
                 );
             } catch (Exception $e) {
-                $errors[] = $e->getMessage();
+                $router->renderView('exception',[
+                    'errors' => $e->getMessage()
+                ]);
+                exit;
+            } catch (PDOException $e) {
+                $router->renderView('exception',[
+                    'errors' => $e->getMessage()
+                ]);
+                exit;
             }
 
             header('Location: /tool');
@@ -124,8 +140,11 @@ final class ToolController
             $this->repository->remove($_GET['id']);
             header('Location: /tool');
             exit;
-        } catch (Exception | PDOException $e) {
-            echo $e->getMessage();
+        } catch (exception | pdoexception $e) {
+            $router->renderView('exception', [
+                'errors' => $e->getmessage()
+            ]);
+            exit;
         }
     }
 
@@ -138,7 +157,10 @@ final class ToolController
             try {
                 $this->repository->activate($_POST['id']);
             } catch (Exception | PDOException $e) {
-                echo $e->getMessage();
+                $router->renderView('exception', [
+                    'errors' => $e->getMessage()
+                ]);
+                exit;
             }
 
             header('Location: /tool');

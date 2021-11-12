@@ -80,6 +80,12 @@ input {
     
 }
 
+.not-found {
+    background-color: #fff;
+    padding: 3em;
+    border-radius: 10px;
+}
+
 @media (max-width: 1200px){
     body{
         font-size: 14px;

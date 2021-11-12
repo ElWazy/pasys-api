@@ -3,6 +3,7 @@
 namespace LosYuntas\Application\controllers;
 
 use Exception;
+use PDOException;
 use LosYuntas\Application\Router;
 use LosYuntas\Application\middlewares\Auth;
 use LosYuntas\category\domain\Category;
@@ -45,14 +46,21 @@ final class CategoryController
     {
         Auth::canEdit();
 
-        $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 $this->repository->add(
                     new Category($_POST['name'])
                 );
             } catch (Exception $e) {
-                $errors[] = $e->getMessage();
+                $router->renderView('exception',[
+                    'errors' => $e->getMessage()
+                ]);
+                exit;
+            } catch (PDOException $e) {
+                $router->renderView('exception',[
+                    'errors' => $e->getMessage()
+                ]);
+                exit;
             }
         }
 
@@ -73,7 +81,10 @@ final class CategoryController
             header('Location: /category');
             exit;
         } catch (Exception $e) {
-            echo "Todavia existen herramientas con esta categoria";
+            $router->renderView('exception', [
+                'errors' => 'Todavia existen herramientas con esta categoria'
+            ]);
+            exit;
         }
     }
 }

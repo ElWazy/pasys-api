@@ -14,7 +14,8 @@
 
     <nav>
         <ul>
-            <li><a href="/">Inicio</a></li>
+            <li><a href="/order_record">Inicio</a></li>
+            <li><a href="/">Inventario</a></li>
             <li><a href="/user">Usuarios</a></li>
             <li><a href="/category">Categorias</a></li>
             <li><a href="/role">Roles</a></li>  

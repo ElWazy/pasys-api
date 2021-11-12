@@ -27,7 +27,7 @@ class Router
             $fn = $this->postRoutes[$url] ?? null;
         }
         if (!$fn) {
-            echo 'Page not found';
+            $this->renderView('404');
             exit;
         }
         echo call_user_func($fn, $this);

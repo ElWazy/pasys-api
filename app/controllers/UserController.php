@@ -73,7 +73,10 @@ final class UserController
                     )
                 );
             } catch (Exception | PDOException $e) {
-                $errors[] = $e->getMessage();
+                $router->renderView('exception', [
+                    'errors' => $e->getMessage()
+                ]);
+                exit;
             }
         }
 
@@ -108,8 +111,11 @@ final class UserController
                         $_POST['is_active']
                     )
                 );
-            } catch (Exception $e) {
-                $errors[] = $e->getMessage();
+            } catch (exception | pdoexception $e) {
+                $router->renderView('exception', [
+                    'errors' => $e->getmessage()
+                ]);
+                exit;
             }
 
             header('Location: /user');
@@ -153,7 +159,15 @@ final class UserController
                 header('Location: /');
                 exit;
             } catch (Exception $e) {
-                $errors[] = $e->getMessage();
+                $router->renderView('exception', [
+                    'errors' => $e->getMessage()
+                ]);
+                exit;
+            } catch (PDOException $e) {
+                $router->renderView('exception', [
+                    'errors' => $e->getMessage()
+                ]);
+                exit;
             }
         }
 

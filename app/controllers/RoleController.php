@@ -8,6 +8,7 @@ use LosYuntas\Application\middlewares\Auth;
 use LosYuntas\role\domain\Role;
 use LosYuntas\role\domain\RoleRepository;
 use LosYuntas\role\infrastructure\RoleRepositoryMariaDB;
+use PDOException;
 
 final class RoleController
 {
@@ -52,7 +53,15 @@ final class RoleController
                     new Role($_POST['name'])
                 );
             } catch(Exception $e) {
-                $errors[] = $e->getMessage();
+                $router->renderView('exception', [
+                    'errors' => $e->getMessage()
+                ]);
+                exit;
+            } catch(PDOException $e) {
+                $router->renderView('exception', [
+                    'errors' => $e->getMessage()
+                ]);
+                exit;
             }
         }
 
@@ -73,7 +82,10 @@ final class RoleController
             header('Location: /role');
             exit;
         } catch (Exception $e) {
-            echo "Todavia existen usuarios con este rol";
+            $router->renderView('exception', [
+                'errors' => 'Todavia existen usuarios con este rol'
+            ]);
+            exit;
         }
     }
 }
