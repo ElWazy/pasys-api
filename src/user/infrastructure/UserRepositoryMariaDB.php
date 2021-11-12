@@ -1,6 +1,6 @@
 <?php
 
-namespace LosYuntas\User\infrastructure;
+namespace LosYuntas\user\infrastructure;
 
 use LosYuntas\user\domain\User;
 use LosYuntas\user\domain\UserRepository;
@@ -22,6 +22,29 @@ final class UserRepositoryMariaDB implements UserRepository
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
+    public function login(string $rut, string $password): int
+    {
+        $sql = 'SELECT 
+            id 
+        FROM user 
+        WHERE rut = :rut AND
+            password = :password AND
+            role_id = 2 AND
+            is_active = 1
+        ORDER BY name ASC
+        LIMIT 1';
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([
+            'rut' => $rut,
+            'password'=> $password
+        ]);
+
+        $id = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return (int) $id[0]['id'];
+    }
+
     public function getAll(): ?array
     {
         $sql = 'SELECT 
@@ -36,7 +59,6 @@ final class UserRepositoryMariaDB implements UserRepository
 
         $statement = $this->connection->query($sql);
  
-
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 

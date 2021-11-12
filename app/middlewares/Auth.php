@@ -8,14 +8,12 @@ final class Auth
 {
     public static function isAdmin(): bool
     {
-        // return isset($_SESSION['isActive']);
-        return true;
+        return isset($_SESSION['isActive']);
     }
 
     public static function canEdit(): void
     {
-        $isAdmin = true;
-        if (!$isAdmin) {
+        if (!self::isAdmin()) {
             header('Location: /');
             exit;
         }
