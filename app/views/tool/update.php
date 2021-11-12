@@ -11,9 +11,11 @@
 </head>
 <body>
     <nav>
-        <ul>
-            <li><h1>Sistema Pañol</h1></li>
-            <li><a href="/tool">Herramientas</a></li>
+    <ul class="menu_nav">
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/user">Usuarios</a></li>
+            <li><a href="/category">Categorias</a></li>
+            <li><a href="/role">Roles</a></li>  
         </ul>
     </nav>
 
