@@ -8,6 +8,49 @@
 - Santiago Ignacio Fierro Madrid
 - Esteban Salomón Vivanco Ulloa
 
+## Entorno de desarrollo
+
+### Requisitos
+
+1. [Git](https://git-scm.com/)
+2. [XAMPP (o solo PHP y MySQL)](https://www.apachefriends.org/es/index.html)
+3. [Composer](https://getcomposer.org/)
+
+### Instalación
+
+Primero debe clonar el repositorio, para ello en la terminal se ubica en la
+ruta donde quiere guardar el proyecto y ejecuta el siguiente comando:
+```bash
+git clone https://github.com/ElWazy/pasys-api
+cd pasys-api
+```
+
+Seguido de hacer la clonación. Con `composer` debe generar el archivo `autoload.php` con el
+comando:
+```bash
+composer upgrade
+```
+esto es necesario ya que composer nos permite poder trabajar con namespaces y uses para
+mantener un orden en cuanto a la estructura de clases y modulos (se puede asimilar
+con los packages e imports de java).
+
+
+Al terminar de generar el archivo `autoload.php`. Puede importar los scripts de 
+la base de datos del sistema ubicada en la carpeta `sql`. Puede basarse en el Diagrama 
+Relacional de abajo para importar las entidades fuertes primero y despues las entidades débiles.
+
+Una particularidad es que el sistema fue creado colaborativamente tanto en Linux como en Windows.
+Por ende para evitar conflictos de usuarios, en el script `database.sql` hay un código comentado
+para añadir un usario con permisos totales exclusivamente para nuestra base de datos en concreto.
+
+
+Por ultimo, para ejecutar el proyecto, por terminal debe dirigirse dentro del repositorio a la carpeta 
+`/app/public` y ejecutar el siguiente comando:
+```bash
+php -S localhost:5000
+```
+Lo que hace el comando es crear un servidor local por medio del interprete de PHP, el cual nos permite
+tener el control de las URI y así poder crear todo el sistema de enrutamiento con endpoints.
 
 
 ## Requerimientos
