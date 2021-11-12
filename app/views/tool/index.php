@@ -124,7 +124,9 @@
             <li>
                 <a href="/login">Administrar</a>
             </li>
-            <li><a href="/tool/deactive">Herramientas Desactivadas</a></li>
+            <?php if($isAdmin): ?>
+                <li><a href="/tool/deactive">Herramientas Desactivadas</a></li>
+            <?php endif; ?>
         </ul>
     </footer>
 
