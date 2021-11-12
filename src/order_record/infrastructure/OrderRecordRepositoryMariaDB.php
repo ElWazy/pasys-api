@@ -1,12 +1,12 @@
 <?php
 
-namespace LosYuntas\User\infrastructure;
+namespace LosYuntas\order_record\infrastructure;
 
-use LosYuntas\user\domain\Order_record;
-use LosYuntas\user\domain\Order_recordRepository;
+use LosYuntas\order_record\domain\OrderRecord;
+use LosYuntas\order_record\domain\OrderRecordRepository;
 use PDO;
 
-final class Order_RecordRepositoryMariaDB implements Order_recordRepository
+final class OrderRecordRepositoryMariaDB implements OrderRecordRepository
 {
     private PDO $connection;
     
@@ -49,8 +49,41 @@ final class Order_RecordRepositoryMariaDB implements Order_recordRepository
 
     public function getByCriteria(string $criteria): ?array
     {   
+        $sql = 'SELECT 
 
-        // VARIAS BUSQUEDAS AL MISMO TIEMPO
+                worker.rut, 
+                worker.name AS trabajador, 
+                tool.name AS herramienta, 
+                order_record.amount, 
+                order_record.order_date, 
+                order_record.deadline,
+                panolero.name AS panolero, 
+                state.name AS estado
+
+                FROM order_record 
+                
+                INNER JOIN user AS worker ON order_record.worker_id = worker.id 
+                INNER JOIN user AS panolero ON order_record.panolero_id = panolero.id 
+                INNER JOIN tool ON order_record.tool_id = tool.id 
+                INNER JOIN state ON order_record.state_id = state.id
+                
+                WHERE trabajador LIKE :criteria OR
+                herramienta LIKE :criteria OR
+                order_date LIKE :criteria OR
+                panolero LIKE :criteria 
+                
+                ORDER BY order_record.order_date ASC';
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([
+            'criteria' => "%$criteria%"
+        ]);
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getById(int $id): ?array
+    {
         $sql = 'SELECT 
 
                 worker.rut, 
@@ -68,15 +101,28 @@ final class Order_RecordRepositoryMariaDB implements Order_recordRepository
                 INNER JOIN user AS worker ON order_record.worker_id = worker.id 
                 INNER JOIN user AS panolero ON order_record.panolero_id = panolero.id 
                 INNER JOIN tool ON order_record.tool_id = tool.id 
-                INNER JOIN state ON order_record.state_id = state.id';
+                INNER JOIN state ON order_record.state_id = state.id
+
+                WHERE id = :id
+                
+                LIMIT 1';
 
         $statement = $this->connection->prepare($sql);
         $statement->execute([
-            'trabajador' => "%$criteria%"
+            'id' => $id
         ]);
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function add(OrderRecord $order): void
+    {
+
+    }
+
+    public function update(OrderRecord $order): void
+    {
+
+    }
  
 }

@@ -5,7 +5,7 @@ namespace LosYuntas\order_record\domain;
 use DateTime;
 use Exception;
 
-final class Order_record
+final class OrderRecord
 {
     private ?int $id;
     private int $worker_id;
@@ -39,7 +39,6 @@ final class Order_record
         $this->state_id = $state_id;
     }
 
-
     public function id(): ?int
     {
         return $this->id;
@@ -49,7 +48,6 @@ final class Order_record
     {
         return $this->panolero_id;
     }
-
 
     public function worker_id(): int
     {
@@ -75,8 +73,4 @@ final class Order_record
     {
         return $this->delivery_date;
     }
-
-
-
-    
 }

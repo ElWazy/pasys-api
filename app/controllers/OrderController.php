@@ -4,16 +4,15 @@ namespace LosYuntas\Application\controllers;
 
 use LosYuntas\Application\Router;
 use LosYuntas\Application\middlewares\Auth;
-use LosYuntas\order_record\domain\Order_record;
-use LosYuntas\order_record\domain\Order_recordRepository;
 use LosYuntas\order_record\infrastructure\OrderRecordRepositoryMariaDB;
+use LosYuntas\order_record\domain\OrderRecordRepository;
 
 use Exception;
 use PDOException;
 
 final class OrderController
 {
-    private Order_recordRepository $repository;
+    private OrderRecordRepository $repository;
 
     public function __construct()
     {
@@ -23,7 +22,6 @@ final class OrderController
             'master',
             'master'
         );
-
     } 
 
     public function index(Router $router)
@@ -32,20 +30,20 @@ final class OrderController
 
         $name = $_GET['search'] ?? '';
         if (!$name) {
-            $user = $this->repository->getAll();
+            $orders = $this->repository->getAll();
         } else {
-            $user = $this->repository->getByCriteria($name);
+            $orders = $this->repository->getByCriteria($name);
         }
 
-        $roles = $this-> rolerepository -> getAll();
+        $roles = $this->repository->getAll();
 
         $router->renderView('order_record/index', [
-            
+            'orders' => $orders
         ]);
     }
    
 
-    public function remove(Router $router)
+    public function delivery(Router $router)
     {
         echo 'Remove User Page';
     }

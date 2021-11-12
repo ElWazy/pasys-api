@@ -60,9 +60,7 @@
 
 
     <div class="main-container">
-
         <table class="elements">
-
             <thead>
                 <tr>
                     <th> RUT  </th>
@@ -75,22 +73,14 @@
             </thead>
         
             <tr>
-                <td></td> <td></td> <td></td> <td></td><td></td> <td></td>  
+                <td></td> 
+                <td></td> 
+                <td></td> 
+                <td></td>
+                <td></td> 
+                <td></td>  
             </tr>
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
-            </tr>
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
-            </tr>
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
-            </tr>
-        
-    
-        
         </table>
-
     </div>
 
     <script src="js/popup.js"></script>
