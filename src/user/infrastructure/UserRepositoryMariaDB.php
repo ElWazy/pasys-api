@@ -28,7 +28,7 @@ final class UserRepositoryMariaDB implements UserRepository
             id 
         FROM user 
         WHERE rut = :rut AND
-            password = :password AND
+            password = SHA2(:password, 224) AND
             role_id = 2 AND
             is_active = 1
         ORDER BY name ASC

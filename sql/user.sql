@@ -15,11 +15,11 @@ CREATE TABLE user (
 
 -- Panoleros
 INSERT INTO user (name, password, rut, role_id) VALUES
-('Hernesto Vargas Herrera',        '1324',       '11.222.333-4', 2),
-('Samuel Saveedra Gonzales',       'pato123',    '12.223.334-3', 2),
-('Ebaristo Filidor Rios Riquelme', 'efrr42',     '16.225.335-2', 2),
-('Almendra Kast Soto',             '1234',       '18.235.333-4', 2),
-('Karen Sotomayor del Carmen',     'asvDwq12D3', '11.225.333-8', 2);
+('Hernesto Vargas Herrera',        SHA2('1324', 224),       '11.222.333-4', 2),
+('Samuel Saveedra Gonzales',       SHA2('pato123', 224),    '12.223.334-3', 2),
+('Ebaristo Filidor Rios Riquelme', SHA2('efrr42', 224),     '16.225.335-2', 2),
+('Almendra Kast Soto',             SHA2('1234', 224),       '18.235.333-4', 2),
+('Karen Sotomayor del Carmen',     SHA2('asvDwq12D3', 224), '11.225.333-8', 2);
 
 -- Workers
 INSERT INTO user (name, rut, role_id) VALUES
