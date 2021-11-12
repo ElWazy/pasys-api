@@ -12,17 +12,23 @@
     <?php endif; ?>
 </head>
 <body>
+    
+    <?php 
+        $errors = "";
+    ?>
+
     <nav>
-            <ul class="menu_nav">
-                <li><a href="/order_record"><h1>Sistema Pañol</h1></a></li>
-                <?php if($isAdmin): ?>
-                    <li><a href="/">Inicio</a></li>
-                    <li><a href="/user">Usuarios</a></li>
-                    <li><a href="/category">Categorias</a></li>
-                    <li><a href="/role">Roles</a></li>  
-                    <li><a href="/logout">Logout</a></li>
-                <?php endif; ?>
-            </ul>
+    <nav>
+        <ul class="menu_nav">
+            <li><a href="/order_record">Inicio</a></li>
+            <li><a href="/">Inventario</a></li>
+            <li><a href="/user">Usuarios</a></li>
+            <li><a href="/category">Categorias</a></li>
+            <li><a href="/role">Roles</a></li>  
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </nav>
+
     </nav>
 
     <main>
