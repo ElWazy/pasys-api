@@ -67,25 +67,44 @@
                     <th> NOMBRE </th>  
                     <th> HERRAMIENTA </th>
                     <th> CANTIDAD </th>  
-                    <th> FECHA </th> 
+                    <th> FECHA PEDIDO</th> 
+                    <th> FECHA DEVOLUCIÓN</th> 
+                    <th> PAÑOLERO </th> 
                     <th> ESTADO </th>
+                    <th> ACCIÓN </th>
+
                 </tr>
             </thead>
         
-            <tr>
-                <td></td> 
-                <td></td> 
-                <td></td> 
-                <td></td>
-                <td></td> 
-                <td></td>  
-            </tr>
-            <tr>
-                <td></td> <td></td> <td></td> <td></td> <td></td> <td></td> 
-            </tr>
-        
+            <?php if($orders): ?>
+                <?php foreach($orders as $key => $order): ?>
+                    <tr>
+                        <td><?= $order['rut']; ?></td> 
+                        <td><?= $order['trabajador']; ?></td> 
+                        <td><?= $order['herramienta']; ?></td> 
+                        <td><?= $order['amount']; ?></td> 
+                        <td><?= $order['order_date']; ?></td> 
+                        <td><?= $order['deadline']; ?></td> 
+                        <td><?= $order['panolero']; ?></td> 
+                        <td><?= $order['estado']; ?></td>
+                        <td>
+                                <form action="/order_record/update" method="GET">
+                                    <!-- <input type="hidden" name="id" value="<?=$order['id']; ?>" > -->
+                                    <input type="submit" value="Validar Entrega">
+                                </form>
+                        </td> 
+                    </tr>
 
 
+                <?php endforeach; ?>
+
+                <?php else: ?>
+                    <tr>
+                        <td colspan="3"><h1>No hay ordenes disponibles</h1></td> 
+                    </tr>
+                <?php endif; ?>
+
+            
         
         </table>
     </div>

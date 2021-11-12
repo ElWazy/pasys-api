@@ -26,6 +26,7 @@ final class OrderController
 
     public function index(Router $router)
     {
+        
         Auth::canEdit();
 
         $name = $_GET['search'] ?? '';
