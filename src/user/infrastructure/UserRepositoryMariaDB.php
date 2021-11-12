@@ -1,6 +1,6 @@
 <?php
 
-namespace LosYuntas\user\infrastructure;
+namespace LosYuntas\User\infrastructure;
 
 use LosYuntas\user\domain\User;
 use LosYuntas\user\domain\UserRepository;
@@ -59,6 +59,7 @@ final class UserRepositoryMariaDB implements UserRepository
 
         $statement = $this->connection->query($sql);
  
+
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 

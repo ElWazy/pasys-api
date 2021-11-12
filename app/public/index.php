@@ -36,6 +36,12 @@ $router->get('/role/remove', [new RoleController(), 'remove']);
 
 $router->post('/role/add', [new RoleController(), 'add']);
 
+// Order record
+$router->get('/order_record', [new RoleController(), 'index']);
+$router->get('/order_record/add', [new RoleController(), 'add']);
+$router->get('/order_record/remove', [new RoleController(), 'remove']);
+$router->post('/order_record/add', [new RoleController(), 'add']);
+
 // User
 $router->get('/user', [new UserController(), 'index']);
 $router->get('/user/add', [new UserController(), 'add']);
