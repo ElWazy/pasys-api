@@ -4,8 +4,13 @@ namespace LosYuntas\Application\controllers;
 
 use LosYuntas\Application\Router;
 use LosYuntas\Application\middlewares\Auth;
+use LosYuntas\order_record\domain\OrderRecord;
 use LosYuntas\order_record\infrastructure\OrderRecordRepositoryMariaDB;
 use LosYuntas\order_record\domain\OrderRecordRepository;
+use LosYuntas\tool\domain\ToolRepository;
+use LosYuntas\tool\infrastructure\ToolRepositoryMariaDB;
+use LosYuntas\user\domain\UserRepository;
+use LosYuntas\user\infrastructure\UserRepositoryMariaDB;
 
 use Exception;
 use PDOException;
@@ -13,6 +18,8 @@ use PDOException;
 final class OrderController
 {
     private OrderRecordRepository $repository;
+    private ToolRepository $toolRepository;
+    private UserRepository $userRepository;
 
     public function __construct()
     {
@@ -22,11 +29,24 @@ final class OrderController
             'master',
             'master'
         );
+
+        $this->toolRepository = new ToolRepositoryMariaDB(
+            'localhost',
+            'panol_system',
+            'master',
+            'master'
+        );
+
+        $this->userRepository = new UserRepositoryMariaDB(
+            'localhost',
+            'panol_system',
+            'master',
+            'master'
+        );
     } 
 
     public function index(Router $router)
     {
-        
         Auth::canEdit();
 
         $name = $_GET['search'] ?? '';
@@ -36,18 +56,55 @@ final class OrderController
             $orders = $this->repository->getByCriteria($name);
         }
 
-        $roles = $this->repository->getAll();
+        $tools = $this->toolRepository->getAll();
 
         $router->renderView('order_record/index', [
-            'orders' => $orders
+            'orders' => $orders,
+            'tools' => $tools
         ]);
     }
    
+    public function add(Router $router)
+    {
+        Auth::canEdit();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            try {
+                session_start();
+
+                $worker = $this->userRepository->getByCriteria($_POST['worker']);
+
+                $this->repository->add(
+                    new OrderRecord(
+                        null,
+                        $worker[0]['id'],
+                        $_POST['tool'],
+                        $_POST['amount'],
+                        $_SESSION['userId']
+                    )
+                );
+            } catch (Exception $e) {
+                $router->renderView('exception',[
+                    'errors' => $e->getMessage()
+                ]);
+                exit;
+            } catch (PDOException $e) {
+                $router->renderView('exception',[
+                    'errors' => $e->getMessage()
+                ]);
+                exit;
+            }
+        }
+
+        header('Location: /order_record');
+        exit;
+    }
 
     public function delivery(Router $router)
     {
-        echo 'Remove User Page';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        }
+
+        $router->renderView('order_record/delivery');
     }
-
-
 }

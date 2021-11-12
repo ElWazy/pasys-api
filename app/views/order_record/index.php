@@ -12,6 +12,8 @@
 </head>
 <body>
 
+
+
     <nav>
         <ul class="menu_nav">
             <li><a href="/order_record">Inicio</a></li>
@@ -33,7 +35,7 @@
                             id="search" 
                             placeholder="Buscar Categoria" />
                     <input type="submit" value="Buscar">
-                    <input type="submit" value="Crear Solicitud" onclick="mostrar();"> 
+                    <input type="button" value="Crear Solicitud" onclick="mostrar();"> 
                 </form>
             </article>
 
@@ -45,13 +47,20 @@
         <div class="popup-create" >
             <div class="modal-create" id="modalcontainer">
                 <h2>Crear Solicitud de Herramienta</h1>
-                    <form action="#" method="post" class="form-modal">
-                        
-                        <input type="text" name="rut" id="rut" placeholder="Rut Trabajador"  />
-                        <input type="text" name="tool" id="tool" placeholder="Herramienta"  />
-                        <input type="number" name="amount" id="amount" placeholder="Cantidad"  />
-                        <input type="date" name="delivery_date" id="delivery_date" placeholder="Fecha Entrega"  />
-                        <input type="time" name="hours_late" id="hours_late" placeholder="Horas de Atraso"  />
+                    <form action="/order_record/add" method="post" class="form-modal">
+                        <input type="text" name="worker" id="worker" placeholder="Rut Trabajador"  />
+                        <?php if($tools): ?>
+                            <select name="tool"> 
+                                <?php foreach($tools as $tool): ?>
+                                    <option value="<?= $tool['id']; ?> "> 
+                                        <?= $tool['name']; ?> 
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        <?php else: ?>
+                            <h1>No hay Herramientas disponibles</h1> 
+                        <?php endif; ?>
+                        <input type="number" name="amount" id="amount" min="0" placeholder="Cantidad"  />
                         
                         <input type="submit" value="Ingresar">
                         <input type="button" value="Cerrar" onclick="ocultar();">
@@ -91,8 +100,8 @@
                         <td><?= $order['panolero']; ?></td> 
                         <td><?= $order['estado']; ?></td>
                         <td>
-                                <form action="/order_record/update" method="GET">
-                                    <!-- <input type="hidden" name="id" value="<?=$order['id']; ?>" > -->
+                                <form action="/order_record/delivery" method="GET">
+                                    <input type="hidden" name="id" value="<?=$order['id']; ?>" >
                                     <input type="submit" value="Validar Entrega">
                                 </form>
                         </td> 
@@ -103,7 +112,7 @@
 
                 <?php else: ?>
                     <tr>
-                        <td colspan="3"><h1>No hay ordenes disponibles</h1></td> 
+                        <td colspan="9"><h1>No hay ordenes disponibles</h1></td> 
                     </tr>
                 <?php endif; ?>
 

@@ -43,6 +43,7 @@ $router->get('/order_record/add', [new OrderController(), 'add']);
 $router->get('/order_record/delivery', [new OrderController(), 'delivery']);
 
 $router->post('/order_record/add', [new OrderController(), 'add']);
+$router->post('/order_record/delivery', [new OrderController(), 'delivery']);
 
 // User
 $router->get('/user', [new UserController(), 'index']);

@@ -12,6 +12,11 @@
     <?php endif; ?>
 </head>
 <body>
+    
+    <?php 
+        $errors = "";
+    ?>
+
     <nav>
     <nav>
         <ul class="menu_nav">

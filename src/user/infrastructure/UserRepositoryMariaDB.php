@@ -1,6 +1,6 @@
 <?php
 
-namespace LosYuntas\User\infrastructure;
+namespace LosYuntas\user\infrastructure;
 
 use LosYuntas\user\domain\User;
 use LosYuntas\user\domain\UserRepository;
@@ -75,6 +75,7 @@ final class UserRepositoryMariaDB implements UserRepository
         FROM user 
         INNER JOIN role ON user.role_id = role.id 
         WHERE user.name LIKE :name OR 
+            user.rut LIKE :name OR
             role.name LIKE :name AND
             user.is_active = 1
         ORDER BY name ASC';
@@ -135,9 +136,9 @@ final class UserRepositoryMariaDB implements UserRepository
 
     public function update(User $user): void
     {
+
         $sql = 'UPDATE user SET 
         name = :name, 
-        rut = :rut,
         password = :password,
         role_id = :role_id,
         is_active = :is_active
@@ -147,11 +148,11 @@ final class UserRepositoryMariaDB implements UserRepository
         $statement->execute([
 
             'name' => $user->name(),
-            'rut' => $user->rut(),
             'password' => $user->password(),
             'role_id' => $user->role_id(),
             'is_active' => $user->is_active(),
             'id' => $user->id()
+
 
         ]);
     }
