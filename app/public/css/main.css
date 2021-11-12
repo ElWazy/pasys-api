@@ -47,6 +47,12 @@ a {
     color: #9e7682;
 }
 
+.errors{
+    background: red;
+    border-radius: 5px;
+    
+}
+
 
 /* Navbar*/
 nav {
