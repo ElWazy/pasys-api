@@ -2,7 +2,6 @@
 
 namespace LosYuntas\order_record\domain;
 
-use DateTime;
 use Exception;
 
 final class OrderRecord
@@ -19,10 +18,21 @@ final class OrderRecord
         int $id  = null,
         int $worker,
         int $tool,
+        int $stockActual,
         int $amount,
         int $panolero
     )
     {
+        if (!$worker) {
+            throw new Exception('No se encuentra el trabajador');
+        }
+
+        /*
+        if ($amount > $stockActual) {
+            throw new Exception('El stock disponible no puede cubrir la cantidad requerida');
+        }
+         */
+
         $this->id = $id ?? null;
         $this->worker = $worker;
         $this->tool = $tool;
@@ -52,7 +62,7 @@ final class OrderRecord
 
     public function tool(): int
     {
-        return $this->tool;
+        return $this->tool();
     }
 
     public function amount(): int

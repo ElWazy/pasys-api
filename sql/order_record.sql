@@ -24,11 +24,12 @@ CREATE TRIGGER decrement_actual_stock
 AFTER INSERT
 ON order_record FOR each ROW
 BEGIN
-    DECLARE decrement INT;
-
-    UPDATE tool 
-    SET stock_actual = (SELECT tool.stock_actual - NEW.amount FROM order_record INNER JOIN tool ON NEW.tool_id = tool.id)
-    WHERE id = NEW.tool_id;
+    IF NEW.amount < (SELECT stock_actual FROM tool WHERE id = NEW.tool_id) AND 
+    NEW.amount >= 0 THEN
+        UPDATE tool 
+        SET stock_actual = stock_actual - NEW.amount
+        WHERE id = NEW.tool_id;
+    END IF;
 END; // 
 delimiter ;
 

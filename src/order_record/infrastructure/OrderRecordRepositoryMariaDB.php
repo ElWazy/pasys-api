@@ -16,7 +16,6 @@ final class OrderRecordRepositoryMariaDB implements OrderRecordRepository
         string $username,
         string $password
     )
-    
     {
         $this->connection = new PDO("mysql:host=$host;port=3306;dbname=$database", $username, $password);
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

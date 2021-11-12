@@ -90,7 +90,8 @@ final class ToolRepositoryMariaDB implements ToolRepository
             id, 
             name, 
             category_id,
-            stock_total
+            stock_total,
+            stock_actual
         FROM tool 
         WHERE id = :id';
 
