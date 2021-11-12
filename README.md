@@ -12,10 +12,10 @@
 
 ## Requerimientos
 
-- [ ] El sistema podrá enrolar a un trabajador y su especialidad.
-- [ ] Las herrammientas deberán poseer un registro, ser catalogadas, disposición y ubicacón.
-- [ ] Se debe gestionar el préstamo y devolución de herramientas.
-- [ ] Debe proveerse de un método de notificación de falta de devolución al sistema y usuarios.
+1. El sistema podrá enrolar a un trabajador y su especialidad.
+2. Las herrammientas deberán poseer un registro, ser catalogadas, disposición y ubicacón.
+3. Se debe gestionar el préstamo y devolución de herramientas.
+4. Debe proveerse de un método de notificación de falta de devolución al sistema y usuarios.
 
 ## Base de datos
 
