@@ -7,7 +7,7 @@ use Exception;
 
 final class Order_record
 {
-
+    private ?int $id;
     private int $worker_id;
     private int $tool_id;
     private int $amount;
@@ -17,6 +17,8 @@ final class Order_record
     private int $state_id;
 
     public function __construct(
+        
+        int $id  = null,
         int $worker_id,
         int $tool_id,
         int $amount,
@@ -24,9 +26,10 @@ final class Order_record
         DateTime $delivery_date,
         int $panolero_id,
         int $state_id   
+
     )
     {
-
+        $this->id = $id ?? null;
         $this->worker_id = $worker_id;
         $this->tool_id = $tool_id;
         $this->amount = $amount;
@@ -35,6 +38,18 @@ final class Order_record
         $this->panolero_id = $panolero_id;
         $this->state_id = $state_id;
     }
+
+
+    public function id(): ?int
+    {
+        return $this->id;
+    }
+
+    public function panolero_id(): int
+    {
+        return $this->panolero_id;
+    }
+
 
     public function worker_id(): int
     {

@@ -34,11 +34,11 @@
             <input type="hidden" name="id" value="<?= $user[0]['id']; ?>">
             
             <h6>Nombre</h6>
-            <input class="form-input" type="text" name="name" id="name" value="<?= $user[0]['name']; ?>" placeholder="Nombre Herramienta"  />
+            <input class="form-input" type="text" name="name" id="name" value="<?= $user[0]['name']; ?>"/>
             <h6>Contraseña</h6>
-            <input class="form-input" type="text" name="password" id="password" value="<?= $user[0]['password']; ?>" placeholder="Nombre Herramienta"  />
+            <input class="form-input" type="text" name="password" id="password" value="<?= $user[0]['password']; ?>" />
             <h6>Rut</h6>
-            <input class="form-input" type="text" name="rut" id="rut" value="<?= $user[0]['rut']; ?>" placeholder="Nombre Herramienta"  disabled/>
+            <input class="form-input" type="text" name="rut" id="rut" value="<?= $user[0]['rut']; ?>" />
             <h6>Role</h6>
                 <?php if($roles): ?>
                     <select name="role_id" class="form-input"> 
