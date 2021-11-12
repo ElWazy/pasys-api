@@ -136,9 +136,9 @@ final class UserRepositoryMariaDB implements UserRepository
 
     public function update(User $user): void
     {
+
         $sql = 'UPDATE user SET 
         name = :name, 
-        rut = :rut,
         password = :password,
         role_id = :role_id,
         is_active = :is_active
@@ -148,11 +148,11 @@ final class UserRepositoryMariaDB implements UserRepository
         $statement->execute([
 
             'name' => $user->name(),
-            'rut' => $user->rut(),
             'password' => $user->password(),
             'role_id' => $user->role_id(),
             'is_active' => $user->is_active(),
             'id' => $user->id()
+
 
         ]);
     }

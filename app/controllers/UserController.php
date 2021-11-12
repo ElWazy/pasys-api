@@ -69,7 +69,6 @@ final class UserController
                         $_POST['password'],
                         $_POST['rut'],
                         $_POST['role_id'],
-                        $_POST['role_id']
                     )
                 );
             } catch (Exception | PDOException $e) {
@@ -105,8 +104,8 @@ final class UserController
                     new User(
                         $_POST['id'], 
                         $_POST['name'], 
-                        $_POST['rut'] ,
                         $_POST['password'], 
+                        $_POST['rut'] ,
                         $_POST['role_id'], 
                         $_POST['is_active']
                     )

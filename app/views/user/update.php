@@ -40,7 +40,7 @@
             <h6>Contraseña</h6>
             <input class="form-input" type="text" name="password" id="password" value="<?= $user[0]['password']; ?>" />
             <h6>Rut</h6>
-            <input class="form-input" type="text" name="rut" id="rut" value="<?= $user[0]['rut']; ?>" />
+            <input class="form-input" type="text" id="rut" value="<?= $user[0]['rut']; ?>" />
             <h6>Role</h6>
                 <?php if($roles): ?>
                     <select name="role_id" class="form-input"> 

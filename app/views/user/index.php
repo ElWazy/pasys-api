@@ -11,6 +11,10 @@
     <title>Empleados</title>
 </head>
 <body>
+
+    <?php 
+    $errors = "";
+    ?>
     <nav>
         <ul class="menu_nav">
             <li><a href="/order_record">Inicio</a></li>

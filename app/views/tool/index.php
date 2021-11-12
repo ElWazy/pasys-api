@@ -12,6 +12,11 @@
     <?php endif; ?>
 </head>
 <body>
+    
+    <?php 
+        $errors = "";
+    ?>
+
     <nav>
             <ul class="menu_nav">
                 <li><a href="/order_record"><h1>Sistema Pañol</h1></a></li>
