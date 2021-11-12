@@ -109,7 +109,7 @@ final class UserRepositoryMariaDB implements UserRepository
     public function add(User $user): void
     {
         $sql = 'INSERT INTO user (name, password, rut, role_id ) VALUES 
-            (:name, :password, :rut, :role_id)';
+            (:name, SHA2(:password, 224), :rut, :role_id)';
 
         $statement = $this->connection->prepare($sql);
         $statement->execute([
