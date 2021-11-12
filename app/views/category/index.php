@@ -14,8 +14,15 @@
 
     <nav>
         <ul>
+<<<<<<< HEAD
+            <li><a href="/">Inicio</a></li>
+            <li><a href="/user">Usuarios</a></li>
+            <li><a href="/category">Categorias</a></li>
+            <li><a href="/role">Roles</a></li>  
+=======
             <li><h1>Sistema Pañol </h1></li>
             <li><a href="/tool">Catalogo</a></li>
+>>>>>>> 4a54e52d8a20287f79698ea2baa07021af0520d7
         </ul>
     </nav>
 

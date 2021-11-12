@@ -13,18 +13,19 @@
 </head>
 <body>
     <nav>
-        <ul>
-            <li><h1>Sistema Pañol</h1></li>
-            <?php if($isAdmin): ?>
-                <li><a href="/order">Inicio</a></li>
+        <?php if($isAdmin): ?>
+            <ul class="menu_nav">
+                <li><h1>Sistema Pañol</h1></li>
+                <li><a href="/">Inicio</a></li>
                 <li><a href="/user">Usuarios</a></li>
                 <li><a href="/category">Categorias</a></li>
+                <li><a href="/role">Roles</a></li>  
                 <li><a href="/logout">Logout</a></li>
-            <?php endif; ?>
-        </ul>
+            </ul>
+        <?php endif; ?>
     </nav>
 
-    <main >
+    <main>
         <section>
             <article class="search"  >
                 <form action="/tool" method="get">

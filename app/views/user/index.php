@@ -15,7 +15,9 @@
         <ul class="menu_nav">
             <li><a href="/order">Inicio</a></li>
             <li><a href="/">Inventario</a></li>
-            <li><a href="/role">Roles</a></li>
+            <li><a href="/user">Usuarios</a></li>
+            <li><a href="/category">Categorias</a></li>
+            <li><a href="/role">Roles</a></li>  
             <li><a href="/logout">Logout</a></li>
         </ul>
     </nav>
