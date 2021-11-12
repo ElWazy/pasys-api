@@ -17,3 +17,20 @@ CREATE TABLE order_record (
     FOREIGN KEY(tool_id) REFERENCES tool(id),
     FOREIGN KEY(state_id) REFERENCES state(id)
 );
+
+INSERT INTO order_record (worker_id, panolero_id, tool_id, amount, order_date, deadline, state_id) VALUES
+(7, 1, 1, 3, NOW(), DATE_ADD(NOW(), INTERVAL 14 DAY), 1);
+
+SELECT worker.rut, 
+  worker.name AS trabajador, 
+  tool.name AS herramienta, 
+  order_record.amount, 
+  order_record.order_date, 
+  order_record.deadline,
+  panolero.name AS panolero, 
+  state.name AS estado
+FROM order_record 
+INNER JOIN user AS worker ON order_record.worker_id = worker.id 
+INNER JOIN user AS panolero ON order_record.panolero_id = panolero.id 
+INNER JOIN tool ON order_record.tool_id = tool.id 
+INNER JOIN state ON order_record.state_id = state.id;
