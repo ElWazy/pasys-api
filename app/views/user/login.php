@@ -10,12 +10,12 @@
 <body>
     <nav>
         <ul>
-            <li><h1>Sistema Pañol Zumbi Zumbi</h1></li>
+            <li><h1>Sistema Pañol</h1></li>
         </ul>
     </nav>
 
     <main>
-        <form action="/user/login" method="post">
+        <form action="/login" method="post">
             <h2>SISTEMA ADMINISTRACIÓN PAÑOL</h2>
             <input type="text" 
                 name="rut" 

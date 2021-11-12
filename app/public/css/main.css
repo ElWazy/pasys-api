@@ -37,6 +37,10 @@ a {
     
 }
 
+.errors {
+    background-color: red;
+}
+
 .primary {
     box-shadow: 10px 10px #1b2a41;
     color: #1b2a41;
@@ -45,6 +49,12 @@ a {
 .danger {
     box-shadow: 10px 10px #9e7682;
     color: #9e7682;
+}
+
+.errors{
+    background: red;
+    border-radius: 5px;
+    
 }
 
 
