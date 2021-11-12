@@ -11,15 +11,9 @@
     <title>Empleados</title>
 </head>
 <body>
-<<<<<<< HEAD
 <nav>
-=======
 
-    <?php 
-    $errors = "";
-    ?>
     <nav>
->>>>>>> c650822f333f7ece70353a43a6c69fe4d9fb3a7d
         <ul class="menu_nav">
             <li><a href="/order_record">Inicio</a></li>
             <li><a href="/">Inventario</a></li>
