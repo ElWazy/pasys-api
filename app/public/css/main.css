@@ -97,6 +97,11 @@ section {
 }
 
 /* Form */
+.form-update {
+    width:60%;
+    margin: 3em auto;
+}
+
 input {
     margin: 0.5em;
     padding: 0.5em;
