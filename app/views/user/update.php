@@ -21,10 +21,9 @@
         </ul>
     </nav>
 
-
-    <main class="form-update">
+    <main >
         <?php if($errors): ?>
-            <section class = "errors">
+            <section>
                 <ul>
                     <?php foreach($errors as $error): ?>
                         <li><?= $error; ?></li>
@@ -39,11 +38,11 @@
             <input type="hidden" name="id" value="<?= $user[0]['id']; ?>">
             
             <h6>Nombre</h6>
-            <input class="form-input" type="text" name="name" id="name" value="<?= $user[0]['name']; ?>"/>
+            <input class="form-input" type="text" name="name" id="name" value="<?= $user[0]['name']; ?>" placeholder="Nombre Herramienta"  />
             <h6>Contraseña</h6>
-            <input class="form-input" type="text" name="password" id="password" value="<?= $user[0]['password']; ?>" />
+            <input class="form-input" type="text" name="password" id="password" value="<?= $user[0]['password']; ?>" placeholder="Nombre Herramienta"  />
             <h6>Rut</h6>
-            <input class="form-input" type="text" name="rut" id="rut" value="<?= $user[0]['rut']; ?>" />
+            <input class="form-input" type="text" name="rut" id="rut" value="<?= $user[0]['rut']; ?>" placeholder="Nombre Herramienta" />
             <h6>Role</h6>
                 <?php if($roles): ?>
                     <select name="role_id" class="form-input"> 
