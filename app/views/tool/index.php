@@ -14,7 +14,7 @@
 <body>
     <nav>
             <ul class="menu_nav">
-                <li><h1>Sistema Pañol</h1></li>
+                <li><a href="/order_record"><h1>Sistema Pañol</h1></a></li>
                 <?php if($isAdmin): ?>
                     <li><a href="/">Inicio</a></li>
                     <li><a href="/user">Usuarios</a></li>

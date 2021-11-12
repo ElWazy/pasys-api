@@ -2,6 +2,7 @@
 
 use LosYuntas\Application\Router;
 use LosYuntas\Application\controllers\CategoryController;
+use LosYuntas\Application\controllers\OrderController;
 use LosYuntas\Application\controllers\RoleController;
 use LosYuntas\Application\controllers\ToolController;
 use LosYuntas\Application\controllers\UserController;
@@ -37,10 +38,11 @@ $router->get('/role/remove', [new RoleController(), 'remove']);
 $router->post('/role/add', [new RoleController(), 'add']);
 
 // Order record
-$router->get('/order_record', [new RoleController(), 'index']);
-$router->get('/order_record/add', [new RoleController(), 'add']);
-$router->get('/order_record/remove', [new RoleController(), 'remove']);
-$router->post('/order_record/add', [new RoleController(), 'add']);
+$router->get('/order_record', [new OrderController(), 'index']);
+$router->get('/order_record/add', [new OrderController(), 'add']);
+$router->get('/order_record/delivery', [new OrderController(), 'delivery']);
+
+$router->post('/order_record/add', [new OrderController(), 'add']);
 
 // User
 $router->get('/user', [new UserController(), 'index']);
@@ -56,7 +58,5 @@ $router->get('/login', [new UserController(), 'login']);
 $router->post('/login', [new UserController(), 'login']);
 
 $router->get('/logout', [new UserController(), 'logout']);
-
-// Order
 
 $router->resolve();
