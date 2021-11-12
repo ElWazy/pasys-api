@@ -67,10 +67,10 @@ final class OrderRecordRepositoryMariaDB implements OrderRecordRepository
                 INNER JOIN tool ON order_record.tool_id = tool.id 
                 INNER JOIN state ON order_record.state_id = state.id
                 
-                WHERE trabajador LIKE :criteria OR
-                herramienta LIKE :criteria OR
+                WHERE worker.name LIKE :criteria OR
+                tool.name LIKE :criteria OR
                 order_date LIKE :criteria OR
-                panolero LIKE :criteria 
+                panolero.name LIKE :criteria 
                 
                 ORDER BY order_record.order_date ASC';
 
@@ -117,12 +117,25 @@ final class OrderRecordRepositoryMariaDB implements OrderRecordRepository
 
     public function add(OrderRecord $order): void
     {
+        $sql = 'INSERT INTO order_record 
+            (worker_id, panolero_id, tool_id, amount, order_date, deadline) 
+        VALUES
+            (:worker, :panolero, :tool, :amount, :order_date, :deadline)';
 
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([
+            'worker' => $order->worker(),
+            'panolero' => $order->panolero(),
+            'tool' => $order->tool(),
+            'amount' => $order->amount(),
+            'order_date' => $order->order_date(),
+            'deadline' => $order->delivery_date()
+        ]);
     }
 
-    public function update(OrderRecord $order): void
+    public function delivery(OrderRecord $order): void
     {
-
+        
     }
  
 }

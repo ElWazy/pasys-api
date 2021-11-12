@@ -18,6 +18,20 @@ CREATE TABLE order_record (
     FOREIGN KEY(state_id) REFERENCES state(id)
 );
 
+delimiter //
+DROP TRIGGER IF EXISTS decrement_actual_stock //
+CREATE TRIGGER decrement_actual_stock
+AFTER INSERT
+ON order_record FOR each ROW
+BEGIN
+    DECLARE decrement INT;
+
+    UPDATE tool 
+    SET stock_actual = (SELECT tool.stock_actual - NEW.amount FROM order_record INNER JOIN tool ON NEW.tool_id = tool.id)
+    WHERE id = NEW.tool_id;
+END; // 
+delimiter ;
+
 INSERT INTO order_record (worker_id, panolero_id, tool_id, amount, order_date, deadline, state_id) VALUES
 (7, 1, 1, 3, NOW(), DATE_ADD(NOW(), INTERVAL 14 DAY), 1);
 

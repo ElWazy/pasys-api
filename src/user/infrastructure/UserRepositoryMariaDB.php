@@ -1,6 +1,6 @@
 <?php
 
-namespace LosYuntas\User\infrastructure;
+namespace LosYuntas\user\infrastructure;
 
 use LosYuntas\user\domain\User;
 use LosYuntas\user\domain\UserRepository;
@@ -75,6 +75,7 @@ final class UserRepositoryMariaDB implements UserRepository
         FROM user 
         INNER JOIN role ON user.role_id = role.id 
         WHERE user.name LIKE :name OR 
+            user.rut LIKE :name OR
             role.name LIKE :name AND
             user.is_active = 1
         ORDER BY name ASC';

@@ -8,35 +8,31 @@ use Exception;
 final class OrderRecord
 {
     private ?int $id;
-    private int $worker_id;
-    private int $tool_id;
+    private int $worker;
+    private int $tool;
     private int $amount;
-    private DateTime $order_date;
-    private DateTime $delivery_date;
-    private int $panolero_id;
-    private int $state_id;
+    private string $order_date;
+    private string $delivery_date;
+    private int $panolero;
 
     public function __construct(
-        
         int $id  = null,
-        int $worker_id,
-        int $tool_id,
+        int $worker,
+        int $tool,
         int $amount,
-        DateTime $order_date,
-        DateTime $delivery_date,
-        int $panolero_id,
-        int $state_id   
-
+        int $panolero
     )
     {
         $this->id = $id ?? null;
-        $this->worker_id = $worker_id;
-        $this->tool_id = $tool_id;
+        $this->worker = $worker;
+        $this->tool = $tool;
         $this->amount = $amount;
-        $this->order_date = $order_date;
-        $this->delivery_date = $delivery_date;
-        $this->panolero_id = $panolero_id;
-        $this->state_id = $state_id;
+        $this->order_date = date('Y-m-d');
+        $this->delivery_date = date(
+            'Y-m-d', 
+            strtotime($this->order_date . ' + 1 day')
+        );
+        $this->panolero = $panolero;
     }
 
     public function id(): ?int
@@ -44,32 +40,32 @@ final class OrderRecord
         return $this->id;
     }
 
-    public function panolero_id(): int
+    public function panolero(): int
     {
-        return $this->panolero_id;
+        return $this->panolero;
     }
 
-    public function worker_id(): int
+    public function worker(): int
     {
-        return $this->worker_id;
+        return $this->worker;
     }
 
-    public function tool_id(): int
+    public function tool(): int
     {
-        return $this->tool_id;
+        return $this->tool;
     }
 
     public function amount(): int
     {
-        return $this->worker_id;
+        return $this->amount;
     }
 
-    public function order_date(): DateTime
+    public function order_date(): string
     {
         return $this->order_date;
     }
 
-    public function delivery_date(): DateTime
+    public function delivery_date(): string
     {
         return $this->delivery_date;
     }

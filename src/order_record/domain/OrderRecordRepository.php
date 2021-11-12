@@ -14,5 +14,5 @@ interface OrderRecordRepository
 
     public function add(OrderRecord $order): void;
 
-    public function update(OrderRecord $order): void;
+    public function delivery(OrderRecord $order): void;
 }
