@@ -72,7 +72,7 @@ final class OrderController
             try {
                 session_start();
 
-                // $worker = $this->userRepository->getByCriteria($_POST['worker']);
+                $worker = $this->userRepository->getByCriteria($_POST['worker']);
                 $tool = $this->toolRepository->getById((int) $_POST['tool']);
 
 
@@ -84,15 +84,8 @@ final class OrderController
                     $_POST['amount'],
                     $_SESSION['userId']
                 );
-                echo '<pre>';
-                var_dump($order->tool());
-                var_dump($order->worker());
-                var_dump($order->amount());
-                var_dump($order->panolero());
-                var_dump($order->order_date());
-                var_dump($order->delivery_date());
-                echo '</pre>';
-                /*
+
+               
                 $this->repository->add(
                     new OrderRecord(
                         null,
@@ -103,7 +96,7 @@ final class OrderController
                         $_SESSION['userId']
                     )
                 );
-                 */
+                 
             } catch (Exception $e) {
                 $router->renderView('exception',[
                     'errors' => $e->getMessage()
@@ -117,8 +110,8 @@ final class OrderController
             }
         }
 
-        // header('Location: /order_record');
-        // exit;
+         header('Location: /order_record');
+         exit;
     }
 
     public function delivery(Router $router)

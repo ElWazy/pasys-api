@@ -27,11 +27,10 @@ final class OrderRecord
             throw new Exception('No se encuentra el trabajador');
         }
 
-        /*
+       
         if ($amount > $stockActual) {
             throw new Exception('El stock disponible no puede cubrir la cantidad requerida');
         }
-         */
 
         $this->id = $id ?? null;
         $this->worker = $worker;
