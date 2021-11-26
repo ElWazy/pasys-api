@@ -54,6 +54,7 @@ $router->get('/user/remove', [new UserController(), 'remove']);
 
 $router->post('/user/add', [new UserController(), 'add']);
 $router->post('/user/update', [new UserController(), 'update']);
+$router->post('/user/updatePassword', [new UserController(), 'updatePassword']);
 
 // Login
 $router->get('/login', [new UserController(), 'login']);

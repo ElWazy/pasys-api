@@ -141,10 +141,15 @@ final class UserController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
+                // TODO: Obtain user from database (To fill correctly the constructor)
                 $this->repository->updatePassword(
                     new User(
                         $_POST['id'], 
-                        $_POST['password']
+                        '',
+                        $_POST['password'],
+                        '',
+                        1,
+                        1
                     )
                 );
             } catch (exception | pdoexception $e) {

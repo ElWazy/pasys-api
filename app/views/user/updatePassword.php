@@ -34,12 +34,12 @@
         <h2 >Actualizar Contraseña de <?= $user[0]['name']; ?></h2>
         
 
-        <form action="/user/updatePassword" method="post" class="form-modal" enctype="multipart/form-data">
+        <form action="/user/updatePassword" method="POST" class="form-modal" enctype="multipart/form-data">
 
 
             <input type="hidden" name="id" value="<?= $user[0]['id']; ?>">
             <h6>Ingrese la nueva Contraseña</h6>
-            <input class="form-input" type="text" name="password" id="password" placeholder="Nueva contraseña"  />
+            <input class="form-input" type="password" name="password" id="password" placeholder="Nueva contraseña"  />
            
             <input type="submit" value="Actualizar">
 
