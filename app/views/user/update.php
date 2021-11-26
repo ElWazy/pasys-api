@@ -21,7 +21,7 @@
         </ul>
     </nav>
 
-    <main >
+    <main  class="form-update">
         <?php if($errors): ?>
             <section>
                 <ul>
