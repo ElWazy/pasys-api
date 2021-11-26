@@ -104,7 +104,17 @@
                         <td><?= $users['rut']; ?></td> 
                         <td><?= $users['name']; ?></td> 
                         <td><?= $users['role']; ?></td> 
-                        <td><?= $users['is_active']; ?></td> 
+                        <td>
+                        <?php 
+                                
+                                if ($users['is_active'] == 1) {
+                                    echo 'Activo';
+                                }else{
+                                    echo 'Inactivo';
+                                }
+                            
+                            ?>
+                        </td> 
                         <td>
                                 <form action="/user/update" method="GET">
                                     <input type="hidden" name="id" value="<?= $users['id']; ?>">

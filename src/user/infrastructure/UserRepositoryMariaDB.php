@@ -53,9 +53,9 @@ final class UserRepositoryMariaDB implements UserRepository
             user.rut, 
             user.is_active, 
             role.name AS role 
-        FROM user 
-        INNER JOIN role ON user.role_id = role.id 
-        ORDER BY name ASC';
+            FROM user 
+            INNER JOIN role ON user.role_id = role.id 
+            ORDER BY name ASC';
 
         $statement = $this->connection->query($sql);
  
