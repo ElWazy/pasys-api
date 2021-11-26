@@ -161,7 +161,7 @@ final class UserController
 
         $router->renderView('user/updatePassword', [
             'user' => $user,
-            'errors' => $errors,
+            'errors' => $errors
         ]);
 
     }
