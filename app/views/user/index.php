@@ -120,6 +120,12 @@
                                     <input type="hidden" name="id" value="<?= $users['id']; ?>">
                                     <input type="submit" value="Editar">
                                 </form>
+
+                                <form action="/user/updatePassword" method="GET">
+                                    <input type="hidden" name="id" value="<?= $users['id']; ?>">
+                                    <input type="submit" value="Contraseña">
+                                </form>
+
                         </td> 
                         </tr>
                     </tr>
