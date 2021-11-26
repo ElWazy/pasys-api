@@ -159,7 +159,7 @@ final class UserRepositoryMariaDB implements UserRepository
 
         $sql = 'UPDATE user SET 
         name = :name, 
-        password = :password,
+        password = SHA2(:password, 224),
         role_id = :role_id,
         is_active = :is_active
         WHERE id = :id';

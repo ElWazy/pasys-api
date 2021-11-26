@@ -68,28 +68,50 @@ final class OrderController
     {
         Auth::canEdit();
 
-        $worker = $this->userRepository->getByRut($_POST['worker']);
-        $tool = $this->toolRepository->getById($_POST['tool']);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            try {
+                session_start();
 
-        session_start();
+                $worker = $this->userRepository->getByCriteria($_POST['worker']);
+                $tool = $this->toolRepository->getById((int) $_POST['tool']);
 
-        try {
-            $order = new OrderRecord(
-                null,
-                (int) $worker[0]['id'],
-                (int) $tool[0]['id'],
-                (int) $tool[0]['stock_actual'],
-                (int) $_POST['amount'],
-                (int) $_SESSION['userId']
-            );
 
-            // $this->repository->add($order);
+                $order = new OrderRecord(
+                    null,
+                    $worker[0]['id'],
+                    $tool[0]['id'],
+                    $tool[0]['stock_actual'],
+                    $_POST['amount'],
+                    $_SESSION['userId']
+                );
 
-        } catch(Exception | PDOException $e) {
-            $router->renderView('exception', [
-                'errors' => $e->getMessage()
-            ]);
+               
+                $this->repository->add(
+                    new OrderRecord(
+                        null,
+                        $worker[0]['id'],
+                        $tool[0]['id'],
+                        $tool[0]['stock_actual'],
+                        $_POST['amount'],
+                        $_SESSION['userId']
+                    )
+                );
+                 
+            } catch (Exception $e) {
+                $router->renderView('exception',[
+                    'errors' => $e->getMessage()
+                ]);
+                exit;
+            } catch (PDOException $e) {
+                $router->renderView('exception',[
+                    'errors' => $e->getMessage()
+                ]);
+                exit;
+            }
         }
+
+         header('Location: /order_record');
+         exit;
     }
 
     public function delivery(Router $router)
