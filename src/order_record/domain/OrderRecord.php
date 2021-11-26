@@ -7,9 +7,9 @@ use Exception;
 final class OrderRecord
 {
     private ?int $id;
-    private int $worker;
+    private ?int $worker;
     private int $tool;
-    private int $amount;
+    private ?int $amount;
     private string $order_date;
     private string $delivery_date;
     private int $panolero;
@@ -27,9 +27,8 @@ final class OrderRecord
             throw new Exception('No se encuentra el trabajador');
         }
 
-       
         if ($amount > $stockActual) {
-            throw new Exception('El stock disponible no puede cubrir la cantidad requerida');
+            throw new Exception('El stock actual no cumple con la cantidad requerida');
         }
 
         $this->id = $id ?? null;

@@ -88,6 +88,26 @@ final class UserRepositoryMariaDB implements UserRepository
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getByRut(string $rut): ?array
+    {
+        $sql = 'SELECT 
+            user.id, 
+            user.name
+        FROM user 
+        INNER JOIN role ON user.role_id = role.id 
+        WHERE user.rut = :rut AND
+            user.is_active = 1
+        ORDER BY name ASC
+        LIMIT 1';
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([
+            'rut' => $rut
+        ]);
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getById(int $id): ?array
     {
         $sql = 'SELECT 
