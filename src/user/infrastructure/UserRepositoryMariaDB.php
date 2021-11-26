@@ -158,8 +158,7 @@ final class UserRepositoryMariaDB implements UserRepository
     {
 
         $sql = 'UPDATE user SET 
-        name = :name, 
-        password = SHA2(:password, 224),
+        name = :name,
         role_id = :role_id,
         is_active = :is_active
         WHERE id = :id';
@@ -168,10 +167,27 @@ final class UserRepositoryMariaDB implements UserRepository
         $statement->execute([
 
             'name' => $user->name(),
-            'password' => $user->password(),
             'role_id' => $user->role_id(),
             'is_active' => $user->is_active(),
             'id' => $user->id()
+
+
+        ]);
+    }
+
+
+    public function updatePassword(User $user): void
+    {
+
+        $sql = 'UPDATE user SET 
+        password = :password
+        WHERE id = :id';
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([
+
+            'id' => $user->id(),
+            'password' => $user->password()
 
 
         ]);

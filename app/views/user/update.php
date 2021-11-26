@@ -39,8 +39,6 @@
             
             <h6>Nombre</h6>
             <input class="form-input" type="text" name="name" id="name" value="<?= $user[0]['name']; ?>" placeholder="Nombre Herramienta"  />
-            <h6>Contraseña</h6>
-            <input class="form-input" type="text" name="password" id="password" value="<?= $user[0]['password']; ?>" placeholder="Nombre Herramienta"  />
             <h6>Rut</h6>
             <input class="form-input" type="text" name="rut" id="rut" value="<?= $user[0]['rut']; ?>" placeholder="Nombre Herramienta" />
             <h6>Role</h6>

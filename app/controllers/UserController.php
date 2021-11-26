@@ -104,7 +104,6 @@ final class UserController
                     new User(
                         $_POST['id'], 
                         $_POST['name'], 
-                        $_POST['password'], 
                         $_POST['rut'] ,      
                         $_POST['role_id'], 
                         $_POST['is_active']
@@ -127,6 +126,42 @@ final class UserController
             'user' => $user,
             'errors' => $errors,
             'roles' => $roles
+        ]);
+
+    }
+
+    public function updatePassword(Router $router)
+    {
+        Auth::canEdit();
+
+        $id = (int) $_GET['id'] ?? ''; // no existe 
+        $user = $this->repository->getById($id);
+
+        $errors = [];
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            try {
+                $this->repository->updatePassword(
+                    new User(
+                        $_POST['id'], 
+                        $_POST['password']
+                    )
+                );
+            } catch (exception | pdoexception $e) {
+                $router->renderView('exception', [
+                    'errors' => $e->getmessage()
+                ]);
+                exit;
+            }
+
+            header('Location: /user');
+            exit;
+        }
+
+
+        $router->renderView('user/updatePassword', [
+            'user' => $user,
+            'errors' => $errors,
         ]);
 
     }

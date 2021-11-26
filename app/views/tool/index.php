@@ -105,6 +105,7 @@
                                 <p>stock total: <?= $tool['stock_total']; ?></p>
                                 <p>stock real: <?= $tool['stock_actual']; ?></p>
                                 <?php if($isAdmin): ?>
+
                                     <div class="flex">
                                         <form action="/tool/update" method="GET">
                                             <input type="hidden" name="id" value="<?= $tool['id']; ?>">
@@ -115,6 +116,7 @@
                                             <input type="submit" value="Eliminar">
                                         </form>
                                     </div>
+                                    
                                 <?php endif; ?>
                             </div>
                         </div>

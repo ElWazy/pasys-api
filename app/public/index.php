@@ -49,6 +49,7 @@ $router->post('/order_record/delivery', [new OrderController(), 'delivery']);
 $router->get('/user', [new UserController(), 'index']);
 $router->get('/user/add', [new UserController(), 'add']);
 $router->get('/user/update', [new UserController(), 'update']);
+$router->get('/user/updatePassword', [new UserController(), 'updatePassword']);
 $router->get('/user/remove', [new UserController(), 'remove']);
 
 $router->post('/user/add', [new UserController(), 'add']);
