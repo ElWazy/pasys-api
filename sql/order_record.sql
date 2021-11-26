@@ -6,9 +6,8 @@ CREATE TABLE order_record (
 	tool_id INT NOT NULL,
 	amount INT NOT NULL,
 	order_date DATE NOT NULL DEFAULT NOW(),
-	deadline DATE NOT NULL DEFAULT DATE_ADD(NOW(), INTERVAL 14 DAY),
+	deadline DATE NOT NULL DEFAULT DATE_ADD(NOW(), INTERVAL 1 DAY),
 	delivery_date DATE NULL,
-	hours_late INT NULL,
 	state_id INT NOT NULL DEFAULT 1,
 
     PRIMARY KEY(id),
@@ -18,8 +17,8 @@ CREATE TABLE order_record (
     FOREIGN KEY(state_id) REFERENCES state(id)
 );
 
-INSERT INTO order_record (worker_id, panolero_id, tool_id, amount, order_date, deadline, state_id) VALUES
-(7, 1, 1, 3, NOW(), DATE_ADD(NOW(), INTERVAL 14 DAY), 1);
+INSERT INTO order_record (worker_id, panolero_id, tool_id, amount, state_id) VALUES
+(7, 1, 1, 3, 1);
 
 SELECT worker.rut, 
   worker.name AS trabajador, 
