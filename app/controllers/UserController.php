@@ -145,11 +145,7 @@ final class UserController
                 $this->repository->updatePassword(
                     new User(
                         $_POST['id'], 
-                        '',
-                        $_POST['password'],
-                        '',
-                        1,
-                        1
+                        $_POST['password']
                     )
                 );
             } catch (exception | pdoexception $e) {
