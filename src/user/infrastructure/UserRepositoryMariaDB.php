@@ -62,7 +62,6 @@ final class UserRepositoryMariaDB implements UserRepository
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
-
     
     public function getByCriteria(string $criteria): ?array
     {
@@ -88,15 +87,17 @@ final class UserRepositoryMariaDB implements UserRepository
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getByRut(string $rut): ?array
+    public function getByRut(string $rut): ?User
     {
         $sql = 'SELECT 
-            user.id, 
-            user.name
+            id, 
+            name,
+            rut,
+            role_id,
+            is_active
         FROM user 
-        INNER JOIN role ON user.role_id = role.id 
-        WHERE user.rut = :rut AND
-            user.is_active = 1
+        WHERE rut = :rut AND
+            is_active = 1
         ORDER BY name ASC
         LIMIT 1';
 
@@ -105,10 +106,19 @@ final class UserRepositoryMariaDB implements UserRepository
             'rut' => $rut
         ]);
 
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        $data = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return new User(
+            $data['id'],
+            $data['name'],
+            null,
+            $data['rut'],
+            $data['role_id'],
+            $data['is_active']
+        );
     }
 
-    public function getById(int $id): ?array
+    public function getById(int $id): ?User
     {
         $sql = 'SELECT 
             id,
@@ -125,7 +135,16 @@ final class UserRepositoryMariaDB implements UserRepository
             'id' => $id
         ]);
 
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        $data = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return new User(
+            $data['id'],
+            $data['name'],
+            null,
+            $data['rut'],
+            $data['role_id'],
+            $data['is_active']
+        );
     }    
 
     public function add(User $user): void

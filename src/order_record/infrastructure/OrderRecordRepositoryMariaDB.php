@@ -38,7 +38,8 @@ final class OrderRecordRepositoryMariaDB implements OrderRecordRepository
                 INNER JOIN user AS worker ON order_record.worker_id = worker.id 
                 INNER JOIN user AS panolero ON order_record.panolero_id = panolero.id 
                 INNER JOIN tool ON order_record.tool_id = tool.id 
-                INNER JOIN state ON order_record.state_id = state.id';
+                INNER JOIN state ON order_record.state_id = state.id
+                ORDER BY order_record.order_date DESC';
 
         $statement = $this->connection->query($sql);
  
@@ -117,9 +118,9 @@ final class OrderRecordRepositoryMariaDB implements OrderRecordRepository
     public function add(OrderRecord $order): void
     {
         $sql = 'INSERT INTO order_record 
-            (worker_id, panolero_id, tool_id, amount, order_date, deadline) 
+            (worker_id, panolero_id, tool_id, amount, deadline) 
         VALUES
-            (:worker, :panolero, :tool, :amount, :order_date, :deadline)';
+            (:worker, :panolero, :tool, :amount, :deadline)';
 
         $statement = $this->connection->prepare($sql);
         $statement->execute([
@@ -127,7 +128,6 @@ final class OrderRecordRepositoryMariaDB implements OrderRecordRepository
             'panolero' => $order->panolero(),
             'tool' => $order->tool(),
             'amount' => $order->amount(),
-            'order_date' => $order->order_date(),
             'deadline' => $order->delivery_date()
         ]);
     }

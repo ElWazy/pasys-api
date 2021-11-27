@@ -3,31 +3,32 @@
 namespace LosYuntas\order_record\domain;
 
 use Exception;
+use LosYuntas\tool\domain\Tool;
+use LosYuntas\user\domain\User;
 
 final class OrderRecord
 {
     private ?int $id;
-    private ?int $worker;
-    private int $tool;
+    private User $worker;
+    private Tool $tool;
     private ?int $amount;
     private string $order_date;
     private string $delivery_date;
-    private int $panolero;
+    private User $panolero;
 
     public function __construct(
         int $id  = null,
-        int $worker,
-        int $tool,
-        int $stockActual,
+        User $worker,
+        Tool $tool,
         int $amount,
-        int $panolero
+        User $panolero
     )
     {
         if (!$worker) {
             throw new Exception('No se encuentra el trabajador');
         }
 
-        if ($amount > $stockActual) {
+        if ($amount > $tool->stockActual()) {
             throw new Exception('El stock actual no cumple con la cantidad requerida');
         }
 
@@ -50,17 +51,17 @@ final class OrderRecord
 
     public function panolero(): int
     {
-        return $this->panolero;
+        return $this->panolero->id();
     }
 
     public function worker(): int
     {
-        return $this->worker;
+        return $this->worker->id();
     }
 
     public function tool(): int
     {
-        return $this->tool();
+        return $this->tool->id();
     }
 
     public function amount(): int

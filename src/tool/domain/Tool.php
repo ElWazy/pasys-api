@@ -10,16 +10,18 @@ final class Tool
     private ?int $id;
     private string $name;
     private int $categoryId;
-    private array $image;
+    private ?array $image;
     private ?string $imagePath;
     private int $stock_total;
+    private ?int $stock_actual;
 
     public function __construct(
         int $id = null,
         string $name,
         int $categoryId,
-        array $image,
-        int $stock_total
+        array $image = null,
+        int $stock_total,
+        int $stock_actual = null
     )
     {
         if (!$name) {
@@ -55,6 +57,17 @@ final class Tool
         $this->name = $name;
         $this->categoryId = $categoryId;
         $this->stock_total = $stock_total;
+        $this->stock_actual = $stock_actual;
+    }
+
+    public function overloadStockActual(int $amount): bool
+    {
+        return $amount > $this->stock_actual;
+    }
+
+    public function discountStockActual(int $amount): void
+    {
+        $this->stock_actual -= $amount;
     }
 
     public function id(): ?int
@@ -80,5 +93,10 @@ final class Tool
     public function stockTotal(): int
     {
         return $this->stock_total;
+    }
+
+    public function stockActual(): int
+    {
+        return $this->stock_actual;
     }
 }

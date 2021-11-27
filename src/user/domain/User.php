@@ -4,16 +4,15 @@ namespace LosYuntas\user\domain;
 
 use Exception;
 
-
 final class User
 { 
     private ?int $id;
     private string $name;
-    private string $password;
+    private ?string $password;
     private string $rut;
     private ?int $role_id;    
 
-    public function __construct(int $id  = null , string $name, string $password, string $rut, int $role_id, int $is_active = null) 
+    public function __construct(int $id  = null , string $name, string $password = null, string $rut, int $role_id, int $is_active = null) 
     {
         if (strlen($name) > 50)  {
             throw new Exception('El nombre de la categoria es demasiado largo');
@@ -25,7 +24,7 @@ final class User
 
         $this->id = $id ?? null;
         $this->name = $name;
-        $this->password = $password;
+        $this->password = $password ?? null;
         $this->rut = $rut;
         $this->role_id = $role_id;
         $this->is_active = $is_active ?? null;
@@ -41,7 +40,7 @@ final class User
         return $this->name;
     }
 
-    public function password(): string
+    public function password(): ?string
     {
         return $this->password;
     }
