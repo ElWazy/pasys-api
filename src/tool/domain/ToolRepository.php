@@ -10,11 +10,13 @@ interface ToolRepository
 
     public function getByCriteria(string $criteria): ?array;
 
-    public function getById(int $id): ?array;
+    public function getById(int $id): ?Tool;
 
     public function add(Tool $tool): void;
 
     public function update(Tool $tool): void;
+
+    public function discountStockActual(Tool $tool): void;
 
     public function remove(int $id): void;
 

@@ -10,9 +10,9 @@ interface UserRepository
 
     public function getByCriteria(string $criteria): ?array;
 
-    public function getByRut(string $rut): ?array;
+    public function getByRut(string $rut): ?User;
 
-    public function getById(int $id): ?array;
+    public function getById(int $id): ?User;
 
     public function add(User $user): void;
 

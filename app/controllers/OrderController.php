@@ -4,6 +4,7 @@ namespace LosYuntas\Application\controllers;
 
 use LosYuntas\Application\Router;
 use LosYuntas\Application\middlewares\Auth;
+use LosYuntas\order_record\application\AddOrder;
 use LosYuntas\order_record\domain\OrderRecord;
 use LosYuntas\order_record\infrastructure\OrderRecordRepositoryMariaDB;
 use LosYuntas\order_record\domain\OrderRecordRepository;
@@ -69,56 +70,31 @@ final class OrderController
         Auth::canEdit();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            session_start();
+
+            $addOrder = new AddOrder(
+                $this->repository,
+                $this->userRepository,
+                $this->toolRepository
+            );
             try {
-                session_start();
-
-                $worker = $this->userRepository->getByCriteria($_POST['worker']);
-                $tool = $this->toolRepository->getById((int) $_POST['tool']);
-
-
-                $order = new OrderRecord(
-                    null,
-                    $worker[0]['id'],
-                    $tool[0]['id'],
-                    $tool[0]['stock_actual'],
-                    $_POST['amount'],
-                    $_SESSION['userId']
+                $addOrder->create(
+                    $_POST['worker'],
+                    (int) $_SESSION['userId'],
+                    (int) $_POST['tool'],
+                    (int) $_POST['amount']
                 );
-
-               
-                $this->repository->add(
-                    new OrderRecord(
-                        null,
-                        $worker[0]['id'],
-                        $tool[0]['id'],
-                        $tool[0]['stock_actual'],
-                        $_POST['amount'],
-                        $_SESSION['userId']
-                    )
-                );
-                 
-            } catch (Exception $e) {
-                $router->renderView('exception',[
+            } catch (Exception | PDOException $e) {
+                $router->renderView('exception', [
                     'errors' => $e->getMessage()
                 ]);
-                exit;
-            } catch (PDOException $e) {
-                $router->renderView('exception',[
-                    'errors' => $e->getMessage()
-                ]);
-                exit;
             }
         }
-
-         header('Location: /order_record');
-         exit;
     }
 
     public function delivery(Router $router)
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
-
-        $router->renderView('order_record/delivery');
     }
 }
