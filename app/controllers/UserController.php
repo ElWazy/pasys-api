@@ -230,4 +230,12 @@ final class UserController
         header('Location: /');
         exit;
     }
+
+
+    public function UserGrafic(Router $router){
+        
+        $router->renderView('user/userGrafic');
+
+
+    }
 }
