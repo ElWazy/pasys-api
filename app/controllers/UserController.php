@@ -134,24 +134,14 @@ final class UserController
     {
         Auth::canEdit();
 
-        $id = (int) $_GET['id'] ?? ''; // no existe 
-        $user = $this->repository->getById($id);
-
         $errors = [];
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
-                // TODO: Obtain user from database (To fill correctly the constructor)
-                $this->repository->updatePassword(
-                    new User(
-                        $_POST['id'], 
-                        '',
-                        $_POST['password'],
-                        '',
-                        1,
-                        1
-                    )
-                );
+                $newUser = $this->repository->getById($_POST['id']);
+
+                $newUser->changePassword($_POST['password']);
+
+                $this->repository->updatePassword($newUser);
             } catch (exception | pdoexception $e) {
                 $router->renderView('exception', [
                     'errors' => $e->getmessage()
@@ -162,10 +152,11 @@ final class UserController
             header('Location: /user');
             exit;
         }
-
+        $id = (int) $_GET['id'] ?? ''; // no existe 
+        $user = $this->repository->getById($id);
 
         $router->renderView('user/updatePassword', [
-            'user' => $user,
+            'user' => $user->toPrimitives(),
             'errors' => $errors
         ]);
 

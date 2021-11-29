@@ -45,6 +45,11 @@ final class User
         return $this->password;
     }
 
+    public function changePassword(string $password): void
+    {
+        $this->password = $password;
+    }
+
     public function rut(): string
     {
         return $this->rut;
