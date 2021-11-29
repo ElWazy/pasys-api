@@ -32,6 +32,13 @@ final class UserController
             'master',
             'master'
         );
+        $this->userRepository = new UserRepositoryMariaDB(
+            'localhost',
+            'panol_system',
+            'master',
+            'master'
+        );
+
     } 
 
     public function index(Router $router)
@@ -136,11 +143,19 @@ final class UserController
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
+                // TODO: Obtain user from database (To fill correctly the constructor)
+                $this->repository->updatePassword(
+                    new User(
+                        $_POST['id'], 
+                        $_POST['password']
+                    )
+                );
                 $newUser = $this->repository->getById($_POST['id']);
 
                 $newUser->changePassword($_POST['password']);
 
                 $this->repository->updatePassword($newUser);
+
             } catch (exception | pdoexception $e) {
                 $router->renderView('exception', [
                     'errors' => $e->getmessage()
@@ -213,5 +228,13 @@ final class UserController
 
         header('Location: /');
         exit;
+    }
+
+
+    public function UserGrafic(Router $router){
+        
+        $router->renderView('user/userGrafic');
+
+
     }
 }

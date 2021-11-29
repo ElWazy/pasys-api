@@ -38,12 +38,7 @@ final class OrderController
             'master'
         );
 
-        $this->userRepository = new UserRepositoryMariaDB(
-            'localhost',
-            'panol_system',
-            'master',
-            'master'
-        );
+
     } 
 
     public function index(Router $router)
@@ -70,6 +65,7 @@ final class OrderController
         Auth::canEdit();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
             session_start();
 
             $addOrder = new AddOrder(

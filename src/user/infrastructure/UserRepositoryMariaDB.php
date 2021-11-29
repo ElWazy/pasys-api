@@ -243,6 +243,7 @@ final class UserRepositoryMariaDB implements UserRepository
         $statement->execute([
             'id' => $user->id(),
             'password' => $user->password()
+
         ]);
     }
 }

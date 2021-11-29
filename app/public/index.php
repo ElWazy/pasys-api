@@ -51,11 +51,12 @@ $router->get('/user/add', [new UserController(), 'add']);
 $router->get('/user/update', [new UserController(), 'update']);
 $router->get('/user/updatePassword', [new UserController(), 'updatePassword']);
 $router->get('/user/remove', [new UserController(), 'remove']);
+$router->get('/user/UserGrafic', [new UserController(), 'UserGrafic']);
 
 $router->post('/user/add', [new UserController(), 'add']);
 $router->post('/user/update', [new UserController(), 'update']);
 $router->post('/user/updatePassword', [new UserController(), 'updatePassword']);
-
+$router->post('/user/UserGrafic', [new UserController(), 'UserGrafic']);
 // Login
 $router->get('/login', [new UserController(), 'login']);
 $router->post('/login', [new UserController(), 'login']);

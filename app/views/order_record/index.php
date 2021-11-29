@@ -101,7 +101,7 @@
                         <td><?= $order['estado']; ?></td>
                         <td>
                                 <form action="/order_record/delivery" method="GET">
-                                    <input type="hidden" name="id" value="<?=$order['id']; ?>" >
+                                    <input type="hidden" name="id" value="<?=$order['id']; ?>">
                                     <input type="submit" value="Validar Entrega">
                                 </form>
                         </td> 
