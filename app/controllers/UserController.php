@@ -32,6 +32,13 @@ final class UserController
             'master',
             'master'
         );
+        $this->userRepository = new UserRepositoryMariaDB(
+            'localhost',
+            'panol_system',
+            'master',
+            'master'
+        );
+
     } 
 
     public function index(Router $router)

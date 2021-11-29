@@ -46,7 +46,7 @@
         </form>
     </main>
 
-    <!-- JS -->
+
     <script src="/js/popup.js"></script>
 
     <footer>
