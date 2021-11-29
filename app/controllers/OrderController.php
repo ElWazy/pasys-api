@@ -84,6 +84,9 @@ final class OrderController
                     (int) $_POST['tool'],
                     (int) $_POST['amount']
                 );
+
+                header('Location: /order_record');
+                exit;
             } catch (Exception | PDOException $e) {
                 $router->renderView('exception', [
                     'errors' => $e->getMessage()

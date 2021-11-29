@@ -93,18 +93,15 @@ final class UserController
     {
         Auth::canEdit();
 
-        $id = (int) $_GET['id'] ?? ''; // no existe 
-        $user = $this->repository->getById($id);
-
         $errors = [];
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 $this->repository->update(
                     new User(
                         $_POST['id'], 
                         $_POST['name'], 
-                        $_POST['rut'] ,      
+                        '',
+                        $_POST['rut'],      
                         $_POST['role_id'], 
                         $_POST['is_active']
                     )
@@ -119,6 +116,8 @@ final class UserController
             header('Location: /user');
             exit;
         }
+        $id = (int) $_GET['id'] ?? ''; // no existe 
+        $user = $this->repository->getById($id);
 
         $roles = $this->rolerepository->getAll();
 

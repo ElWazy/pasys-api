@@ -11,8 +11,16 @@ final class User
     private ?string $password;
     private string $rut;
     private ?int $role_id;    
+    private ?int $is_active;    
 
-    public function __construct(int $id  = null , string $name, string $password = null, string $rut, int $role_id, int $is_active = null) 
+    public function __construct(
+        int $id = null, 
+        string $name,
+        string $password = null,
+        string $rut,
+        int $role_id, 
+        int $is_active = null
+    ) 
     {
         if (strlen($name) > 50)  {
             throw new Exception('El nombre de la categoria es demasiado largo');

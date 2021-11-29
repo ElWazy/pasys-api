@@ -109,12 +109,12 @@ final class UserRepositoryMariaDB implements UserRepository
         $data = $statement->fetch(PDO::FETCH_ASSOC);
 
         return new User(
-            $data['id'],
+            (int) $data['id'],
             $data['name'],
-            null,
+            '',
             $data['rut'],
-            $data['role_id'],
-            $data['is_active']
+            (int) $data['role_id'],
+            (int) $data['is_active']
         );
     }
 
@@ -137,13 +137,17 @@ final class UserRepositoryMariaDB implements UserRepository
 
         $data = $statement->fetch(PDO::FETCH_ASSOC);
 
+        echo '<pre>';
+        var_dump($data);
+        echo '</pre>';
+
         return new User(
-            $data['id'],
+            (int) $data['id'],
             $data['name'],
-            null,
+            $data['password'],
             $data['rut'],
-            $data['role_id'],
-            $data['is_active']
+            (int) $data['role_id'],
+            (int) $data['is_active']
         );
     }    
 
@@ -189,8 +193,6 @@ final class UserRepositoryMariaDB implements UserRepository
             'role_id' => $user->role_id(),
             'is_active' => $user->is_active(),
             'id' => $user->id()
-
-
         ]);
     }
 
