@@ -153,15 +153,45 @@ final class UserRepositoryMariaDB implements UserRepository
 
     public function add(User $user): void
     {
+
+
+        
         $sql = 'INSERT INTO user (name, password, rut, role_id ) VALUES 
             (:name, SHA2(:password, 224), :rut, :role_id)';
+            
+
+        $rutFormateado = "";
+        $rut = $user -> rut();
+        $rut = preg_replace('/[^k0-9]/i', '', $rut);
+        if( strlen($rut) < 10 && strlen($rut) > 8 ){
+            $rutf = substr($rut, 0, 2);
+            $rutm = substr($rut, 2, 3);
+            $rutr = substr($rut, 5, 3);
+            if(strpos($rutf , "k") || strpos($rutm , "k") || strpos($rutr , "k") ){
+                
+                die();
+            }
+            elseif(strpos($rutf , "K") || strpos($rutm , "K") || strpos($rutr , "K")){
+                
+                die();
+            }
+            else
+            {
+                $ruti = substr($rut, 8);
+                $rutFormateado = sprintf("%s.%s.%s-%s", $rutf, $rutm, $rutr, $ruti);
+            }   
+        }
+        else
+        {
+
+        }
 
         $statement = $this->connection->prepare($sql);
         $statement->execute([
 
             'name' => $user->name(),
             'password' => $user->password(),
-            'rut' => $user->rut(),
+            'rut' => $rutFormateado,
             'role_id' => $user->role_id()
 
         ]);
