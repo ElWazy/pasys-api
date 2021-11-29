@@ -35,12 +35,12 @@
 
         <h2>Actualizar Herramienta</h1>
         <form action="/tool/update" method="post" class="form-modal" enctype="multipart/form-data">
-            <input type="hidden" name="id" value="<?= $tool[0]['id']; ?>">
-            <input class="form-input" type="text" name="name" id="name" value="<?= $tool[0]['name']; ?>" placeholder="Nombre Herramienta"  />
+            <input type="hidden" name="id" value="<?= $tool['id']; ?>">
+            <input class="form-input" type="text" name="name" id="name" value="<?= $tool['name']; ?>" placeholder="Nombre Herramienta"  />
             <?php if($categories): ?>
                 <select name="category_id"> 
                     <?php foreach($categories as $category): ?>
-                        <?php if($category['id'] == $tool[0]['category_id']): ?>
+                        <?php if($category['id'] == $tool['category_id']): ?>
                             <option value="<?= $category['id']; ?> " selected> 
                                 <?= $category['name']; ?> 
                             </option>
@@ -55,7 +55,7 @@
                 <h1>No hay Categorias disponibles</h1> 
             <?php endif; ?>
             <input type="file" name="image" id="image" />
-            <input type="number" name="stock_total" id="stock_total" value="<?= $tool[0]['stock_total']; ?>" placeholder="Stock Total" min="0" />
+            <input type="number" name="stock_total" id="stock_total" value="<?= $tool['stock_total']; ?>" placeholder="Stock Total" min="0" />
             <input type="submit" value="Actualizar">
         </form>
     </main>

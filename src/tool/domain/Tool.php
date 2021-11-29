@@ -99,4 +99,14 @@ final class Tool
     {
         return $this->stock_actual;
     }
+
+    public function toPrimitives(): array 
+    {
+        return [
+            'id' => $this->id(),
+            'name' => $this->name(),
+            'category_id' => $this->categoryId(),
+            'stock_total' => $this->stockTotal()
+        ];
+    }
 }
