@@ -59,4 +59,14 @@ final class User
     {
         return $this->is_active;
     }
+
+    public function toPrimitives(): array
+    {
+        return [
+            'id' => $this->id(),
+            'name' => $this->name(),
+            'rut' => $this->rut(),
+            'role_id' => $this->role_id()
+        ];
+    }
 }

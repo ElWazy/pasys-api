@@ -120,10 +120,10 @@ final class UserController
             exit;
         }
 
-        $roles = $this-> rolerepository -> getAll();
+        $roles = $this->rolerepository->getAll();
 
         $router->renderView('user/update', [
-            'user' => $user,
+            'user' => $user->toPrimitives(),
             'errors' => $errors,
             'roles' => $roles
         ]);
