@@ -91,19 +91,19 @@ final class ToolController
     {
         Auth::canEdit();
 
-        $id = (int) $_GET['id'] ?? '';
-        $tool = $this->repository->getById($id);
+        
 
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 $this->repository->update(
                     new Tool(
-                        $_POST['id'],
+                        (int) $_POST['id'],
                         $_POST['name'], 
-                        $_POST['category_id'], 
+                        (int) $_POST['category_id'], 
                         $_FILES['image'] ?? null, 
-                        $_POST['stock_total'] 
+                        (int) $_POST['stock_total'],
+                        null
                     )
                 );
             } catch (Exception $e) {
@@ -121,11 +121,13 @@ final class ToolController
             header('Location: /tool');
             exit;
         }
-
+        
+        $id = (int) $_GET['id'] ?? '';
+        $tool = $this->repository->getById($id);
         $categories = $this->categoryRepository->getAll();
 
         $router->renderView('tool/update', [
-            'tool' => $tool,
+            'tool' => $tool->toPrimitives(),
             'categories' => $categories,
             'errors' => $errors
         ]);

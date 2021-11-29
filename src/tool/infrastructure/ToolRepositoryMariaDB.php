@@ -107,8 +107,8 @@ final class ToolRepositoryMariaDB implements ToolRepository
             $data['name'],
             (int) $data['category_id'],
             null,
-            $data['stock_total'],
-            $data['stock_actual']
+            (int) $data['stock_total'],
+            (int) $data['stock_actual']
         );
     }
 

@@ -45,6 +45,11 @@ final class User
         return $this->password;
     }
 
+    public function changePassword(string $password): void
+    {
+        $this->password = $password;
+    }
+
     public function rut(): string
     {
         return $this->rut;
@@ -58,5 +63,15 @@ final class User
     public function is_active(): ?int
     {
         return $this->is_active;
+    }
+
+    public function toPrimitives(): array
+    {
+        return [
+            'id' => $this->id(),
+            'name' => $this->name(),
+            'rut' => $this->rut(),
+            'role_id' => $this->role_id()
+        ];
     }
 }

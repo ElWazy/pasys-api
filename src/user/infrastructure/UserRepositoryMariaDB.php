@@ -199,15 +199,13 @@ final class UserRepositoryMariaDB implements UserRepository
     {
 
         $sql = 'UPDATE user SET 
-        password = :password
+        password = SHA2(:password, 224)
         WHERE id = :id';
 
         $statement = $this->connection->prepare($sql);
         $statement->execute([
-
             'id' => $user->id(),
-            'password' => $user->password(),
-
+            'password' => $user->password()
 
         ]);
     }

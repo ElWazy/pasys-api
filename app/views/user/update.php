@@ -35,17 +35,17 @@
         <h2>Actualizar Trabajador</h1>
         <form action="/user/update" method="post" class="form-modal" enctype="multipart/form-data">
 
-            <input type="hidden" name="id" value="<?= $user[0]['id']; ?>">
+            <input type="hidden" name="id" value="<?= $user['id']; ?>">
             
             <h6>Nombre</h6>
-            <input class="form-input" type="text" name="name" id="name" value="<?= $user[0]['name']; ?>" placeholder="Nombre Herramienta"  />
+            <input class="form-input" type="text" name="name" id="name" value="<?= $user['name']; ?>" placeholder="Nombre Herramienta"  />
             <h6>Rut</h6>
-            <input class="form-input" type="text" name="rut" id="rut" value="<?= $user[0]['rut']; ?>" placeholder="Nombre Herramienta" />
+            <input class="form-input" type="text" name="rut" id="rut" value="<?= $user['rut']; ?>" placeholder="Nombre Herramienta" />
             <h6>Role</h6>
                 <?php if($roles): ?>
                     <select name="role_id" class="form-input"> 
                     <?php foreach($roles as $role): ?>
-                        <?php if($role['id'] == $user[0]['role_id']): ?>
+                        <?php if($role['id'] == $user['role_id']): ?>
                             <option value="<?= $role['id']; ?> " selected> 
                                 <?= $role['name']; ?> 
                             </option>

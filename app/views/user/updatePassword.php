@@ -31,13 +31,12 @@
                 </ul>
             </section>
         <?php endif; ?>
-        <h2 >Actualizar Contraseña de <?= $user[0]['name']; ?></h2>
+        <h2 >Actualizar Contraseña de <?= $user['name']; ?></h2>
         
 
         <form action="/user/updatePassword" method="POST" class="form-modal" enctype="multipart/form-data">
 
-
-            <input type="hidden" name="id" value="<?= $user[0]['id']; ?>">
+            <input type="hidden" name="id" value="<?= $user['id']; ?>">
             <h6>Ingrese la nueva Contraseña</h6>
             <input class="form-input" type="password" name="password" id="password" placeholder="Nueva contraseña"  />
            
