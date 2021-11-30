@@ -43,6 +43,7 @@
             type: 'bar',
             data: {
                 datasets: [{
+                    label: 'Stock de productos',
                     label: 'Enrolados',
                     backgroundColor: ['#6bf1ab'],
                     borderColor: ['Black'],
@@ -50,7 +51,6 @@
                 }]
             }
         });
-
 
         let url = 'http://localhost:5000/api/statistics/user'
         fetch(url)
