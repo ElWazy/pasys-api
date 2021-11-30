@@ -7,6 +7,8 @@ interface UserRepository
     public function login(string $rut, string $password): int;
 
     public function getAll(): ?array;
+    
+    public function statistics(): ?array;
 
     public function getByCriteria(string $criteria): ?array;
 

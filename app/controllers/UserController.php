@@ -233,8 +233,6 @@ final class UserController
 
     public function UserGrafic(Router $router){
         
-        $router->renderView('user/userGrafic');
-
-
+        $router->renderView('user/UserGrafic');
     }
 }

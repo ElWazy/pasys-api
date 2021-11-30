@@ -4,6 +4,7 @@ use LosYuntas\Application\Router;
 use LosYuntas\Application\controllers\CategoryController;
 use LosYuntas\Application\controllers\OrderController;
 use LosYuntas\Application\controllers\RoleController;
+use LosYuntas\Application\controllers\StatisticsUserController;
 use LosYuntas\Application\controllers\ToolController;
 use LosYuntas\Application\controllers\UserController;
 
@@ -57,10 +58,15 @@ $router->post('/user/add', [new UserController(), 'add']);
 $router->post('/user/update', [new UserController(), 'update']);
 $router->post('/user/updatePassword', [new UserController(), 'updatePassword']);
 $router->post('/user/UserGrafic', [new UserController(), 'UserGrafic']);
+
 // Login
 $router->get('/login', [new UserController(), 'login']);
 $router->post('/login', [new UserController(), 'login']);
 
 $router->get('/logout', [new UserController(), 'logout']);
+
+// Graffic
+$router->get('/statistics/user', [new StatisticsUserController(), 'index']);
+$router->get('/api/statistics/user', [new StatisticsUserController(), 'api']);
 
 $router->resolve();

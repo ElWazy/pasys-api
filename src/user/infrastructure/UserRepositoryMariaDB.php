@@ -63,6 +63,20 @@ final class UserRepositoryMariaDB implements UserRepository
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    public function statistics(): ?array
+    {
+        $sql = 'SELECT 
+            role.name, 
+            COUNT(user.role_id) AS count 
+        FROM role 
+        INNER JOIN user ON role.id = user.role_id 
+        GROUP BY role.name';
+
+        $statement = $this->connection->query($sql);
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     public function getByCriteria(string $criteria): ?array
     {
         $sql = 'SELECT 
