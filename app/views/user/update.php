@@ -40,7 +40,7 @@
             <h6>Nombre</h6>
             <input class="form-input" type="text" name="name" id="name" value="<?= $user['name']; ?>" placeholder="Nombre de la cuenta"  />
             <h6>Rut</h6>
-            <input class="form-input" type="text" name="rut" id="rut" value="<?= $user['rut']; ?>" placeholder="Rut de la cuenta" />
+            <input class="form-input" type="text" name="rut" id="rut" value="<?= $user['rut']; ?>" placeholder="Rut de la cuenta" readonly/>
             <h6>Role</h6>
                 <?php if($roles): ?>
                     <select name="role_id" class="form-input"> 
