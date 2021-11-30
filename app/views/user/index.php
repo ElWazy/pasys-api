@@ -37,7 +37,7 @@
                             placeholder="Buscar Trabajador" />
                     <input type="submit" value="Buscar">
                     <input type="button" value="Ingresar Trabajador" onclick="mostrar()">
-                    <a href="/user/UserGrafic">AAA</a>
+                    <a href="/user/UserGrafic">Estadísticas</a>
                 </form>
             </article>
         </section>
