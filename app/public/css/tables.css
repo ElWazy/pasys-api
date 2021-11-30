@@ -45,8 +45,16 @@ th, td{
     padding: 20px;
 }
 
+.th1{
+    background-color: yellow;
+}
 
-
+.th2{
+    background-color: green;
+}
+.th3{
+    background-color: red;
+}
 
 
 

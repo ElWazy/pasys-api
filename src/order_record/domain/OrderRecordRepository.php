@@ -11,8 +11,12 @@ interface OrderRecordRepository
     public function getByCriteria(string $criteria): ?array;
 
     public function getById(int $id): ?array;
+    
+    public function getPrimitivesById(int $id): ?array;
 
     public function add(OrderRecord $order): void;
 
-    public function delivery(OrderRecord $order): void;
+    public function delivery(int $id): void;
+    
+    public function toLate(int $id): void;
 }

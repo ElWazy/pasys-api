@@ -84,8 +84,11 @@
             </thead>
         
             <?php if($orders): ?>
+
                 <?php foreach($orders as $key => $order): ?>
-                    <tr>
+
+                    <tr class="th<?php $order['estado']?>">
+
                         <td><?= $order['rut']; ?></td> 
                         <td><?= $order['trabajador']; ?></td> 
                         <td><?= $order['herramienta']; ?></td> 

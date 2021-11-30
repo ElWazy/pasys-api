@@ -172,9 +172,6 @@ final class UserRepositoryMariaDB implements UserRepository
 
     public function add(User $user): void
     {
-
-
-        
         $sql = 'INSERT INTO user (name, password, rut, role_id ) VALUES 
             (:name, SHA2(:password, 224), :rut, :role_id)';
             
@@ -206,12 +203,10 @@ final class UserRepositoryMariaDB implements UserRepository
 
         $statement = $this->connection->prepare($sql);
         $statement->execute([
-
             'name' => $user->name(),
             'password' => $user->password(),
-            'rut' => $rutFormateado,
+            'rut' => $user->rut(),
             'role_id' => $user->role_id()
-
         ]);
     }
 
