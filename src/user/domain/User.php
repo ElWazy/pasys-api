@@ -35,7 +35,6 @@ final class User
         $this->id = $id ?? null;
         $this->name = $name;
         $this->password = $password ?? null;
-        $this->rut = $rut;
         $this->role_id = $role_id;
         $this->is_active = $is_active ?? null;
     } 
@@ -69,24 +68,25 @@ final class User
     {
         $rutFormateado = "";
         $rut = preg_replace('/[^k0-9]/i', '', $rut);
-        if( strlen($rut) < 10 && strlen($rut) > 8 ){
-            $rutf = substr($rut, 0, 2);
-            $rutm = substr($rut, 2, 3);
-            $rutr = substr($rut, 5, 3);
-            if(strpos($rutf , "k") || strpos($rutm , "k") || strpos($rutr , "k") ){
-                
-                return;
-            }
-            elseif(strpos($rutf , "K") || strpos($rutm , "K") || strpos($rutr , "K")){
-                
-                return;
-            }
-            else
-            {
-                $ruti = substr($rut, 8);
-                $rutFormateado = sprintf("%s.%s.%s-%s", $rutf, $rutm, $rutr, $ruti);
-            }   
+        if( strlen($rut) > 13 ){
+            throw new Exception('Rut demasiado largo');
+            return;
         }
+
+        $rutBody = substr($rut, 0, 8);
+        if(strpos($rutBody , "k") || strpos($rutBody , "k")){
+            throw new Exception('Rut Invalido');
+            return;
+        }
+
+        $rutf = substr($rut, 0, 2);
+        $rutm = substr($rut, 2, 3);
+        $rutr = substr($rut, 5, 3);
+
+        $ruti = substr($rut, 8);
+        $rutFormateado = sprintf("%s.%s.%s-%s", $rutf, $rutm, $rutr, $ruti);
+
+        $this->rut = $rutFormateado;
     }
 
     public function rut(): string

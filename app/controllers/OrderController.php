@@ -39,7 +39,7 @@ final class OrderController
             'master'
         );
 
-        $this->repository = new OrderRecordRepositoryMariaDB(
+        $this->userRepository = new UserRepositoryMariaDB(
             'localhost',
             'panol_system',
             'master',
