@@ -74,7 +74,6 @@ final class OrderController
                 $this->toolRepository
             );
 
-
             try {
                 $addOrder->create(
                     $_POST['worker'],
@@ -95,7 +94,11 @@ final class OrderController
 
     public function delivery(Router $router)
     {
+        Auth::canEdit();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
+
+        $router->renderView('order_record/delivery');
     }
 }
