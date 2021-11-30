@@ -41,34 +41,27 @@
         var ctx = document.getElementById('myChart')
         var myChart = new Chart(ctx,{
             type: 'bar',
-            data {
+            data: {
                 datasets: [{
                     label: 'Stock de productos',
+                    label: 'Enrolados',
                     backgroundColor: ['#6bf1ab'],
                     borderColor: ['Black'],
                     borderWidth: 1
                 }]
-            },
-            options:{
-                scales{
-                    Y:{
-                        beginAtZero: true
-                    }
-                }
             }
         });
 
-
-        let url = '';
+        let url = 'http://localhost:5000/api/statistics/user'
         fetch(url)
         .then(response => response.json() )
         .then(datos => mostrar(datos))
         .catch(error=> console.log(error));
 
-        const mostrar = (articulos) =>{
+        const mostrar = (articulos) => {
             articulos.forEach(element => {
-                myChart.data['labels'].push(element.description)
-                myChart.data['datasets'][0].data.push(element.stock)
+                myChart.data['labels'].push(element.name)
+                myChart.data['datasets'][0].data.push(element.count)
             });
         }
             

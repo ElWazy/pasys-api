@@ -143,13 +143,6 @@ final class UserController
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
-                // TODO: Obtain user from database (To fill correctly the constructor)
-                $this->repository->updatePassword(
-                    new User(
-                        $_POST['id'], 
-                        $_POST['password']
-                    )
-                );
                 $newUser = $this->repository->getById($_POST['id']);
 
                 $newUser->changePassword($_POST['password']);
@@ -233,8 +226,6 @@ final class UserController
 
     public function UserGrafic(Router $router){
         
-        $router->renderView('user/userGrafic');
-
-
+        $router->renderView('user/UserGrafic');
     }
 }
