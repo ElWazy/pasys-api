@@ -31,12 +31,14 @@
         <?php endif; ?>
 
         <h2>Validar Entrega de <?= $order['herramienta']; ?>, faltan <?= $order['amount']; ?>.</h2>
-        <form action="/tool/update" method="post" class="form-modal" enctype="multipart/form-data">
+        <form action="/order_record/delivery" method="POST" class="form-modal" enctype="multipart/form-data">
+            <input type="hidden" name="id" value='<?= $order['id']; ?>'>
             <input type="number" 
                 id="amount" 
                 name="amount" 
                 min="0" 
-                placeholder="Ingrese la cantidad a entregar" />
+                placeholder="Ingrese la cantidad a entregar" 
+                required/>
             <input type="submit" value="Entregar">
         </form>
     </main>
@@ -49,7 +51,6 @@
             <li>Sistema Pañol, Derechos Reservados</li>
         </ul>
     </footer>
-
  
 </body>
 </html>

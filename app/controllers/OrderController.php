@@ -5,6 +5,7 @@ namespace LosYuntas\Application\controllers;
 use LosYuntas\Application\Router;
 use LosYuntas\Application\middlewares\Auth;
 use LosYuntas\order_record\application\AddOrder;
+use LosYuntas\order_record\application\DeliveryOrder;
 use LosYuntas\order_record\domain\OrderRecord;
 use LosYuntas\order_record\infrastructure\OrderRecordRepositoryMariaDB;
 use LosYuntas\order_record\domain\OrderRecordRepository;
@@ -32,6 +33,13 @@ final class OrderController
         );
 
         $this->toolRepository = new ToolRepositoryMariaDB(
+            'localhost',
+            'panol_system',
+            'master',
+            'master'
+        );
+
+        $this->repository = new OrderRecordRepositoryMariaDB(
             'localhost',
             'panol_system',
             'master',
@@ -95,10 +103,30 @@ final class OrderController
         Auth::canEdit();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        }
-        $id = $_GET['id'] ?? null;
+            $deliveryOrder = new DeliveryOrder(
+                $this->repository,
+                $this->toolRepository
+            );
 
-        $order = $this->repository->getById($id);
+            try {
+                $deliveryOrder->execute(
+                    (int) $_POST['id'],
+                    (int) $_POST['amount']
+                );
+
+                header('Location: /order_record');
+                exit;
+            } catch (Exception | PDOException $e) {
+                $router->renderView('exception', [
+                    'errors' => $e->getMessage()
+                ]);
+                exit;
+            }
+        }
+
+        $id = $_GET['id'] ?? '';
+
+        $order = $this->repository->getPrimitivesById((int) $id);
 
         $router->renderView('order_record/delivery', [
             'order' => $order

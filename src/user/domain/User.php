@@ -3,7 +3,6 @@
 namespace LosYuntas\user\domain;
 
 use Exception;
-use Vtiful\Kernel\Excel;
 
 final class User
 { 
@@ -30,6 +29,8 @@ final class User
         if (!$name) {
             throw new Exception('Campo del nombre vacio');
         }
+
+        $this->rutValidation($rut);
 
         $this->id = $id ?? null;
         $this->name = $name;
@@ -62,6 +63,30 @@ final class User
         }
 
         $this->password = $password;
+    }
+
+    private function rutValidation(string $rut): void
+    {
+        $rutFormateado = "";
+        $rut = preg_replace('/[^k0-9]/i', '', $rut);
+        if( strlen($rut) < 10 && strlen($rut) > 8 ){
+            $rutf = substr($rut, 0, 2);
+            $rutm = substr($rut, 2, 3);
+            $rutr = substr($rut, 5, 3);
+            if(strpos($rutf , "k") || strpos($rutm , "k") || strpos($rutr , "k") ){
+                
+                return;
+            }
+            elseif(strpos($rutf , "K") || strpos($rutm , "K") || strpos($rutr , "K")){
+                
+                return;
+            }
+            else
+            {
+                $ruti = substr($rut, 8);
+                $rutFormateado = sprintf("%s.%s.%s-%s", $rutf, $rutm, $rutr, $ruti);
+            }   
+        }
     }
 
     public function rut(): string

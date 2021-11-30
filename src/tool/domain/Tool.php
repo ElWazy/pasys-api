@@ -70,6 +70,11 @@ final class Tool
         $this->stock_actual -= $amount;
     }
 
+    public function addStockActual(int $amount): void
+    {
+        $this->stock_actual += $amount;
+    }
+
     public function id(): ?int
     {
         return $this->id;

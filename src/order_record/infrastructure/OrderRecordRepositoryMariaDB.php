@@ -85,6 +85,31 @@ final class OrderRecordRepositoryMariaDB implements OrderRecordRepository
     public function getById(int $id): ?array
     {
         $sql = 'SELECT 
+            id,
+            worker_id,
+            panolero_id,
+            tool_id,
+            amount, 
+            order_date, 
+            deadline,
+            state_id
+        FROM order_record 
+        
+        WHERE order_record.id = :id
+        
+        LIMIT 1';
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([
+            'id' => $id
+        ]);
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getPrimitivesById(int $id): ?array
+    {
+        $sql = 'SELECT 
             order_record.id,
             worker.rut, 
             worker.name AS trabajador, 
@@ -110,7 +135,13 @@ final class OrderRecordRepositoryMariaDB implements OrderRecordRepository
             'id' => $id
         ]);
 
-        return $statement->fetch(PDO::FETCH_ASSOC);
+        $data = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if ( !$data ) {
+            return null;
+        }
+
+        return $data;
     }
 
     public function add(OrderRecord $order): void
@@ -130,9 +161,27 @@ final class OrderRecordRepositoryMariaDB implements OrderRecordRepository
         ]);
     }
 
-    public function delivery(OrderRecord $order): void
+    public function delivery(int $id): void
     {
-        
+        $sql = 'UPDATE order_record SET 
+            delivery_date = NOW(), 
+            state_id = 2 
+        WHERE id = :id';
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([
+            'id' => $id
+        ]);
+    }
+
+    public function toLate(int $id): void
+    {
+        $sql = 'UPDATE order_record SET state_id = 3 WHERE id = :id';
+
+        $statement = $this->connection->prepare($sql);
+        $statement->execute([
+            'id' => $id
+        ]);
     }
  
 }

@@ -28,6 +28,10 @@ final class OrderRecord
             throw new Exception('No se encuentra el trabajador');
         }
 
+        if ($amount < 0) {
+            throw new Exception('La cantidad no puede ser negativa');
+        }
+        
         if ($amount > $tool->stockActual()) {
             throw new Exception('El stock actual no cumple con la cantidad requerida');
         }

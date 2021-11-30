@@ -10,7 +10,7 @@ use LosYuntas\tool\domain\ToolRepository;
 use LosYuntas\user\domain\User;
 use LosYuntas\user\domain\UserRepository;
 
-class AddOrder 
+final class AddOrder 
 {
     private OrderRecordRepository $repository;
     private UserRepository $userRepository;
