@@ -30,9 +30,13 @@
             </section>
         <?php endif; ?>
 
-        <h2>Validar Entrega</h2>
+        <h2>Validar Entrega de <?= $order['herramienta']; ?>, faltan <?= $order['amount']; ?>.</h2>
         <form action="/tool/update" method="post" class="form-modal" enctype="multipart/form-data">
-            <input id="amount" type="number" name="amount" min="0" max="">
+            <input type="number" 
+                id="amount" 
+                name="amount" 
+                min="0" 
+                placeholder="Ingrese la cantidad a entregar" />
             <input type="submit" value="Entregar">
         </form>
     </main>

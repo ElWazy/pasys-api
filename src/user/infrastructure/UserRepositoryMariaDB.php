@@ -63,6 +63,20 @@ final class UserRepositoryMariaDB implements UserRepository
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
     
+    public function statistics(): ?array
+    {
+        $sql = 'SELECT 
+            role.name, 
+            COUNT(user.role_id) AS count 
+        FROM role 
+        INNER JOIN user ON role.id = user.role_id 
+        GROUP BY role.name';
+
+        $statement = $this->connection->query($sql);
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     public function getByCriteria(string $criteria): ?array
     {
         $sql = 'SELECT 
@@ -93,6 +107,7 @@ final class UserRepositoryMariaDB implements UserRepository
             id, 
             name,
             rut,
+            password,
             role_id,
             is_active
         FROM user 
@@ -108,13 +123,17 @@ final class UserRepositoryMariaDB implements UserRepository
 
         $data = $statement->fetch(PDO::FETCH_ASSOC);
 
+        if (!$data) {
+            return null;
+        }
+
         return new User(
-            $data['id'],
+            (int) $data['id'],
             $data['name'],
-            null,
+            $data['password'],
             $data['rut'],
-            $data['role_id'],
-            $data['is_active']
+            (int) $data['role_id'],
+            (int) $data['is_active']
         );
     }
 
@@ -137,13 +156,17 @@ final class UserRepositoryMariaDB implements UserRepository
 
         $data = $statement->fetch(PDO::FETCH_ASSOC);
 
+        if (!$data) {
+            return null;
+        }
+
         return new User(
-            $data['id'],
+            (int) $data['id'],
             $data['name'],
-            null,
+            $data['password'],
             $data['rut'],
-            $data['role_id'],
-            $data['is_active']
+            (int) $data['role_id'],
+            (int) $data['is_active']
         );
     }    
 
@@ -218,8 +241,6 @@ final class UserRepositoryMariaDB implements UserRepository
             'role_id' => $user->role_id(),
             'is_active' => $user->is_active(),
             'id' => $user->id()
-
-
         ]);
     }
 
@@ -235,6 +256,7 @@ final class UserRepositoryMariaDB implements UserRepository
         $statement->execute([
             'id' => $user->id(),
             'password' => $user->password()
+
         ]);
     }
 }

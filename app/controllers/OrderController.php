@@ -37,13 +37,6 @@ final class OrderController
             'master',
             'master'
         );
-
-        $this->userRepository = new UserRepositoryMariaDB(
-            'localhost',
-            'panol_system',
-            'master',
-            'master'
-        );
     } 
 
     public function index(Router $router)
@@ -70,6 +63,7 @@ final class OrderController
         Auth::canEdit();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
             session_start();
 
             $addOrder = new AddOrder(
@@ -77,6 +71,7 @@ final class OrderController
                 $this->userRepository,
                 $this->toolRepository
             );
+
             try {
                 $addOrder->create(
                     $_POST['worker'],
@@ -84,6 +79,9 @@ final class OrderController
                     (int) $_POST['tool'],
                     (int) $_POST['amount']
                 );
+
+                header('Location: /order_record');
+                exit;
             } catch (Exception | PDOException $e) {
                 $router->renderView('exception', [
                     'errors' => $e->getMessage()
@@ -94,7 +92,16 @@ final class OrderController
 
     public function delivery(Router $router)
     {
+        Auth::canEdit();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
+        $id = $_GET['id'] ?? null;
+
+        $order = $this->repository->getById($id);
+
+        $router->renderView('order_record/delivery', [
+            'order' => $order
+        ]);
     }
 }

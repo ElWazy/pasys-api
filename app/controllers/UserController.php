@@ -32,6 +32,13 @@ final class UserController
             'master',
             'master'
         );
+        $this->userRepository = new UserRepositoryMariaDB(
+            'localhost',
+            'panol_system',
+            'master',
+            'master'
+        );
+
     } 
 
     public function index(Router $router)
@@ -93,18 +100,15 @@ final class UserController
     {
         Auth::canEdit();
 
-        $id = (int) $_GET['id'] ?? ''; // no existe 
-        $user = $this->repository->getById($id);
-
         $errors = [];
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 $this->repository->update(
                     new User(
                         $_POST['id'], 
                         $_POST['name'], 
-                        $_POST['rut'] ,      
+                        '',
+                        $_POST['rut'],      
                         $_POST['role_id'], 
                         $_POST['is_active']
                     )
@@ -119,6 +123,8 @@ final class UserController
             header('Location: /user');
             exit;
         }
+        $id = (int) $_GET['id'] ?? ''; // no existe 
+        $user = $this->repository->getById($id);
 
         $roles = $this->rolerepository->getAll();
 
@@ -142,6 +148,7 @@ final class UserController
                 $newUser->changePassword($_POST['password']);
 
                 $this->repository->updatePassword($newUser);
+
             } catch (exception | pdoexception $e) {
                 $router->renderView('exception', [
                     'errors' => $e->getmessage()
@@ -214,5 +221,11 @@ final class UserController
 
         header('Location: /');
         exit;
+    }
+
+
+    public function UserGrafic(Router $router){
+        
+        $router->renderView('user/UserGrafic');
     }
 }

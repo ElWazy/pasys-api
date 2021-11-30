@@ -11,9 +11,6 @@
     <title>Empleados</title>
 </head>
 <body>
-
-
-
     <nav>
         <ul class="menu_nav">
             <li><a href="/order_record">Inicio</a></li>
@@ -26,7 +23,7 @@
     </nav>
 
 
-    <main >
+    <main>
         <section>
             <article class="search" >
                 <form action="#" method="get">
@@ -38,9 +35,7 @@
                     <input type="button" value="Crear Solicitud" onclick="mostrar();"> 
                 </form>
             </article>
-
         </section>
-
     </main>
     
     <div class="pup" id="pup-1">
@@ -100,10 +95,10 @@
                         <td><?= $order['panolero']; ?></td> 
                         <td><?= $order['estado']; ?></td>
                         <td>
-                                <form action="/order_record/delivery" method="GET">
-                                    <input type="hidden" name="id" value="<?=$order['id']; ?>" >
-                                    <input type="submit" value="Validar Entrega">
-                                </form>
+                            <form action="/order_record/delivery" method="GET">
+                                <input type="hidden" name="id" value="<?= $order['id']; ?>">
+                                <input type="submit" value="Validar Entrega">
+                            </form>
                         </td> 
                     </tr>
 

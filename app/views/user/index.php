@@ -37,11 +37,11 @@
                             placeholder="Buscar Trabajador" />
                     <input type="submit" value="Buscar">
                     <input type="button" value="Ingresar Trabajador" onclick="mostrar()">
+                    <a href="/user/UserGrafic">AAA</a>
                 </form>
             </article>
         </section>
 
-    </main>
 
     <?php if($errors): ?>
         <section class = "errors">
@@ -140,5 +140,6 @@
             </thead>
         </table>
      </div>
+    </main>
 </body>
 </html>
