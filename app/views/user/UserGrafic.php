@@ -44,7 +44,7 @@
             data {
                 datasets: [{
                     label: 'Stock de productos',
-                    background-color: ['#6bf1ab'],
+                    backgroundColor: ['#6bf1ab'],
                     borderColor: ['Black'],
                     borderWidth: 1
                 }]
@@ -59,7 +59,7 @@
         });
 
 
-        let url = ''
+        let url = '';
         fetch(url)
         .then(response => response.json() )
         .then(datos => mostrar(datos))
