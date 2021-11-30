@@ -85,34 +85,32 @@ final class OrderRecordRepositoryMariaDB implements OrderRecordRepository
     public function getById(int $id): ?array
     {
         $sql = 'SELECT 
+            order_record.id,
+            worker.rut, 
+            worker.name AS trabajador, 
+            tool.name AS herramienta, 
+            order_record.amount, 
+            order_record.order_date, 
+            order_record.deadline,
+            panolero.name AS panolero, 
+            state.name AS estado
+        FROM order_record 
+        
+        INNER JOIN user AS worker ON order_record.worker_id = worker.id 
+        INNER JOIN user AS panolero ON order_record.panolero_id = panolero.id 
+        INNER JOIN tool ON order_record.tool_id = tool.id 
+        INNER JOIN state ON order_record.state_id = state.id
 
-                worker.rut, 
-                worker.name AS trabajador, 
-                tool.name AS herramienta, 
-                order_record.amount, 
-                order_record.order_date, 
-                order_record.deadline,
-                panolero.name AS panolero, 
-
-                state.name AS estado
-
-                FROM order_record 
-                
-                INNER JOIN user AS worker ON order_record.worker_id = worker.id 
-                INNER JOIN user AS panolero ON order_record.panolero_id = panolero.id 
-                INNER JOIN tool ON order_record.tool_id = tool.id 
-                INNER JOIN state ON order_record.state_id = state.id
-
-                WHERE id = :id
-                
-                LIMIT 1';
+        WHERE order_record.id = :id
+        
+        LIMIT 1';
 
         $statement = $this->connection->prepare($sql);
         $statement->execute([
             'id' => $id
         ]);
 
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     public function add(OrderRecord $order): void

@@ -37,8 +37,6 @@ final class OrderController
             'master',
             'master'
         );
-
-
     } 
 
     public function index(Router $router)
@@ -98,7 +96,12 @@ final class OrderController
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
+        $id = $_GET['id'] ?? null;
 
-        $router->renderView('order_record/delivery');
+        $order = $this->repository->getById($id);
+
+        $router->renderView('order_record/delivery', [
+            'order' => $order
+        ]);
     }
 }

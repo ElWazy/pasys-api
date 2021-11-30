@@ -42,7 +42,6 @@
             </article>
         </section>
 
-    </main>
 
     <?php if($errors): ?>
         <section class = "errors">
@@ -141,5 +140,6 @@
             </thead>
         </table>
      </div>
+    </main>
 </body>
 </html>
