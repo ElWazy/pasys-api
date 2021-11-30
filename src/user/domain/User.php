@@ -73,8 +73,8 @@ final class User
             return;
         }
 
-        $rutBody = substr($rut, 0, 8);
-        if(strpos($rutBody , "k") || strpos($rutBody , "k")){
+        $rutBody = substr($rut, 0, 7);
+        if(strpos($rutBody , "k") || strpos($rutBody , "K")){
             throw new Exception('Rut Invalido');
             return;
         }

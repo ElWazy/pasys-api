@@ -37,7 +37,7 @@
                             placeholder="Buscar Trabajador" />
                     <input type="submit" value="Buscar">
                     <input type="button" value="Ingresar Trabajador" onclick="mostrar()">
-                    <a href="/user/UserGrafic">Estadísticas</a>
+                    <a class="btn-primary" href="/user/UserGrafic">Estadísticas</a>
                 </form>
             </article>
         </section>
@@ -95,7 +95,12 @@
         <table class="elements">
             <thead>
                 <tr>
-                    <th> ID </th><th> RUT </th> <th> NOMBRE </th> <th> ROL </th> <th> ESTADO </th> <th>ACCIÓN</th>
+                    <th>ID</th>
+                    <th>RUT</th> 
+                    <th>NOMBRE</th> 
+                    <th>ROL</th> 
+                    <th>ESTADO</th> 
+                    <th>ACCIÓN</th>
                 </tr>
                 <?php if($user): ?>
                 <?php foreach($user as $key => $users): ?>
@@ -133,7 +138,7 @@
 
                 <?php else: ?>
                     <tr>
-                        <td colspan="3"><h1>No hay Usuarios disponibles</h1></td> 
+                        <td colspan="6"><h1>No hay Usuarios disponibles</h1></td> 
                     </tr>
                 <?php endif; ?>
 
