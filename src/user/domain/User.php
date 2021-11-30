@@ -3,6 +3,7 @@
 namespace LosYuntas\user\domain;
 
 use Exception;
+use Vtiful\Kernel\Excel;
 
 final class User
 { 
@@ -55,6 +56,11 @@ final class User
 
     public function changePassword(string $password): void
     {
+        if (!$password) {
+            throw new Exception('Contraseña Vacia');
+            return;
+        }
+
         $this->password = $password;
     }
 
