@@ -164,12 +164,11 @@ final class UserRepositoryMariaDB implements UserRepository
             $rutm = substr($rut, 2, 3);
             $rutr = substr($rut, 5, 3);
             if(strpos($rutf , "k") || strpos($rutm , "k") || strpos($rutr , "k") ){
-                
-                die();
+                $rutFormateado = null;
             }
             elseif(strpos($rutf , "K") || strpos($rutm , "K") || strpos($rutr , "K")){
-                
-                die();
+
+                $rutFormateado = null;
             }
             else
             {
@@ -179,7 +178,7 @@ final class UserRepositoryMariaDB implements UserRepository
         }
         else
         {
-
+            $rutFormateado = null;
         }
 
         $statement = $this->connection->prepare($sql);
