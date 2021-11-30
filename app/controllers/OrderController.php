@@ -37,8 +37,6 @@ final class OrderController
             'master',
             'master'
         );
-
-
     } 
 
     public function index(Router $router)
@@ -74,7 +72,6 @@ final class OrderController
                 $this->toolRepository
             );
 
-
             try {
                 $addOrder->create(
                     $_POST['worker'],
@@ -95,7 +92,16 @@ final class OrderController
 
     public function delivery(Router $router)
     {
+        Auth::canEdit();
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
+        $id = $_GET['id'] ?? null;
+
+        $order = $this->repository->getById($id);
+
+        $router->renderView('order_record/delivery', [
+            'order' => $order
+        ]);
     }
 }

@@ -18,7 +18,6 @@
     ?>
 
     <nav>
-    <nav>
         <ul class="menu_nav">
         <li><a>Pañol System</a></li>
 

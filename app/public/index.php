@@ -66,7 +66,6 @@ $router->post('/login', [new UserController(), 'login']);
 $router->get('/logout', [new UserController(), 'logout']);
 
 // Graffic
-$router->get('/statistics/user', [new StatisticsUserController(), 'index']);
 $router->get('/api/statistics/user', [new StatisticsUserController(), 'api']);
 
 $router->resolve();

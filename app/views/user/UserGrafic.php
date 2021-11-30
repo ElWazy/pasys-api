@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<nav>
+    <nav>
         <ul class="menu_nav">
             <li><a href="/order_record">Inicio</a></li>
             <li><a href="/">Inventario</a></li>
@@ -23,9 +23,6 @@
     </nav>
     
     <canvas id="myChart" width="400" height="400"></canvas>
-
-
-
 
     <footer>
         <ul class="flex">
