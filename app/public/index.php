@@ -43,6 +43,7 @@ $router->post('/role/add', [new RoleController(), 'add']);
 $router->get('/order_record', [new OrderController(), 'index']);
 $router->get('/order_record/add', [new OrderController(), 'add']);
 $router->get('/order_record/delivery', [new OrderController(), 'delivery']);
+$router->get('/order_record/sendEmail', [new OrderController(), 'email']);
 
 $router->post('/order_record/add', [new OrderController(), 'add']);
 $router->post('/order_record/delivery', [new OrderController(), 'delivery']);

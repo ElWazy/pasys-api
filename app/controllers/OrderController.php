@@ -6,6 +6,7 @@ use LosYuntas\Application\Router;
 use LosYuntas\Application\middlewares\Auth;
 use LosYuntas\order_record\application\AddOrder;
 use LosYuntas\order_record\application\DeliveryOrder;
+use LosYuntas\order_record\application\SendEmail;
 use LosYuntas\order_record\domain\OrderRecord;
 use LosYuntas\order_record\infrastructure\OrderRecordRepositoryMariaDB;
 use LosYuntas\order_record\domain\OrderRecordRepository;
@@ -67,7 +68,6 @@ final class OrderController
         }
 
         $tools = $this->toolRepository->getAll();
-
 
         $router->renderView('order_record/index', [
             'orders' => $orders,
@@ -140,5 +140,17 @@ final class OrderController
         $router->renderView('order_record/delivery', [
             'order' => $order
         ]);
+    }
+
+    public function email(Router $router)
+    {
+        Auth::canEdit();
+
+        $sender = new SendEmail($this->repository);
+        
+        $sender->send();
+
+        header('Location: /order_record');
+        exit;
     }
 }
