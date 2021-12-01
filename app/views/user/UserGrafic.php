@@ -36,7 +36,7 @@
     <script>
 
         var ctx = document.getElementById('myChart')
-        ctx.height = 175;
+        ctx.width = 100;
         var myChart = new Chart(ctx,{
             type: 'bar',
             data: {

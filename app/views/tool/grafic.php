@@ -33,20 +33,37 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
+
+      
         var ctx = document.getElementById('myChart')
         ctx.height = 175;
         var myChart = new Chart(ctx,{
             type: 'bar',
             data: {
                 datasets: [{
-                    label: 'Stock de productos',
+                    label: 'Dataset 1',
                     label: 'Enrolados',
-                    backgroundColor: ['#6bf1ab'],
+                    backgroundColor: ['#8fbffe'],
                     borderColor: ['Black'],
                     borderWidth: 1
-                }]
+                },
+                {
+                    label: 'Dataset 2',
+                    label: 'Enrolados',
+                    backgroundColor: ['#b6efb0'],
+                    borderColor: ['Black'],
+                    borderWidth: 1
+                }
+                ]
+            },
+            options: {
+            
+                indexAxis: 'y'
+            
             }
+
         });
+
 
         let url = 'http://localhost:5000/api/statistics/user'
         fetch(url)
@@ -58,7 +75,9 @@
             articulos.forEach(element => {
                 myChart.data['labels'].push(element.name)
                 myChart.data['datasets'][0].data.push(element.count)
+                myChart.data['datasets'][1].data.push(element.count)
             });
+
         }
     </script>
 
