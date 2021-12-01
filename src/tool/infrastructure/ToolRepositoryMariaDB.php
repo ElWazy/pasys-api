@@ -158,15 +158,15 @@ final class ToolRepositoryMariaDB implements ToolRepository
         ]);
     }
 
-    public function discountStockActual(Tool $tool): void
+    public function changeStockActual(Tool $tool): void
     {
         $sql = 'UPDATE tool SET 
-            stock_actual = :discountedStock
+            stock_actual = :changeStock
         WHERE id = :id';
 
         $statement = $this->connection->prepare($sql);
         $statement->execute([
-            'discountedStock' => $tool->stockActual(),
+            'changeStock' => $tool->stockActual(),
             'id' => $tool->id()
         ]);
     }

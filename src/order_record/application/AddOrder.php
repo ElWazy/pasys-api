@@ -52,7 +52,7 @@ final class AddOrder
         );
 
         $tool->discountStockActual($amount);
-        $this->toolRepository->discountStockActual($tool);
+        $this->toolRepository->changeStockActual($tool);
     }
 
     private function canSupplyStock(Tool $tool, int $amount)

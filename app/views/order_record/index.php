@@ -97,10 +97,12 @@
                             <?= $order['estado']; ?>
                         </td>
                         <td>
-                            <form action="/order_record/delivery" method="GET">
-                                <input type="hidden" name="id" value="<?= $order['id']; ?>">
-                                <input type="submit" value="Validar Entrega">
-                            </form>
+                            <?php if( $order['estado'] === 'pedido' ): ?>
+                                <form action="/order_record/delivery" method="GET">
+                                    <input type="hidden" name="id" value="<?= $order['id']; ?>">
+                                    <input type="submit" value="Validar Entrega">
+                                </form>
+                            <?php endif; ?>
                         </td> 
                     </tr>
 

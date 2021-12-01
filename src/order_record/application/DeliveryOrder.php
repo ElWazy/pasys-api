@@ -34,6 +34,9 @@ final class DeliveryOrder
         }
 
         $this->repository->delivery($id);
+
+        $tool->addStockActual($amount);
+        $this->toolRepository->changeStockActual($tool);
     }
 
     private function verifyAmount(int $amount, int $newAmount): void
