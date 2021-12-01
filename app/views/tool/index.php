@@ -50,6 +50,7 @@
                         <input type="button" value="Crear Herramienta" onclick="mostrar()">
                     <?php endif; ?>
                     <a class="btn-primary" href="/statistics/tool">Estadísticas</a>
+
                 </form>
             </article>
         </section>
@@ -144,6 +145,8 @@
             <?php endif; ?>
         </ul>
     </footer>
+
+
 
  
 </body>

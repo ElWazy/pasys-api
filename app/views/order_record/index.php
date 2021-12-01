@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/tables.css">
     <title>Empleados</title>
 </head>
-<body>
+<body onload="notificar()">
     <nav>
         <ul class="menu_nav">
             <li><a href="/order_record">Inicio</a></li>
@@ -33,6 +33,7 @@
                             placeholder="Buscar Categoria" />
                     <input type="submit" value="Buscar">
                     <input type="button" value="Crear Solicitud" onclick="mostrar();"> 
+
                 </form>
             </article>
         </section>
@@ -121,7 +122,7 @@
     </div>
 
     <script src="js/popup.js"></script>
-
+    <script src="/js/push.js"></script>
 
 
 
