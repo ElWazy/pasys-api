@@ -84,6 +84,19 @@ final class ToolRepositoryMariaDB implements ToolRepository
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function statistics(): ?array
+    {
+        $sql = 'SELECT 
+            name, 
+            stock_total,
+            stock_actual
+        FROM tool';
+
+        $statement = $this->connection->query($sql);
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getById(int $id): ?Tool
     {
         $sql = 'SELECT 
