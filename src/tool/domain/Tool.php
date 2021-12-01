@@ -53,6 +53,8 @@ final class Tool
             move_uploaded_file($this->image['tmp_name'], __DIR__ . '/../../../app/public/' . $this->imagePath);
         }
 
+        $this->irrealStock($stock_total, $stock_actual);
+
         $this->id = $id ?? null;
         $this->name = $name;
         $this->categoryId = $categoryId;
@@ -73,6 +75,14 @@ final class Tool
     public function addStockActual(int $amount): void
     {
         $this->stock_actual += $amount;
+    }
+
+    private function irrealStock(int $stockTotal, int $stockActual): void
+    {
+        if ( $stockActual > $stockTotal ) {
+            throw new Exception('El stock actual no puede ser mayor al stock total');
+            return;
+        }
     }
 
     public function id(): ?int
