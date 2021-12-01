@@ -10,6 +10,8 @@ interface ToolRepository
 
     public function getByCriteria(string $criteria): ?array;
 
+    public function statistics(): ?array;
+
     public function getById(int $id): ?Tool;
 
     public function add(Tool $tool): void;
