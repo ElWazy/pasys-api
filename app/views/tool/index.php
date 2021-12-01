@@ -140,7 +140,5 @@
             <?php endif; ?>
         </ul>
     </footer>
-
- 
 </body>
 </html>
