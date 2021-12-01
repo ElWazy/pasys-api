@@ -8,6 +8,8 @@ interface OrderRecordRepository
 {
     public function getAll(): ?array;
 
+    public function getLates(): ?array;
+
     public function getByCriteria(string $criteria): ?array;
 
     public function getById(int $id): ?array;

@@ -42,9 +42,37 @@ final class OrderRecordRepositoryMariaDB implements OrderRecordRepository
         ORDER BY order_record.order_date DESC';
 
         $statement = $this->connection->query($sql);
- 
 
         return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getLates(): ?array
+    {
+        $sql = 'SELECT 
+            order_record.id,
+            worker.rut, 
+            worker.name AS trabajador, 
+            tool.name AS herramienta, 
+            order_record.amount, 
+            order_record.order_date, 
+            order_record.deadline,
+            panolero.name AS panolero, 
+            state.name AS estado
+        FROM order_record 
+        INNER JOIN user AS worker ON order_record.worker_id = worker.id 
+        INNER JOIN user AS panolero ON order_record.panolero_id = panolero.id 
+        INNER JOIN tool ON order_record.tool_id = tool.id 
+        INNER JOIN state ON order_record.state_id = state.id
+        WHERE order_record.state_id = 2
+        ORDER BY order_record.order_date DESC';
+
+        $statement = $this->connection->query($sql);
+ 
+        $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$data) return null;
+
+        return $data;
     }
 
     public function getByCriteria(string $criteria): ?array
