@@ -21,7 +21,7 @@ function notificar(){
         fetch('http://localhost:5000/api/statistics/order/count')
         .then(data => data.json())
         .then(count => {
-            var notification = new Notification("Pedidos sin entregar",
+            var notification = new Notification("Pedidos Atrasados: ",
                 {
                     icon : "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
                     body : "Cantidad de atrasos: " + count.value,
@@ -29,11 +29,11 @@ function notificar(){
             );
 
             notification.onclick = function(){
-                window.open("http://google.com/");
+                window.open("/order_record");
             }
         })
         .catch(e => {
-            var notification = new Notification("Error",
+            var notification = new Notification("No se han obtenido datos",
                 {
                     icon : "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
                     body : e.message, 
@@ -41,7 +41,7 @@ function notificar(){
             );
 
             notification.onclick = function(){
-                window.open("http://google.com/");
+                window.open("/order_record");
             }
         });
 
