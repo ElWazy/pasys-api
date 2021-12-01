@@ -1,1 +1,26 @@
-[{"id":"19","rut":"77.333.444-5","trabajador":"Gonzalo Zamuel","herramienta":"Alicate: Stencyl","amount":"2","order_date":"2021-12-01","deadline":"2021-12-02","panolero":"Hernesto Vargas Herrera","estado":"entregado"},{"id":"20","rut":"12.123.123-1","trabajador":"Joaqu\u00edn Daniel Martinez Cabrera","herramienta":"Martillo: Stencyl","amount":"2","order_date":"2021-12-01","deadline":"2021-12-02","panolero":"Hernesto Vargas Herrera","estado":"entregado"},{"id":"18","rut":"22.333.444-5","trabajador":"Santiago Ignacio Fierro Madrid","herramienta":"Tester","amount":"2","order_date":"2021-11-20","deadline":"2021-11-22","panolero":"Ebaristo Filidor Rios Riquelme","estado":"entregado"}]
+## Atrasos ##
+
+
+Código Consulta: 17
+Nombre: Filidor Fernando Fernandez Faláz
+Rut: 19.100.321-k
+Herramienta: Tester
+Cantidad: 3
+Fecha de Pedido: 2021-11-23
+Fecha de Devolución: 2021-11-25
+Fecha Actual: 2021-12-01
+Pañolero: Almendra Kast Soto
+------------------------
+
+
+Código Consulta: 22
+Nombre: Santiago Ignacio Fierro Madrid
+Rut: 22.333.444-5
+Herramienta: Tester
+Cantidad: 2
+Fecha de Pedido: 2021-11-20
+Fecha de Devolución: 2021-11-22
+Fecha Actual: 2021-12-01
+Pañolero: Ebaristo Filidor Rios Riquelme
+------------------------
+

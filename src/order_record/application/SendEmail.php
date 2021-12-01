@@ -23,7 +23,22 @@ final class SendEmail
     {
         $late = $this->repository->getLates();
 
-        $message = json_encode($late);
+        if (!$late) $this->mailer->send('No hay Atrasos');
+
+        $message = "## Atrasos ##\n\n";
+        foreach ($late as $order) {
+            $message .= 
+                "\nCódigo Consulta: "       . $order["id"] 
+                . "\nNombre: "              . $order["trabajador"] 
+                . "\nRut: "                 . $order["rut"] 
+                . "\nHerramienta: "         . $order["herramienta"] 
+                . "\nCantidad: "            . $order["amount"] 
+                . "\nFecha de Pedido: "     . $order["order_date"] 
+                . "\nFecha de Devolución: " . $order["deadline"] 
+                . "\nFecha Actual: "        . date('Y-m-d')
+                . "\nPañolero: "            . $order["panolero"] 
+                . "\n------------------------\n\n";
+        }
 
         $this->mailer->send($message);
     }

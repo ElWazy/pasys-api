@@ -47,12 +47,6 @@
 
 
     <script src="/js/popup.js"></script>
-
-    <footer>
-        <ul class="flex">
-            <li>Sistema Pañol, Derechos Reservados</li>
-        </ul>
-    </footer>
  
 </body>
 </html>
