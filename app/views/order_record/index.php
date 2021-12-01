@@ -67,7 +67,7 @@
 
 
     <div class="main-container">
-        <table class="elements">
+        <table class="elements-without-hover">
             <thead>
                 <tr>
                     <th> RUT  </th>
@@ -84,19 +84,18 @@
             </thead>
         
             <?php if($orders): ?>
-
                 <?php foreach($orders as $key => $order): ?>
-
-                    <tr class="th<?php $order['estado']?>">
-
+                    <tr>
                         <td><?= $order['rut']; ?></td> 
                         <td><?= $order['trabajador']; ?></td> 
                         <td><?= $order['herramienta']; ?></td> 
                         <td><?= $order['amount']; ?></td> 
                         <td><?= $order['order_date']; ?></td> 
                         <td><?= $order['deadline']; ?></td> 
-                        <td><?= $order['panolero']; ?></td> 
-                        <td><?= $order['estado']; ?></td>
+                        <td><?= $order['panolero']; ?></td>
+                        <td class="<?php if($order['estado']=="pedido") echo 'td1';elseif($order['estado']=="entregado") echo 'td2';else echo 'td3'?>">
+                            <?= $order['estado']; ?>
+                        </td>
                         <td>
                             <form action="/order_record/delivery" method="GET">
                                 <input type="hidden" name="id" value="<?= $order['id']; ?>">

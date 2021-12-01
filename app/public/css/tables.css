@@ -40,22 +40,26 @@ table{
     color: black;
 }
 
+.elements-without-hover th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #F3DE8A;
+    color: black;
+}
+
 th, td{
     border: 0.5px solid black;
     padding: 20px;
 }
 
-.th1{
-    background-color: yellow;
+.td1{
+    background-color: #fff0c1;
+}
+.td2{
+    background-color: #cdffe0;
+}
+.td3{
+    background-color: #ffd9d9;
 }
 
-.th2{
-    background-color: green;
-}
-.th3{
-    background-color: red;
-}
-
-
-
-tr:nth-child(even){background-color: #F3DE8A;}
