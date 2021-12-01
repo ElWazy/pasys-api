@@ -8,6 +8,7 @@ use LosYuntas\order_record\application\AddOrder;
 use LosYuntas\order_record\application\DeliveryOrder;
 use LosYuntas\order_record\application\SendEmail;
 use LosYuntas\order_record\domain\OrderRecord;
+use LosYuntas\order_record\infrastructure\OrderRecordMailerInMemory;
 use LosYuntas\order_record\infrastructure\OrderRecordRepositoryMariaDB;
 use LosYuntas\order_record\domain\OrderRecordRepository;
 use LosYuntas\tool\domain\ToolRepository;
@@ -146,7 +147,9 @@ final class OrderController
     {
         Auth::canEdit();
 
-        $sender = new SendEmail($this->repository);
+        $mailer = new OrderRecordMailerInMemory();
+
+        $sender = new SendEmail($this->repository, $mailer);
         
         $sender->send();
 

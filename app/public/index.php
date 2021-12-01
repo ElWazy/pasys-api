@@ -4,6 +4,7 @@ use LosYuntas\Application\Router;
 use LosYuntas\Application\controllers\CategoryController;
 use LosYuntas\Application\controllers\OrderController;
 use LosYuntas\Application\controllers\RoleController;
+use LosYuntas\Application\controllers\StatisticsOrderController;
 use LosYuntas\Application\controllers\StatisticsToolController;
 use LosYuntas\Application\controllers\StatisticsUserController;
 use LosYuntas\Application\controllers\ToolController;
@@ -72,5 +73,6 @@ $router->get('/api/statistics/user', [new StatisticsUserController(), 'api']);
 
 $router->get('/statistics/tool', [new StatisticsToolController(), 'index']);
 $router->get('/api/statistics/tool', [new StatisticsToolController(), 'api']);
+$router->get('/api/statistics/order/count', [new StatisticsOrderController(), 'count']);
 
 $router->resolve();

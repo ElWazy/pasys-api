@@ -2,6 +2,7 @@
 
 namespace LosYuntas\order_record\application;
 
+use LosYuntas\order_record\domain\OrderRecordMailer;
 use LosYuntas\order_record\domain\OrderRecordRepository;
 
 final class SendEmail 
@@ -22,8 +23,8 @@ final class SendEmail
     {
         $late = $this->repository->getLates();
 
-        # nombre: $order['name'];
+        $message = json_encode($late);
 
-        $this->mailer->send();
+        $this->mailer->send($message);
     }
 }

@@ -63,12 +63,28 @@ final class OrderRecordRepositoryMariaDB implements OrderRecordRepository
         INNER JOIN user AS panolero ON order_record.panolero_id = panolero.id 
         INNER JOIN tool ON order_record.tool_id = tool.id 
         INNER JOIN state ON order_record.state_id = state.id
-        WHERE order_record.state_id = 2
+        WHERE order_record.state_id = 3
         ORDER BY order_record.order_date DESC';
 
         $statement = $this->connection->query($sql);
  
         $data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        if (!$data) return null;
+
+        return $data;
+    }
+
+    public function getLatesCount(): ?array
+    {
+        $sql = 'SELECT 
+            COUNT(*) AS value
+        FROM order_record 
+        WHERE order_record.state_id = 3';
+
+        $statement = $this->connection->query($sql);
+ 
+        $data = $statement->fetch(PDO::FETCH_ASSOC);
 
         if (!$data) return null;
 

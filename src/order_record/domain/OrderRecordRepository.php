@@ -10,6 +10,8 @@ interface OrderRecordRepository
 
     public function getLates(): ?array;
 
+    public function getLatesCount(): ?array;
+
     public function getByCriteria(string $criteria): ?array;
 
     public function getById(int $id): ?array;
