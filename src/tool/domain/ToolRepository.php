@@ -18,7 +18,7 @@ interface ToolRepository
 
     public function update(Tool $tool): void;
 
-    public function discountStockActual(Tool $tool): void;
+    public function changeStockActual(Tool $tool): void;
 
     public function remove(int $id): void;
 

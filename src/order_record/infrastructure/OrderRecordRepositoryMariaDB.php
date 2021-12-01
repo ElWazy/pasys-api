@@ -104,7 +104,9 @@ final class OrderRecordRepositoryMariaDB implements OrderRecordRepository
             'id' => $id
         ]);
 
-        return $statement->fetch(PDO::FETCH_ASSOC);
+        $data = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return !$data ? null : $data;
     }
 
     public function getPrimitivesById(int $id): ?array

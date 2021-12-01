@@ -41,15 +41,13 @@
             type: 'bar',
             data: {
                 datasets: [{
-                    label: 'Dataset 1',
-                    label: 'Enrolados',
+                    label: 'Total',
                     backgroundColor: ['#8fbffe'],
                     borderColor: ['Black'],
                     borderWidth: 1
                 },
                 {
-                    label: 'Dataset 2',
-                    label: 'Enrolados',
+                    label: 'Actual',
                     backgroundColor: ['#b6efb0'],
                     borderColor: ['Black'],
                     borderWidth: 1
@@ -65,7 +63,7 @@
         });
 
 
-        let url = 'http://localhost:5000/api/statistics/user'
+        let url = 'http://localhost:5000/api/statistics/tool'
         fetch(url)
         .then(response => response.json() )
         .then(datos => mostrar(datos))
@@ -74,8 +72,8 @@
         const mostrar = (articulos) => {
             articulos.forEach(element => {
                 myChart.data['labels'].push(element.name)
-                myChart.data['datasets'][0].data.push(element.count)
-                myChart.data['datasets'][1].data.push(element.count)
+                myChart.data['datasets'][0].data.push(element.stock_total)
+                myChart.data['datasets'][1].data.push(element.stock_actual)
             });
 
         }
