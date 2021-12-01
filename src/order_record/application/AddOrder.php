@@ -69,5 +69,10 @@ final class AddOrder
             throw new Exception('No se encuentra el usuario');
             return;
         }
+
+        if ( $user->is_active() == 0 ) {
+            throw new Exception('Usuario Desvinculado de la empresa');
+            return;
+        }
     }
 }

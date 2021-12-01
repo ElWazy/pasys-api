@@ -54,11 +54,20 @@ final class OrderController
         $name = $_GET['search'] ?? '';
         if (!$name) {
             $orders = $this->repository->getAll();
+
+            foreach ($orders as $order) {
+                if ( $order['estado'] == 'entregado' ) continue;
+
+                if ( date('Y-m-d') > $order['deadline'] ) {
+                    $this->repository->toLate($order['id']);
+                }
+            }
         } else {
             $orders = $this->repository->getByCriteria($name);
         }
 
         $tools = $this->toolRepository->getAll();
+
 
         $router->renderView('order_record/index', [
             'orders' => $orders,

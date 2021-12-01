@@ -28,11 +28,6 @@ final class DeliveryOrder
 
         $this->verifyAmount($order['amount'], $amount);
 
-        if ( date('Y-m-d') > $order['deadline'] ) {
-            $this->repository->toLate($id);
-            return;
-        }
-
         $this->repository->delivery($id);
 
         $tool->addStockActual($amount);

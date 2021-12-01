@@ -97,7 +97,7 @@
                             <?= $order['estado']; ?>
                         </td>
                         <td>
-                            <?php if( $order['estado'] === 'pedido' ): ?>
+                            <?php if( $order['estado'] != 'entregado' ): ?>
                                 <form action="/order_record/delivery" method="GET">
                                     <input type="hidden" name="id" value="<?= $order['id']; ?>">
                                     <input type="submit" value="Validar Entrega">

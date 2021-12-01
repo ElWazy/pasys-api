@@ -19,19 +19,15 @@
 
     <nav>
         <ul class="menu_nav">
-        <li><a>Pañol System</a></li>
-
-        <?php if($isAdmin): ?>
-
-            <li><a href="/order_record">Inicio</a></li>
-            <li><a href="/">Inventario</a></li>
-            <li><a href="/user">Usuarios</a></li>
-            <li><a href="/category">Categorias</a></li>
-            <li><a href="/role">Roles</a></li>  
-            <li><a href="/logout">Logout</a></li>
-
-        <?php endif; ?>
-        
+            <li><a>Pañol System</a></li>
+            <?php if($isAdmin): ?>
+                <li><a href="/order_record">Inicio</a></li>
+                <li><a href="/">Inventario</a></li>
+                <li><a href="/user">Usuarios</a></li>
+                <li><a href="/category">Categorias</a></li>
+                <li><a href="/role">Roles</a></li>  
+                <li><a href="/logout">Logout</a></li>
+            <?php endif; ?>
         </ul>
     </nav>
 
@@ -48,8 +44,8 @@
                     <input type="submit" value="Buscar">
                     <?php if($isAdmin): ?>
                         <input type="button" value="Crear Herramienta" onclick="mostrar()">
+                        <a class="btn-primary" href="/statistics/tool">Estadísticas</a>
                     <?php endif; ?>
-                    <a class="btn-primary" href="/statistics/tool">Estadísticas</a>
                 </form>
             </article>
         </section>
@@ -73,7 +69,7 @@
                             <?php if($categories): ?>
                                 <select name="category_id"> 
                                     <?php foreach($categories as $category): ?>
-                                        <option value="<?= $category['id']; ?> "> 
+                                        <option value="<?= $category['id']; ?>"> 
                                             <?= $category['name']; ?> 
                                         </option>
                                     <?php endforeach; ?>
