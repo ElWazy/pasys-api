@@ -24,19 +24,13 @@
     
     <canvas id="myChart" width="400" height="400"></canvas>
 
-    <footer>
-        <ul class="flex">
-            <li>Sistema Pañol, Derechos Reservados</li>
-        </ul>
-    </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
     <script>
 
         var ctx = document.getElementById('myChart')
-        ctx.width = 100;
+        ctx.height = 180;
         var myChart = new Chart(ctx,{
             type: 'bar',
             data: {
