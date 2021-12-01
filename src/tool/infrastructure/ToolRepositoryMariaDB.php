@@ -10,7 +10,6 @@ final class ToolRepositoryMariaDB implements ToolRepository
 {
     private PDO $connection;
 
-
     public function __construct(
         string $host, 
         string $database, 
@@ -145,7 +144,8 @@ final class ToolRepositoryMariaDB implements ToolRepository
             name = :name, 
             category_id = :category,
             image = :image,
-            stock_total = :stock_total
+            stock_total = :stock_total,
+            stock_actual = :stock_actual
         WHERE id = :id';
 
         $statement = $this->connection->prepare($sql);
@@ -154,6 +154,7 @@ final class ToolRepositoryMariaDB implements ToolRepository
             'category' => $tool->categoryId(),
             'image' => $tool->image(),
             'stock_total' => $tool->stockTotal(),
+            'stock_actual' => $tool->stockActual(),
             'id' => $tool->id()
         ]);
     }

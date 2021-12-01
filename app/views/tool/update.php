@@ -56,6 +56,7 @@
             <?php endif; ?>
             <input type="file" name="image" id="image" />
             <input type="number" name="stock_total" id="stock_total" value="<?= $tool['stock_total']; ?>" placeholder="Stock Total" min="0" />
+            <input type="number" name="stock_actual" id="stock_actual" value="<?= $tool['stock_actual']; ?>" placeholder="Stock Actual" min="0" />
             <input type="submit" value="Actualizar">
         </form>
     </main>

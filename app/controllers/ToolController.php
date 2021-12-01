@@ -90,9 +90,7 @@ final class ToolController
     public function update(Router $router)
     {
         Auth::canEdit();
-
         
-
         $errors = [];
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
@@ -103,7 +101,7 @@ final class ToolController
                         (int) $_POST['category_id'], 
                         $_FILES['image'] ?? null, 
                         (int) $_POST['stock_total'],
-                        null
+                        (int) $_POST['stock_actual']
                     )
                 );
             } catch (Exception $e) {
