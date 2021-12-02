@@ -5,9 +5,9 @@ CREATE TABLE order_record (
 	panolero_id INT NOT NULL,
 	tool_id INT NOT NULL,
 	amount INT NOT NULL,
-	order_date DATE NOT NULL DEFAULT NOW(),
-	deadline DATE NOT NULL DEFAULT DATE_ADD(NOW(), INTERVAL 1 DAY),
-	delivery_date DATE NULL,
+	order_date DATETIME NOT NULL DEFAULT NOW(),
+	deadline DATETIME NOT NULL DEFAULT DATE_ADD(NOW(), INTERVAL 1 DAY),
+	delivery_date DATETIME NULL,
 	state_id INT NOT NULL DEFAULT 1,
 
     PRIMARY KEY(id),
