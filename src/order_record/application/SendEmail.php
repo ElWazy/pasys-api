@@ -19,7 +19,7 @@ final class SendEmail
         $this->mailer = $mailer;
     }
 
-    public function send() : void
+    public function send(): bool
     {
         $late = $this->repository->getLates();
 
@@ -40,6 +40,6 @@ final class SendEmail
                 . "\n------------------------\n\n";
         }
 
-        $this->mailer->send($message);
+        return $this->mailer->send($message);
     }
 }

@@ -1,2 +1,3 @@
 /vendor/
 /app/public/images/
+.phpunit.result.cache
