@@ -173,7 +173,11 @@ input[type="submit"] {
 footer {
     background-color: #0C1821;
     color: #ccc9dc;
+    width: 98%;
+    position: absolute;
+    bottom: 0;
     padding: 1rem;
+
 }
 
 footer ul {
