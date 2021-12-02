@@ -103,7 +103,8 @@ final class ToolRepositoryMariaDB implements ToolRepository
             name, 
             category_id,
             stock_total,
-            stock_actual
+            stock_actual,
+            location
         FROM tool 
         WHERE id = :id';
 
@@ -120,21 +121,23 @@ final class ToolRepositoryMariaDB implements ToolRepository
             (int) $data['category_id'],
             null,
             (int) $data['stock_total'],
-            (int) $data['stock_actual']
+            (int) $data['stock_actual'],
+            $data['location']
         );
     }
 
     public function add(Tool $tool): void
     {
-        $sql = 'INSERT INTO tool (name, category_id, image, stock_total, stock_actual) 
-            VALUES (:name, :category, :image, :stock_total, :stock_total)';
+        $sql = 'INSERT INTO tool (name, category_id, image, stock_total, stock_actual, location) 
+            VALUES (:name, :category, :image, :stock_total, :stock_total, :location)';
 
         $statement = $this->connection->prepare($sql);
         $statement->execute([
             'name' => $tool->name(),
             'category' => $tool->categoryId(),
             'image' => $tool->image(),
-            'stock_total' => $tool->stockTotal()
+            'stock_total' => $tool->stockTotal(),
+            'location' => $tool->location()
         ]);
     }
 
@@ -145,7 +148,8 @@ final class ToolRepositoryMariaDB implements ToolRepository
             category_id = :category,
             image = :image,
             stock_total = :stock_total,
-            stock_actual = :stock_actual
+            stock_actual = :stock_actual,
+            location = :location
         WHERE id = :id';
 
         $statement = $this->connection->prepare($sql);
@@ -155,6 +159,7 @@ final class ToolRepositoryMariaDB implements ToolRepository
             'image' => $tool->image(),
             'stock_total' => $tool->stockTotal(),
             'stock_actual' => $tool->stockActual(),
+            'location' => $tool->location(),
             'id' => $tool->id()
         ]);
     }

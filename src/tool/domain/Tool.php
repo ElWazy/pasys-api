@@ -132,6 +132,11 @@ final class Tool
         return $this->stock_actual;
     }
 
+    public function location(): string
+    {
+        return $this->location;
+    }
+
     public function toPrimitives(): array 
     {
         return [

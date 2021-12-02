@@ -67,7 +67,9 @@ final class ToolController
                         $_POST['name'], 
                         $_POST['category_id'], 
                         $_FILES['image'] ?? null, 
-                        $_POST['stock_total'] 
+                        $_POST['stock_total'],
+                        $_POST['stock_total'],
+                        $_POST['location']
                     )
                 );
             } catch (Exception $e) {
@@ -101,7 +103,8 @@ final class ToolController
                         (int) $_POST['category_id'], 
                         $_FILES['image'] ?? null, 
                         (int) $_POST['stock_total'],
-                        (int) $_POST['stock_actual']
+                        (int) $_POST['stock_actual'],
+                        $_POST['location']
                     )
                 );
             } catch (Exception $e) {
