@@ -36,7 +36,9 @@
         <h2>Actualizar Herramienta</h1>
         <form action="/tool/update" method="post" class="form-modal" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $tool['id']; ?>">
+            <h3>Nombre</h3>
             <input class="form-input" type="text" name="name" id="name" value="<?= $tool['name']; ?>" placeholder="Nombre Herramienta"  />
+            <h3>Categoría</h3>
             <?php if($categories): ?>
                 <select name="category_id"> 
                     <?php foreach($categories as $category): ?>
@@ -54,9 +56,15 @@
             <?php else: ?>
                 <h1>No hay Categorias disponibles</h1> 
             <?php endif; ?>
+            <h3>Imagen</h3>
             <input type="file" name="image" id="image" />
+            <h3>Stock Total</h3>
             <input type="number" name="stock_total" id="stock_total" value="<?= $tool['stock_total']; ?>" placeholder="Stock Total" min="0" />
+            <h3>Stock Actual</h3>
             <input type="number" name="stock_actual" id="stock_actual" value="<?= $tool['stock_actual']; ?>" placeholder="Stock Actual" min="0" />
+            <h3>Ubicación</h3>
+            <!-- Nuevo input de crear herramienta -->
+            <input type="text" name="location" id="location" placeholder="Ubicación" />   
             <input type="submit" value="Actualizar">
         </form>
     </main>

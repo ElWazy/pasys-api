@@ -58,7 +58,7 @@
                             <h1>No hay Herramientas disponibles</h1> 
                         <?php endif; ?>
                         <input type="number" name="amount" id="amount" min="0" placeholder="Cantidad"  />
-                        
+
                         <input type="submit" value="Ingresar">
                         <input type="button" value="Cerrar" onclick="ocultar();">
                         
