@@ -14,6 +14,7 @@ final class Tool
     private ?string $imagePath;
     private int $stock_total;
     private ?int $stock_actual;
+    private ?string $location;
 
     public function __construct(
         int $id = null,
@@ -21,7 +22,8 @@ final class Tool
         int $categoryId,
         array $image = null,
         int $stock_total,
-        int $stock_actual = null
+        int $stock_actual = null,
+        string $location = null
     )
     {
         if (!$name) {
@@ -54,12 +56,14 @@ final class Tool
         }
 
         $this->irrealStock($stock_total, $stock_actual);
+        $this->validLocation($location);
 
         $this->id = $id ?? null;
         $this->name = $name;
         $this->categoryId = $categoryId;
         $this->stock_total = $stock_total;
         $this->stock_actual = $stock_actual;
+        $this->location = $location;
     }
 
     public function overloadStockActual(int $amount): bool
@@ -81,6 +85,19 @@ final class Tool
     {
         if ( $stockActual > $stockTotal ) {
             throw new Exception('El stock actual no puede ser mayor al stock total');
+            return;
+        }
+    }
+
+    private function validLocation(string $location): void
+    {
+        if ( !$location ) {
+            throw new Exception('La ubicación está vacia');
+            return;
+        }
+
+        if ( strlen($location) > 30 ) {
+            throw new Exception('El nombre de la ubicación es demasiado largo');
             return;
         }
     }
