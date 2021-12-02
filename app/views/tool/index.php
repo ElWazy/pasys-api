@@ -79,6 +79,9 @@
                             <?php endif; ?>
                             <input type="file" name="image" id="image" />
                             <input type="number" name="stock_total" id="stock_total" placeholder="Stock Total" min="0" />
+
+                             <!-- Nuevo input de crear herramienta -->
+                            <input type="text" name="location" id="location" placeholder="Ubicación" />   
                             <input type="submit" value="Crear">
                             <input type="button" value="Cerrar" onclick="ocultar()">
                         </form>
