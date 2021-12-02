@@ -146,5 +146,7 @@
         </table>
      </div>
     </main>
+
+    <script src="/js/rutval.js"></script>
 </body>
 </html>

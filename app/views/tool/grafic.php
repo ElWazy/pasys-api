@@ -23,9 +23,6 @@
     </nav>
     
     <canvas id="myChart" width="400" height="400"></canvas>
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
