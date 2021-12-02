@@ -1,10 +1,12 @@
 
 function mostrar(){
     document.getElementById('pup-1').style.display="grid";
+    document.getElementById('footer').style.display="none";
 }
 
 function ocultar(){
     document.getElementById('pup-1').style.display="none";
+    document.getElementById('footer').style.display="grid";
 }
 
 function mostrar2(){
