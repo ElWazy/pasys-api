@@ -21,7 +21,8 @@
                 name="rut" 
                 id="rut" 
                 placeholder="Rut" 
-                required/>
+                required
+                oninput="checkRut(this)"/>
             <input type="password" 
                 name="password" 
                 id="password" 
@@ -31,5 +32,8 @@
             <input type="submit" value="Iniciar Sesion">
         </form>
     </main>
+
+    <script src="/js/rutval.js"></script>
+
 </body>
 </html>

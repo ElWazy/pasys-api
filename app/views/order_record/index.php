@@ -45,7 +45,7 @@
             <div class="modal-create" id="modalcontainer">
                 <h2>Crear Solicitud de Herramienta</h1>
                     <form action="/order_record/add" method="post" class="form-modal">
-                        <input type="text" name="worker" id="worker" placeholder="Rut Trabajador"  />
+                        <input type="text" name="worker" id="rut" placeholder="Rut Trabajador" />
                         <?php if($tools): ?>
                             <select name="tool"> 
                                 <?php foreach($tools as $tool): ?>
@@ -124,8 +124,7 @@
 
     <script src="js/popup.js"></script>
     <script src="/js/push.js"></script>
-
-
+    <script src="/js/rutval.js"></script>
 
 
 </body>
