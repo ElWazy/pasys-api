@@ -144,7 +144,8 @@ final class Tool
             'name' => $this->name(),
             'category_id' => $this->categoryId(),
             'stock_total' => $this->stockTotal(),
-            'stock_actual' => $this->stockActual()
+            'stock_actual' => $this->stockActual(),
+            'location' => $this->location()
         ];
     }
 }

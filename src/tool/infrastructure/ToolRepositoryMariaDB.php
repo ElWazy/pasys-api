@@ -29,6 +29,7 @@ final class ToolRepositoryMariaDB implements ToolRepository
             category.name AS category, 
             tool.image, tool.stock_total, 
             tool.stock_actual, 
+            tool.location, 
             tool.is_active 
         FROM tool 
         INNER JOIN category ON tool.category_id = category.id 
@@ -65,8 +66,10 @@ final class ToolRepositoryMariaDB implements ToolRepository
             tool.id, 
             tool.name, 
             category.name AS category, 
-            tool.image, tool.stock_total, 
+            tool.image, 
+            tool.stock_total, 
             tool.stock_actual, 
+            tool.location, 
             tool.is_active 
         FROM tool 
         INNER JOIN category ON tool.category_id = category.id 

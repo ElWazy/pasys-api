@@ -63,8 +63,7 @@
             <h3>Stock Actual</h3>
             <input type="number" name="stock_actual" id="stock_actual" value="<?= $tool['stock_actual']; ?>" placeholder="Stock Actual" min="0" />
             <h3>Ubicación</h3>
-            <!-- Nuevo input de crear herramienta -->
-            <input type="text" name="location" id="location" placeholder="Ubicación" />   
+            <input type="text" name="location" id="location" value="<?= $tool['location']?>" placeholder="Ubicación" />   
             <input type="submit" value="Actualizar">
         </form>
     </main>

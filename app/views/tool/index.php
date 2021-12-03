@@ -103,6 +103,7 @@
                                 <p class="card-category"><?= $tool['category']; ?></p>
                                 <p>stock total: <?= $tool['stock_total']; ?></p>
                                 <p>stock real: <?= $tool['stock_actual']; ?></p>
+                                <p>ubicacion: <?= $tool['location']; ?></p>
                                 <?php if($isAdmin): ?>
 
                                     <div class="flex">

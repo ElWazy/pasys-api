@@ -3,6 +3,7 @@
 namespace LosYuntas\user\domain;
 
 use Exception;
+use function valid;
 
 final class User
 { 
@@ -66,25 +67,42 @@ final class User
 
     private function rutValidation(string $rut): void
     {
+
         $rutFormateado = "";
         $rut = preg_replace('/[^k0-9]/i', '', $rut);
-        if( strlen($rut) > 13 ){
+
+        if( strlen($rut) > 9 ){
             throw new Exception('Rut demasiado largo');
             return;
         }
 
-        $rutBody = substr($rut, 0, 7);
-        if(strpos($rutBody , "k") || strpos($rutBody , "K")){
+        if( strlen($rut) < 8 ){
+            throw new Exception('Rut demasiado corto');
+            return;
+        }
+
+        $rutBody = substr($rut, 0, strlen($rut) - 1);
+
+        if(strpos($rutBody , 'k') || strpos($rutBody , 'K')){
             throw new Exception('Rut Invalido');
             return;
         }
 
-        $rutf = substr($rut, 0, 2);
-        $rutm = substr($rut, 2, 3);
-        $rutr = substr($rut, 5, 3);
+        if(strlen($rut) == 9) {
+            $rutf = substr($rut, 0, 2);
+            $rutm = substr($rut, 2, 3);
+            $rutr = substr($rut, 5, 3);
 
-        $ruti = substr($rut, 8);
-        $rutFormateado = sprintf("%s.%s.%s-%s", $rutf, $rutm, $rutr, $ruti);
+            $ruti = substr($rut, 8);
+            $rutFormateado = sprintf("%s.%s.%s-%s", $rutf, $rutm, $rutr, $ruti);
+        } elseif (strlen($rut) == 8) {
+            $rutf = substr($rut, 0, 1);
+            $rutm = substr($rut, 1, 3);
+            $rutr = substr($rut, 4, 3);
+
+            $ruti = substr($rut, 7);
+            $rutFormateado = sprintf("%s.%s.%s-%s", $rutf, $rutm, $rutr, $ruti);
+        }
 
         $this->rut = $rutFormateado;
     }

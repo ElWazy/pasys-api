@@ -40,9 +40,9 @@ final class OrderRecord
         $this->worker = $worker;
         $this->tool = $tool;
         $this->amount = $amount;
-        $this->order_date = date('Y-m-d');
+        $this->order_date = date('Y-m-d H:i:s');
         $this->delivery_date = date(
-            'Y-m-d', 
+            'Y-m-d H:i:s', 
             strtotime($this->order_date . ' + 1 day')
         );
         $this->panolero = $panolero;
