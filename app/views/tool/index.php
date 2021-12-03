@@ -133,7 +133,7 @@
         <script src="/js/popup.js"></script>
     <?php endif; ?>
 
-    <footer>
+    <footer id="footer">
         <ul class="flex">
             <li>Sistema Pañol, Derechos Reservados</li>
             <li>
