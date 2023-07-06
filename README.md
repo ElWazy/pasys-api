@@ -3,10 +3,10 @@
 
 *Integrantes:*
 
-- Gastón Hernán Cathalifaud Rosales
-- Matías Sebastián Marchant Soto
-- Santiago Ignacio Fierro Madrid
-- Esteban Salomón Vivanco Ulloa
+- Gastón Hernán Cathalifaud Rosales ([TasmVanum](https://github.com/TasmVanum))
+- Matías Sebastián Marchant Soto ([Matias-pixel](https://github.com/Matias-pixel))
+- Santiago Ignacio Fierro Madrid ([ElWazy](https://github.com/ElWazy))
+- Esteban Salomón Vivanco Ulloa ([EstebanVivanco](https://github.com/EstebanVivanco))
 
 ## Entorno de desarrollo
 
